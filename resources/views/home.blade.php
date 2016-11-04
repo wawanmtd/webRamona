@@ -45,9 +45,18 @@
   </head>
 
   <body>
-      <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center ">
+    <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center ">
 
-      </div>
+    </div>
+    <button type="button" class="btn btn-success" data-toggle="popover" title="BATAN"
+            data-content="Data batan" data-placement="top" data-container="body">Click Popover</button>
   </body>
 </html>
+
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+
+</script>
 @stop
