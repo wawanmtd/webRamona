@@ -10,13 +10,12 @@
     <script src="../bootstrap/dist/js/jquery-1.11.2.min.js"></script>
 		<script src="../bootstrap/dist/js/bootstrap.min.js"></script>
 		<style type="text/css"></style>
-	</head>
   </head>
 
   <body>
-    <div class="page-header">
-      <div class="container" style="float:inline-block">
-        <img src="../resources/assets/img/MONLINK.png" width="7%" class="img-responsive"/>
+    <div class="header">
+      <div class="container" >
+        <img src="../resources/assets/img/MONLINK.png" width="6%" class="img-responsive" style="float:left; margin:5px"/>
         <h1>Radiation and Meterological Monitoring Analysis System</h1>
       </div>
     </div>
@@ -38,7 +37,8 @@
             <li class=""><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li>
             <li class=""><a href="about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 
-            <button type="button" class="btn btn-default navbar-btn navbar-right" name="loginButton" action="#">Login</button>
+            <button type="button" class="btn btn-default navbar-btn navbar-right" name="loginButton" action="#"
+                    data-toggle="modal" data-target="#loginModal">Login</button>
           </ul>
 
         </div>
@@ -49,10 +49,55 @@
         @yield('konten')
     </div>
 
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+          </div>
+
+          <div class="modal-body ">
+            <div class="row">
+              <div class="col-md-6 col-xs-offset-4">
+                <img src="../resources/assets/img/MONLINK.png" id="logoLogin" alt="" width="50%" />
+              </div>
+            </div>
+            <h4 class="form-signin-heading" >Radiation and Meterological Monitoring Analysis System</h4>
+              <br>
+              <form>
+                <div class="form-group">
+                  <label for="inputUsername" class="sr-only">Username</label>
+                  <input type="username" id="inputUsername" class="form-control" placeholder="Username"  required autofocus>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword" class="sr-only">Password</label>
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password"  required>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </div>
+              </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <footer class="footer">
-      <div class="contrainer ">
-        <a herf="http://www.batan.go.id">Badan Tenaga Nuklir Nasional</a> (c)2016
+      <div class="container ">
+        <a href="http://www.batan.go.id" target="_blank">Badan Tenaga Nuklir Nasional</a> &copy2016
       </div>
     </footer>
   </body>
 </html>
+
+<script>
+  $('#loginModal').on('shown.bs.modal', function () {
+      $('#myInput').focus()
+  })
+</script>

@@ -8,7 +8,7 @@
   <h3>Contact</h3>
   <br>
   <p>
-    email : <a href="mailto:joe@example.com?subject=feedback">example@batan.go.id</a>
+    email : <a href="mailto:example@batan.go.id?subject=feedback">example@batan.go.id</a>
   </p>
   <p>
     address : Komplek Puspiptek Gedung 71 lt2 Badan Tenaga Nuklir Nasional
