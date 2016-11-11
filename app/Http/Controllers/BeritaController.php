@@ -10,4 +10,8 @@ class BeritaController extends Controller
     {
       return view('berita');
     }
+    public function berita($Headline)
+    {
+      return view('newsDetail', compact('Headline'));
+    }
 }

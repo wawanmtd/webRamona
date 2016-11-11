@@ -15,7 +15,8 @@
   <body>
     <div class="header">
       <div class="container" >
-        <img src="../resources/assets/img/MONLINK.png" width="6%" class="img-responsive" style="float:left; margin:5px"/>
+        <!-- <img id="logoHeader" /> -->
+        <img src="../resources/assets/img/MONLINK.png" width="6%" class="img-responsive" style="float:left; margin:5px" />
         <h1>Radiation and Meterological Monitoring Analysis System</h1>
       </div>
     </div>
@@ -34,7 +35,8 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="{{action("HomeController@index")}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
             <!-- <li class="<?php //if(function(@yield('title'))=="berita") {echo 'active';} ?>"><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li> -->
-            <li class=""><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li>
+            <li id="newsTab" class=""><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li>
+
             <li class=""><a href="about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
 
             <button type="button" class="btn btn-default navbar-btn navbar-right" name="loginButton" action="#"

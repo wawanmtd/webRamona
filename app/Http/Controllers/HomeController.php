@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
       return view('home');
     }
+
+    public function stationStatus($nameStation)
+    {
+      return view('stationStatus', compact('nameStation'));
+    }
 }

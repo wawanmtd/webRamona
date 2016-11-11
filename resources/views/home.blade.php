@@ -45,13 +45,13 @@
 
   <body>
     <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div>
-    <button type="button" class="btn btn-success" data-toggle="popover" data-placement="top">Click Popover</button>
+    <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a>
   </body>
 
   <div id="currentCondition-title" class="popover hidden">
     <div class="row">
       <div class="col-md-5">
-        <h5>{nameStation}</h5>
+        <h5><?php $nameStation = "BATAN"; echo $nameStation;?></h5>
       </div>
       <div class="col-md-3 col-md-offset-3" style="float:right" >
         <?php
@@ -211,7 +211,7 @@
       </div>
     </div>
 
-    <a href="#" style="float:right">view details>>> </a>
+    <a href="stationStatus/<?php echo $nameStation ?>" style="float:right" target="_new">view details &raquo </a>
   </div>
 </html>
 
