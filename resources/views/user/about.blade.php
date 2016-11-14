@@ -1,4 +1,4 @@
-@extends ('index')
+@extends ('user.index')
 
 @section('title')
   About

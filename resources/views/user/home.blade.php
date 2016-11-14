@@ -1,19 +1,15 @@
-@extends ('index')
+@extends ('user.index')
 
 @section ('title')
   Home
 @stop
 
 @section ('konten')
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
       <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
       <script src="../ammap/ammap.js" type="text/javascript"></script>
-      <!-- check ammap/maps/js/ folder to see all available countries -->
-      <!-- map file should be included after ammap.js -->
       <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
       <script>
         var map;
@@ -50,14 +46,11 @@
 
   <div id="currentCondition-title" class="popover hidden">
     <div class="row">
-      <div class="col-md-5">
-        <h5><?php $nameStation = "BATAN"; echo $nameStation;?></h5>
+      <div class="col-md-3 col-md-offset-1">
+        <h5>{{$nameStation}}</h5>
       </div>
       <div class="col-md-3 col-md-offset-3" style="float:right" >
-        <?php
-          date_default_timezone_set("Asia/Jakarta");
-          echo "<h5>".date("m | d")."</h5>";
-        ?>
+        <h5>{{date("m | d")}}</h5>
       </div>
     </div>
   </div>
@@ -72,7 +65,7 @@
                   <img src="../resources/assets/img/svgPath/termo.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4 class="text-center">100</h4>
+                  <h4 class="text-center">{{$termoDeg}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-1">
                   <h5>&degC</h5>
@@ -92,12 +85,12 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-3 col-md-offset-4">
-                    NNE
+                    {{$windDir}}
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    25
+                    {{$windSpeed}}
                   </div>
                   <div class="col-md-2">
                     km/h
@@ -117,7 +110,7 @@
                   <img src="../resources/assets/img/svgPath/solarRadiation.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>94</h4>
+                  <h4>{{$solarRad}}</h4>
               </div>
               <div class="col-md-2">
                   <h5>Wm&sup2</h5>
@@ -137,7 +130,7 @@
                   <img src="../resources/assets/img/svgPath/radiationYellow.svg" alt="" />
               </div>
               <div class="col-md-3">
-                  <h3>1000</h3>
+                  <h3>{{$gammaDoseRates}}</h3>
               </div>
               <div class="col-md-2 col-md-offset-1">
                   <h5>&microSv/h</h5>
@@ -159,7 +152,7 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-6 col-md-offset-1">
-                    1000
+                    {{$barometer}}
                   </div>
                 </div>
                 <div class="row">
@@ -182,7 +175,7 @@
                   <img src="../resources/assets/img/svgPath/percipitation.svg" alt="" />
               </div>
               <div class="col-md-2 ">
-                  <h4>0</h4>
+                  <h4>{{$percipitation}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-1">
                   <h5>mm</h5>
@@ -200,7 +193,7 @@
                   <img src="../resources/assets/img/svgPath/humidity.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>50</h4>
+                  <h4>{{$humidity}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-2">
                   <h5>%</h5>
@@ -211,7 +204,7 @@
       </div>
     </div>
 
-    <a href="stationStatus/<?php echo $nameStation ?>" style="float:right" target="_new">view details &raquo </a>
+    <a href="stationStatus/{{$nameStation}}" style="float:right" target="_new">view details &raquo </a>
   </div>
 </html>
 
@@ -231,8 +224,6 @@
         html: true,
         container: "body"
       });
-  });
-
-
-</script>
+    });
+  </script>
 @stop

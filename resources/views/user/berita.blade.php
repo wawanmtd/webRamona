@@ -1,4 +1,4 @@
-@extends('index')
+@extends('user.index')
 
 @section('title')
   News
@@ -78,9 +78,9 @@
 
     <div class="col-lg-4">
       <img class="img-circle" src="../resources/assets/img/svgPath/logoRamona.svg" alt="" width="140" height="140" />
-      <h2><?php $Headline ="Headline-Berita"; echo $Headline; ?></h2>
+      <h2>{{$headline}}</h2>
       <p>Cuplikan Berita</p>
-      <p><a role="button" class="btn btn-default" href="berita/<?php echo $Headline ?>">view details &raquo</a></p>
+      <p><a role="button" class="btn btn-default" href="berita/{{$headlines}}">view details &raquo</a></p>
     </div>
   </div>
 </div>

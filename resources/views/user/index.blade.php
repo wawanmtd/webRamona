@@ -4,19 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') - Radiation and Meterological Monitoring Analysis System</title>
+    @section('stylesheet')
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap/main.css">
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap-theme.min.css">
     <script src="../bootstrap/dist/js/jquery-1.11.2.min.js"></script>
 		<script src="../bootstrap/dist/js/bootstrap.min.js"></script>
 		<style type="text/css"></style>
+    @show
   </head>
 
   <body>
     <div class="header">
       <div class="container" >
-        <!-- <img id="logoHeader" /> -->
-        <img src="../resources/assets/img/MONLINK.png" width="6%" class="img-responsive" style="float:left; margin:5px" />
+        @section('header')
+        <img id="logoHeader" src="../resources/assets/img/MONLINK.png" width="6%" class="img-responsive" style="float:left; margin:5px" />
+        @show
         <h1>Radiation and Meterological Monitoring Analysis System</h1>
       </div>
     </div>
@@ -28,17 +31,20 @@
             <span class="sr-only">Toggle Navigation</span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{action("HomeController@index")}}">RAMONA</a>
+          <a class="navbar-brand" href="{{action("userController\HomeController@index")}}">RAMONA</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse" data-toggle="navbar">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="{{action("HomeController@index")}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-            <!-- <li class="<?php //if(function(@yield('title'))=="berita") {echo 'active';} ?>"><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li> -->
-            <li id="newsTab" class=""><a href="berita"><span class="glyphicon glyphicon-bullhorn"></span> News</a></li>
-
-            <li class=""><a href="about"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-
+            <li class="{{Request::is('/') ? 'active' : '' }}">
+              <a href="{{action("userController\HomeController@index")}}">
+                <span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li class="{{Request::is('berita') ? 'active' : '' }}">
+              <a href="{{action("userController\BeritaController@index")}}">
+                <span class="glyphicon glyphicon-bullhorn"></span> News</a></li>
+            <li class="{{Request::is('about') ? 'active' : '' }}">
+              <a href="{{action("userController\AboutController@index")}}">
+                <span class="glyphicon glyphicon-info-sign"></span> About</a></li>
             <button type="button" class="btn btn-default navbar-btn navbar-right" name="loginButton" action="#"
                     data-toggle="modal" data-target="#loginModal">Login</button>
           </ul>
@@ -62,7 +68,9 @@
           <div class="modal-body ">
             <div class="row">
               <div class="col-md-6 col-xs-offset-4">
+                @section('logoLogin')
                 <img src="../resources/assets/img/MONLINK.png" id="logoLogin" alt="" width="50%" />
+                @show
               </div>
             </div>
             <h4 class="form-signin-heading" >Radiation and Meterological Monitoring Analysis System</h4>

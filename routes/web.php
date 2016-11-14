@@ -22,10 +22,20 @@
 // Route::get('/profil', function(){
 //   return view('profil');
 // });
-Route::get('/', 'HomeController@index');
-Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
-Route::get('/berita', 'BeritaController@index');
-Route::get('/berita/{Headline}', 'BeritaController@berita');
-Route::get('/about', 'AboutController@index');
+Route::group(['namespace' => 'userController'], function()
+{
+  Route::get('/', 'HomeController@index');
+  Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
+  Route::get('/berita', 'BeritaController@index');
+  Route::get('/berita/{Headline}', 'BeritaController@berita');
+  Route::get('/about', 'AboutController@index');
+});
+
+
+// Route::get('/', 'HomeController@index');
+// Route::get('/stationStatus/{nameStation}', 'userController/HomeController@stationStatus');
+// Route::get('/berita', 'userController/BeritaController@index');
+// Route::get('/berita/{Headline}', 'userController/BeritaController@berita');
+// Route::get('/about', 'userController/AboutController@index');
 
 //artisan = CLI atau aplikasi buat laravel
