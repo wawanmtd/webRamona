@@ -75,7 +75,7 @@
             </div>
             <h4 class="form-signin-heading" >Radiation and Meterological Monitoring Analysis System</h4>
               <br>
-              <form>
+              <form action="{{action("adminController\LoginController@index")}}">
                 <div class="form-group">
                   <label for="inputUsername" class="sr-only">Username</label>
                   <input type="username" id="inputUsername" class="form-control" placeholder="Username"  required autofocus>

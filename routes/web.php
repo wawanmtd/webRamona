@@ -31,11 +31,15 @@ Route::group(['namespace' => 'userController'], function()
   Route::get('/about', 'AboutController@index');
 });
 
-
-// Route::get('/', 'HomeController@index');
-// Route::get('/stationStatus/{nameStation}', 'userController/HomeController@stationStatus');
-// Route::get('/berita', 'userController/BeritaController@index');
-// Route::get('/berita/{Headline}', 'userController/BeritaController@berita');
-// Route::get('/about', 'userController/AboutController@index');
+Route::group(['namespace' => 'adminController'], function()
+{
+  Route::get('/', 'LoginController@index');
+  Route::get('/dashboard', 'AdminController@dashboard');
+  Route::get('/kelolaAdmin', 'AdminController@kelolaAdmin');
+  Route::get('/kelolaArea', 'AdminController@kelolaArea');
+  Route::get('/kelolaStation', 'AdminController@kelolaStation');
+  Route::get('/kelolaSensor', 'AdminController@kelolaSensor');
+  Route::get('/kelolaBerita', 'AdminController@kelolaBerita');
+});
 
 //artisan = CLI atau aplikasi buat laravel
