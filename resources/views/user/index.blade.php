@@ -95,9 +95,9 @@
               </form>
           </div>
         </div>
-
       </div>
     </div>
+
     <footer class="footer">
       <div class="container ">
         <a href="http://www.batan.go.id" target="_blank">Badan Tenaga Nuklir Nasional</a> &copy2016

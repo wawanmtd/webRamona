@@ -33,13 +33,38 @@ Route::group(['namespace' => 'userController'], function()
 
 Route::group(['namespace' => 'adminController'], function()
 {
-  Route::get('/', 'LoginController@index');
-  Route::get('/dashboard', 'AdminController@dashboard');
-  Route::get('/kelolaAdmin', 'AdminController@kelolaAdmin');
-  Route::get('/kelolaArea', 'AdminController@kelolaArea');
-  Route::get('/kelolaStation', 'AdminController@kelolaStation');
-  Route::get('/kelolaSensor', 'AdminController@kelolaSensor');
-  Route::get('/kelolaBerita', 'AdminController@kelolaBerita');
+  Route::get('/login', 'LoginController@index');
+  Route::get('/dashboard', 'AdminController@index');
+
+  Route::get('/kelolaAdmin', 'KelolaAdminController@index');
+  Route::get('/kelolaAdmin/tambahAdmin', 'KelolaAdminController@tambah');
+  Route::get('/kelolaAdmin/ubahAdmin', 'KelolaAdminController@ubah');
+  Route::get('/kelolaAdmin/hapusAdmin', 'KelolaAdminController@hapus');
+
+  Route::get('/kelolaArea', 'KelolaAreaController@index');
+  Route::get('/kelolaArea/tambahArea', 'KelolaAreaController@tambah');
+  Route::get('/kelolaArea/ubahArea', 'KelolaAreaController@ubah');
+  Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
+
+  Route::get('/kelolaStation', 'KelolaStationController@index');
+  Route::get('/kelolaStation/tambahStation', 'KelolaStationController@tambah');
+  Route::get('/kelolaStation/ubahStation', 'KelolaStationController@ubah');
+  Route::get('/kelolaStation/hapusStation', 'KelolaStationController@hapus');
+
+  Route::get('/kelolaSensor', 'KelolaSensorController@index');
+  Route::get('/kelolaSensor/tambahSensor', 'KelolaSensorController@tambah');
+  Route::get('/kelolaSensor/ubahSensor', 'KelolaSensorController@ubah');
+  Route::get('/kelolaSensor/hapusSensor', 'KelolaSensorController@hapus');
+
+  Route::get('/kelolaBerita', 'KelolaBeritaController@index');
+  Route::get('/kelolaBerita/tambahBerita', 'KelolaBeritaController@tambah');
+  Route::get('/kelolaBerita/ubahBerita', 'KelolaBeritaController@ubah');
+  Route::get('/kelolaBerita/hapusBerita', 'KelolaBeritaController@hapus');
+  Route::get('/kelolaBerita/approveBerita', 'KelolaBeritaController@approve');
+
+  Route::get('/maintenance', 'MaintenanceController@index');
+
+  Route::get('/logout', 'LoginController@logout');
 });
 
 //artisan = CLI atau aplikasi buat laravel

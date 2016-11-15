@@ -9,6 +9,12 @@ class LoginController extends Controller
 {
     public function index()
     {
-      return view("admin.dashboard");
+      return redirect()->action('adminController\AdminController@index');
+    }
+
+    public function logout()
+    {
+      // $_SESSION('destroy');
+      return redirect()->action('userController\HomeController@index');
     }
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{Admin} Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../bootstrap/adminlte/css/AdminLTE.min.css">
@@ -19,10 +20,10 @@
       <!-- Main Header -->
       <header class="main-header">
         <!-- Logo -->
-        <a href="{{action("adminController\AdminController@dashboard")}}" class="logo">
+        <a href="{{action("adminController\AdminController@index")}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
-            <img src="../resources/assets/img/MONLINK.png" alt="" width="60%"/>
+            <img src="../../resources/assets/img/MONLINK.png" alt="" width="60%"/>
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg">
@@ -151,8 +152,8 @@
                   <li class="user-header">
                     <img src="../bootstrap/adminlte/img/avatar.png" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
-                      <small>Member since Nov. 2012</small>
+                      {nameAdmin}
+                      <small>{roleAdmin} - {lokasi}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -176,7 +177,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="{{action("adminController\LoginController@logout")}}" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -202,6 +203,7 @@
             </div>
             <div class="pull-left info">
               <p>{nameAdmin}</p>
+              {roleAdmin}
             </div>
           </div>
 
@@ -222,26 +224,30 @@
               <li class="header">Main Navigation</li>
               <!-- Optionally, you can add icons to the links -->
               <li class="{{Request::is('dashboard') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@dashboard")}}">
+                <a href="{{action("adminController\AdminController@index")}}">
                   <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
               <li class="{{Request::is('kelolaAdmin') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@kelolaAdmin")}}">
+                <a href="{{action("adminController\KelolaAdminController@index")}}">
                   <i class="fa fa-users"></i> <span>Kelola Admin</span></a></li>
               <li class="{{Request::is('kelolaArea') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@kelolaArea")}}">
+                <a href="{{action("adminController\KelolaAreaController@index")}}">
                   <i class="fa fa-map-o"></i> <span>Kelola Area</span></a></li>
               <li class="{{Request::is('kelolaStation') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@kelolaStation")}}">
+                <a href="{{action("adminController\KelolaStationController@index")}}">
                   <i class="fa fa-map-marker"></i> <span>Kelola Station</span></a></li>
               <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@kelolaSensor")}}">
+                <a href="{{action("adminController\KelolaSensorController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Sensor</span></a></li>
               <li class="{{Request::is('kelolaBerita') ? 'active' : ''}}">
-                <a href="{{action("adminController\AdminController@kelolaBerita")}}">
+                <a href="{{action("adminController\KelolaBeritaController@index")}}">
                   <i class="fa fa-newspaper-o"></i> <span>Kelola Berita</span></a></li>
+              <li class="{{Request::is('maintenance') ? 'active' : ''}}">
+                <a href="{{action("adminController\MaintenanceController@index")}}">
+                  <i class="fa fa-wrench"></i> <span>Maintenance</span></a></li>
 
               <!-- <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                <a href="{{action("adminController\KelolaBeritaController@index")}}">
+                  <i class="fa fa-link"></i> <span>Multilevel</span>
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
