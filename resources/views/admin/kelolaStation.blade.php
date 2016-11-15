@@ -46,7 +46,6 @@
         </tr>
 
         <tr>
-          
           <td>Muchtar Prawira</td>
           <td>muchtarpr</td>
           <td>Admin</td>
