@@ -1,8 +1,11 @@
-<!-- <script src="../bootstrap/adminlte/plugins/fastclick/fastclick.min.js"></script>
-<script src="../bootstrap/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="../bootstrap/adminlte/js/demo.js"></script> -->
+<!-- <script src="../bootstrap/adminlte/plugins/fastclick/fastclick.min.js"></script> -->
+<!-- <script src="../bootstrap/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script> -->
+<!-- <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script> -->
+<!-- <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+<!-- <script src="../bootstrap/adminlte/js/demo.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js "></script>
 @extends('admin.index')
 
 @section('content-header')
@@ -15,86 +18,96 @@
     <span class="fa fa-plus"></span> Tambah</button>
 
 <!-- Table Data Admin -->
+<div class="row">
+  <div class="col-sm-12">
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Daftar Admin</h3>
     </div>
 
     <div class="box-body">
-      <table id="tableAdmin" class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Nama Lengkap</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Station</th>
-            <th>Area</th>
-            <th colspan="2">Action</th>
-          </tr>
-        </thead>
+      <div id="tableAdmin_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+        <div class="row">
 
-        <tbody>
-          <tr>
-            <td>Mochamad Tri Dharmawan</td>
-            <td>wawanmtd</td>
-            <td>Super Admin</td>
-            <td>-</td>
-            <td>-</td>
-            <td style="width:5%">
-              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
-                <span class="fa fa-edit"></span></button>
-            </td>
-            <td style="width:5%">
-              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
-                <span class="fa fa-trash"></span></button>
-            </td>
-          </tr>
+        </div>
 
-          <tr>
-            <td>Muchtar Prawira</td>
-            <td>muchtarpr</td>
-            <td>Admin</td>
-            <td>Batan</td>
-            <td>Puspiptek</td>
-            <td>
-              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
-                <span class="fa fa-edit"></span></button>
-            </td>
-            <td>
-              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
-                <span class="fa fa-trash"></span></button>
-            </td>
-          </tr>
 
-          <tr>
-            <td>Gerald Viko Ananda</td>
-            <td>seishiro</td>
-            <td>Manajerial</td>
-            <td>Batan</td>
-            <td>Puspiptek</td>
-            <td>
-              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
-                <span class="fa fa-edit"></span></button>
-            </td>
-            <td>
-              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
-                <span class="fa fa-trash"></span></button>
-            </td>
-          </tr>
-        </tbody>
+            <table id="tableAdmin" class="table table-bordered table-striped dataTable display" role="grid">
+              <thead>
+                <tr role="row">
+                  <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Nama Lengkap: active to sort column ascending">Nama Lengkap</th>
+                  <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Username: active to sort column ascending">Username</th>
+                  <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Role: active to sort column ascending">Role</th>
+                  <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Station: active to sort column ascending">Station</th>
+                  <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Area: active to sort column ascending">Area</th>
+                  <th colspan="2">Action</th>
+                </tr>
+              </thead>
 
-        <tfoot >
-          <tr>
-            <th>Nama Lengkap</th>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Station</th>
-            <th>Area</th>
-            <th colspan="2">Action</th>
+              <tbody>
+                <tr class="odd" role="row">
+                  <td >Mochamad Tri Dharmawan</td>
+                  <td >wawanmtd</td>
+                  <td >Super Admin</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td style="width:5%">
+                    <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
+                      <span class="fa fa-edit"></span></button>
+                    </td>
+                    <td style="width:5%">
+                      <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
+                        <span class="fa fa-trash"></span></button>
+                      </td>
+                    </tr>
 
-          </tr>
-        </tfoot>
-      </table>
+                    <tr class="even" role="row">
+                      <td >Muchtar Prawira</td>
+                      <td >muchtarpr</td>
+                      <td >Admin</td>
+                      <td >Batan</td>
+                      <td >Puspiptek</td>
+                      <td>
+                        <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
+                          <span class="fa fa-edit"></span></button>
+                        </td>
+                        <td>
+                          <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
+                            <span class="fa fa-trash"></span></button>
+                          </td>
+                        </tr>
+
+                        <tr class="odd" role="row">
+                          <td class="">Gerald Viko Ananda</td>
+                          <td class="">seishiro</td>
+                          <td class="">Manajerial</td>
+                          <td class="">Batan</td>
+                          <td class="">Puspiptek</td>
+                          <td>
+                            <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
+                              <span class="fa fa-edit"></span></button>
+                            </td>
+                            <td>
+                              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
+                                <span class="fa fa-trash"></span></button>
+                              </td>
+                            </tr>
+                          </tbody>
+
+                          <tfoot>
+                            <tr>
+                              <th>Nama Lengkap</th>
+                              <th>Username</th>
+                              <th>Role</th>
+                              <th>Station</th>
+                              <th>Area</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                          </tfoot>
+                        </table>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -193,4 +206,10 @@
   </div>
 <!-- end modal Hapus Admin -->
 
+<script>
+$(document).ready(function() {
+    $('#tableAdmin').dataTable();
+});
+
+</script>
 @stop

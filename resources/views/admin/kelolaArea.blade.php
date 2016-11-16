@@ -1,3 +1,4 @@
+
 @extends('admin.index')
 
 @section('content-header')
@@ -6,25 +7,28 @@
 @stop
 
 @section('konten')
+
 <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAreaModal" class="btn btn-success">
   <span class="fa fa-plus"></span> Tambah</button>
 
 <!-- Table Data Area -->
+<div class="row">
+  <div class="col-xs-12">
 <div class="box">
   <div class="box-header">
     <h3 class="box-title">Daftar Area</h3>
   </div>
-
+  <!-- /.box-header -->
   <div class="box-body">
-    <table id="tableArea" class="table table-bordered table-striped">
+    <table id="tableAdmin" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>Nama Lengkap</th>
           <th>Username</th>
           <th>Role</th>
-          <th>Station</th>
           <th>Area</th>
-          <th colspan="2">Action</th>
+          <th>Station</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -33,13 +37,11 @@
           <td>Mochamad Tri Dharmawan</td>
           <td>wawanmtd</td>
           <td>Super Admin</td>
-          <td>-</td>
-          <td>-</td>
-          <td style="width:5%">
+          <td>aside</td>
+          <td>asd</td>
+          <td style="width:10%">
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
-          </td>
-          <td style="width:5%">
             <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
               <span class="fa fa-trash"></span></button>
           </td>
@@ -54,8 +56,6 @@
           <td>
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
-          </td>
-          <td>
             <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
               <span class="fa fa-trash"></span></button>
           </td>
@@ -70,29 +70,35 @@
           <td>
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
-          </td>
-          <td>
             <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
               <span class="fa fa-trash"></span></button>
           </td>
         </tr>
       </tbody>
 
-      <tfoot >
+      <tfoot>
         <tr>
           <th>Nama Lengkap</th>
           <th>Username</th>
           <th>Role</th>
-          <th>Station</th>
           <th>Area</th>
-          <th colspan="2">Action</th>
-
+          <th>Station</th>
+          <th></th>
         </tr>
       </tfoot>
     </table>
-
   </div>
+  <!-- /.box-body -->
 </div>
+</div>
+</div>
+
+<script>
+  $(function () {
+    $("#tableAdmin").DataTable();
+  });
+</script>
+
 <!-- end Table Data Area -->
 
 <!-- modal Tambah Area -->
