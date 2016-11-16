@@ -67,4 +67,8 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/logout', 'LoginController@logout');
 });
 
+// Route::group(['namespace'=>'areaController'], function(){
+//    Route::get('/kelolaArea', 'AreaController@index');
+// });
+
 //artisan = CLI atau aplikasi buat laravel
