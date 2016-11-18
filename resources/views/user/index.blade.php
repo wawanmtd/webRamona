@@ -75,18 +75,24 @@
             </div>
             <h4 class="form-signin-heading" >Radiation and Meterological Monitoring Analysis System</h4>
               <br>
-              <form action="{{action("adminController\LoginController@index")}}">
+              <form action="{{action("adminController\LoginController@index")}}" method="post">
+              <!-- <form action="login" method="post"> -->
                 <div class="form-group">
                   <label for="inputUsername" class="sr-only">Username</label>
-                  <input type="username" id="inputUsername" class="form-control" placeholder="Username"  required autofocus>
+                  <input type="username"  name="Username" class="form-control" placeholder="Username"  required autofocus>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword" class="sr-only">Password</label>
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password"  required>
+                  <label for="inputPassword"  class="sr-only">Password</label>
+                  <input type="password" name="AccessCode" class="form-control" placeholder="Password"  required>
                 </div>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input type="hidden" name="_token" value="{{csrf_token()}}"> Remember me
                   </label>
                 </div>
                 <div class="modal-footer">

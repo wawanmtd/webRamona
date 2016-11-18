@@ -4,12 +4,18 @@ namespace App\Http\Controllers\adminController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Member\Member;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      return redirect()->action('adminController\AdminController@index');
+    	$SelectMember = Member::where('Username', $request->Username)
+    							->where('AccessCode', $request->AccessCode)
+    							->get();
+
+    	//return $SelectMember;
+      return redirect()->action('adminController\AdminController@index',compact('SelectMember'));
     }
 
     public function logout()
@@ -17,4 +23,5 @@ class LoginController extends Controller
       // $_SESSION('destroy');
       return redirect()->action('userController\HomeController@index');
     }
+
 }

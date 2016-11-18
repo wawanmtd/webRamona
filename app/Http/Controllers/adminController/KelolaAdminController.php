@@ -4,12 +4,16 @@ namespace App\Http\Controllers\adminController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Member\Member;
+use App\Models\Person\Person;
 
 class KelolaAdminController extends Controller
 {
     public function index()
     {
-      return view("admin.kelolaAdmin");
+        $ShowMember = Member::all();
+        //$ShowPerson = Person::all();
+      return view('admin.kelolaAdmin', compact('ShowMember'));
     }
 
     public function tambah()

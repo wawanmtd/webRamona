@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index($SelectMember)
     {
-      return view("admin.dashboard");
+    	//$Selec as $SelectMember;
+    	return $SelectMember;
+      //return view("admin.dashboard", compact('selectmember'));
     }
 }

@@ -33,7 +33,7 @@ Route::group(['namespace' => 'userController'], function()
 
 Route::group(['namespace' => 'adminController'], function()
 {
-  Route::get('/login', 'LoginController@index');
+  Route::post('/login', 'LoginController@index');
   Route::get('/dashboard', 'AdminController@index');
 
   Route::get('/kelolaAdmin', 'KelolaAdminController@index');

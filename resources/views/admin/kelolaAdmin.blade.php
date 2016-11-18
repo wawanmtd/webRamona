@@ -45,10 +45,13 @@
               </thead>
 
               <tbody>
+
+              @foreach ($ShowMember as $showmember)
+
                 <tr class="odd" role="row">
-                  <td >Mochamad Tri Dharmawan</td>
-                  <td >wawanmtd</td>
-                  <td >Super Admin</td>
+                  <td >{{$showmember->Person_ID}}</td>
+                  <td >{{$showmember->Username}}</td>
+                  <td >{{$showmember->MemberRole_ID}}</td>
                   <td>-</td>
                   <td>-</td>
                   <td style="width:5%">
@@ -61,6 +64,8 @@
                       </td>
                     </tr>
 
+                    @endforeach
+<!-- 
                     <tr class="even" role="row">
                       <td >Muchtar Prawira</td>
                       <td >muchtarpr</td>
@@ -91,7 +96,7 @@
                               <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
                                 <span class="fa fa-trash"></span></button>
                               </td>
-                            </tr>
+                            </tr> -->
                           </tbody>
 
                           <tfoot>
