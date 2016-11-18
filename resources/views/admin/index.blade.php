@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="../bootstrap/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../bootstrap/adminlte/css/AdminLTE.min.css">
     <link rel="stylesheet" href="../bootstrap/adminlte/css/skins/skin-green-light.min.css">
+    <link rel="stylesheet" href="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.css">
     <script src="../bootstrap/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bootstrap/adminlte/js/app.min.js"></script>
-    <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
   </head>
 
   <body class="hold-transition skin-green-light sidebar-mini">
