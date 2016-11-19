@@ -210,18 +210,6 @@
             </div>
           </div>
 
-          <!-- search form (Optional) -->
-          <!-- <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form> -->
-            <!-- /.search form -->
-
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
               <li class="header">Main Navigation</li>
@@ -248,18 +236,18 @@
                 <a href="{{action("adminController\MaintenanceController@index")}}">
                   <i class="fa fa-wrench"></i> <span>Maintenance</span></a></li>
 
-              <!-- <li class="treeview">
-                <a href="{{action("adminController\KelolaBeritaController@index")}}">
-                  <i class="fa fa-link"></i> <span>Multilevel</span>
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-database"></i> <span>Backup & Restore</span>
                   <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
                 </a>
                 <ul class="treeview-menu">
-                  <li><a href="#">Link in level 2</a></li>
-                  <li><a href="#">Link in level 2</a></li>
+                  <li><a href="{{action('adminController\BackupRestoreController@backupView')}}">Backup</a></li>
+                  <li><a href="{{action('adminController\BackupRestoreController@restoreView')}}">Restore</a></li>
                 </ul>
-              </li> -->
+              </li>
 
             </ul>
             <!-- /.sidebar-menu -->
@@ -274,10 +262,7 @@
             <h1>
               @yield('content-header')
             </h1>
-            <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-              <li class="active">Here</li>
-            </ol>
+            
           </section>
 
           <!-- Main content -->

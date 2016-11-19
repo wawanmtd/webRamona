@@ -64,6 +64,11 @@ Route::group(['namespace' => 'adminController'], function()
 
   Route::get('/maintenance', 'MaintenanceController@index');
 
+  Route::get('/backupView', 'BackupRestoreController@backupView');
+  Route::get('/backupData', 'BackupRestoreController@backupData');
+  Route::get('/restoreView', 'BackupRestoreController@restoreView');
+  Route::get('/restoreData', 'BackupRestoreController@restoreData');
+
   Route::get('/logout', 'LoginController@logout');
 });
 
