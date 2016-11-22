@@ -43,8 +43,8 @@ class KelolaAdminController extends Controller
         $membernew->IsActive = 0;
         $membernew->save();
 
-        //return redirect()->action('adminController\AdminController@index');
-        return view('admin.kelolaAdmin');
+        return redirect()->action('adminController\KelolaAdminController@index');
+        //return view('admin.kelolaAdmin');
     }
 
     public function ubah()

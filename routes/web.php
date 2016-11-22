@@ -56,6 +56,11 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/kelolaSensor/ubahSensor', 'KelolaSensorController@ubah');
   Route::get('/kelolaSensor/hapusSensor', 'KelolaSensorController@hapus');
 
+  Route::get('/kelolaDevice', 'KelolaDeviceController@index');
+  Route::get('/kelolaDevice/tambahDevice', 'KelolaDeviceController@tambah');
+  Route::get('/kelolaDevice/ubahDevice', 'KelolaDeviceController@ubah');
+  Route::get('/kelolaDevice/hapusDevice', 'KelolaDeviceController@hapus');
+
   Route::get('/kelolaBerita', 'KelolaBeritaController@index');
   Route::get('/kelolaBerita/tambahBerita', 'KelolaBeritaController@tambah');
   Route::get('/kelolaBerita/ubahBerita', 'KelolaBeritaController@ubah');

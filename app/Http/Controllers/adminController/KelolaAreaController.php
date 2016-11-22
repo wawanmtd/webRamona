@@ -25,7 +25,8 @@ class KelolaAreaController extends Controller
         $areanew->Member_ID = $request->Member_ID;
         $areanew->save();
 
-        return view("admin.kelolaArea");
+       // return view("admin.kelolaArea");
+        return redirect()->action('adminController\KelolaAreaController@index');
 
     }
 

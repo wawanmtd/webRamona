@@ -10,7 +10,8 @@ class KelolaStationController extends Controller
 {
     public function index()
     {
-      return view("admin.kelolaStation");
+        $ShowStation = Station::all();
+      return view("admin.kelolaStation", compact('ShowStation'));
     }
 
     public function tambah(Request $request)
@@ -33,7 +34,9 @@ class KelolaStationController extends Controller
         $stationnew->StationDocument = $request->StationDocument;
         $stationnew->save();
 
-        return view("admin.kelolaStation");
+       // return view("admin.kelolaStation");
+
+        return redirect()->action('adminController\KelolaStationController@index');
     }
 
     public function ubah()
