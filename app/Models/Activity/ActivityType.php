@@ -10,3 +10,7 @@ class ActivityType extends Model
 
     public $timestamps = false;
 }
+
+public function ActvityLogData(){
+	return $this->hasOne('App\Models\Activity\ActivityLog', 'ActivityType_ID');
+}

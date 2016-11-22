@@ -8,3 +8,7 @@ class ActivityLog extends Model
 {
     protected $primaryKey='ActivityLog_ID';
 }
+
+public function ActvityTypeData(){
+	return $this->belongsTo('App\Models\Activity\ActivityLog', 'ActivityType_ID');
+}
