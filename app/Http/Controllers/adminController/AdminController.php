@@ -7,10 +7,16 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function index($SelectMember)
+	//untuk login
+    // public function index($SelectMember)
+    // {
+    // 	//$Selec as $SelectMember;
+    // 	//return $SelectMember;
+    //   //return view("admin.dashboard", compact('selectmember'));
+    // }
+
+	public function index()
     {
-    	//$Selec as $SelectMember;
-    	return $SelectMember;
-      //return view("admin.dashboard", compact('selectmember'));
-    }
+    return  view("admin.dashboard");
+	}
 }

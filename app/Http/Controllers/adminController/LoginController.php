@@ -10,12 +10,16 @@ class LoginController extends Controller
 {
     public function index(Request $request)
     {
-    	$SelectMember = Member::where('Username', $request->Username)
-    							->where('AccessCode', $request->AccessCode)
-    							->get();
+      //biar gampang loginya ntar dulu ya
 
-    	//return $SelectMember;
-      return redirect()->action('adminController\AdminController@index',compact('SelectMember'));
+    	// $SelectMember = Member::where('Username', $request->Username)
+    	// 						->where('AccessCode', $request->AccessCode)
+    	// 						->get();
+
+    	// //return $SelectMember;
+     //  return redirect()->action('adminController\AdminController@index',compact('SelectMember'));
+
+      return redirect()->action('adminController\AdminController@index');
     }
 
     public function logout()
