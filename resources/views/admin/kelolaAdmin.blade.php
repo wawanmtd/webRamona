@@ -49,11 +49,11 @@
               @foreach ($ShowMember as $showmember)
 
                 <tr class="odd" role="row">
-                  <td >{{$showmember->Person_ID}}</td>
+                  <td >{{$showmember->PersonData->PersonName}}</td>
                   <td >{{$showmember->Username}}</td>
-                  <td >{{$showmember->MemberRole_ID}}</td>
-                  <td>-</td>
-                  <td>-</td>
+                  <td >{{$showmember->MemberRoleData->NameRole}}</td>
+                  <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
+                  <td >{{$showmember->IsActive}}</td>
                   <td style="width:5%">
                     <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
                       <span class="fa fa-edit"></span></button>
@@ -118,6 +118,24 @@
   </div>
 <!-- end Table Data Admin -->
 
+<!-- modal Hapus Admin -->
+  <div class="modal fade" id="hapusAdminModal" tab-index="-1" role="dialog" aria-labeledby="hapusAdminModalLabel">
+    <div class="modal-dialog modal-sm" role="alertdialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus?</h4>
+        </div>
+
+        <div class="modal-footer">
+          <a role="button" type="button" class="btn btn-danger" href="kelolaAdmin/hapusAdmin">Hapus</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end modal Hapus Admin -->
+
+
 <!-- modal Tambah Admin -->
   <div class="modal fade" id="tambahAdminModal" tabindex="-1" role="dialog" aria-labelledby="tambahAdminModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -128,25 +146,78 @@
         </div>
 
         <div class="modal-body ">
-          <form role="form" action="{{action("adminController\KelolaAdminController@tambah")}}" method="post">
+          <form role="form" action="kelolaAdmin/tambahAdmin" method="post">
             <div class="box-body">
+              
               <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+                <label for="FullName">Full Name</label>
+                <input type="text" name="PersonName" class="form-control" placeholder="Full Name" required>
               </div>
 
               <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+                <label for="Nickname">Nickname</label>
+                <input type="text" name="Nickname" class="form-control" placeholder="Nickname" required>
               </div>
 
               <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="Address">Address</label>
+                <input type="text" name="Address" class="form-control" placeholder="Address" required>
               </div>
+
+              <div class="form-group">
+                <label for="City">City</label>
+                <input type="text" name="City" class="form-control" placeholder="City" required>
+              </div>
+
+              <div class="form-group">
+                <label for="Country_ID">Country (harusnya pake option sih)</label>
+                <input type="text" name="Country_ID" class="form-control" placeholder="Country" required>
+              </div>
+
+              <div class="form-group">
+                <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
+                <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required>
+              </div>
+
+              <div class="form-group">
+                <label for="Picture">Picture (upload*)</label>
+                <input type="text" name="PersonPicture" class="form-control" placeholder="PersonPicture" required>
+              </div>
+
+              <div class="form-group">
+                <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
+                <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required>
+              </div>              
+
+              <div class="form-group">
+                <label for="ContactValue">Contact Value</label>
+                <input type="text" name="ContactValue" class="form-control"  placeholder="Enter Contact Value" required>
+              </div>
+
+              <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" name="Username" class="form-control"  placeholder="Username" required>
+              </div>
+
+              <div class="form-group">
+                <label for="AccessCode">Password</label>
+                <input type="password" name="AccessCode" class="form-control" placeholder="Password" required>
+              </div>
+
+              <div class="form-group">
+                <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
+                <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required>
+              </div>
+
+              <div class="form-group">
+                <label for="Remark">Remark</label>
+                <input type="text" name="Remark" class="form-control" placeholder="Remark" required>
+              </div>
+
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
 
               <div class="modal-footer">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Submit</button>
               </div>
             </div>
           </form>
@@ -194,22 +265,7 @@
   </div>
 <!-- end Ubah Admin -->
 
-<!-- modal Hapus Admin -->
-  <div class="modal fade" id="hapusAdminModal" tab-index="-1" role="dialog" aria-labeledby="hapusAdminModalLabel">
-    <div class="modal-dialog modal-sm" role="alertdialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus?</h4>
-        </div>
 
-        <div class="modal-footer">
-          <a role="button" type="button" class="btn btn-danger" href="{{action("adminController\KelolaAdminController@hapus")}}">Hapus</a>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- end modal Hapus Admin -->
 
 <script>
 $(document).ready(function() {

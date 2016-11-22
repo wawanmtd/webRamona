@@ -20,22 +20,22 @@
         <table id="tableAdmin" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Nama Lengkap</th>
-              <th>Username</th>
-              <th>Role</th>
-              <th>Area</th>
-              <th>Station</th>
-              <th></th>
+              <th>Area Name</th>
+              <th>Description</th>
+              <th>Country</th>
+              <th>Member</th>
+              <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
+          
+              @foreach ($ShowArea as $showarea)
             <tr>
-              <td>Mochamad Tri Dharmawan</td>
-              <td>wawanmtd</td>
-              <td>Super Admin</td>
-              <td>aside</td>
-              <td>asd</td>
+              <td>{{$showarea->AreaName}}</td>
+              <td>{{$showarea->Description}}</td>
+              <td>{{$showarea->CountryData->CountryName}}</td>
+              <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
               <td style="width:10%">
                 <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
                   <span class="fa fa-edit"></span></button>
@@ -43,44 +43,17 @@
                   <span class="fa fa-trash"></span></button>
               </td>
             </tr>
+              @endforeach
 
-            <tr>
-              <td>Muchtar Prawira</td>
-              <td>muchtarpr</td>
-              <td>Admin</td>
-              <td>Batan</td>
-              <td>Puspiptek</td>
-              <td>
-                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
-                  <span class="fa fa-edit"></span></button>
-                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
-                  <span class="fa fa-trash"></span></button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Gerald Viko Ananda</td>
-              <td>seishiro</td>
-              <td>Manajerial</td>
-              <td>Batan</td>
-              <td>Puspiptek</td>
-              <td>
-                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
-                  <span class="fa fa-edit"></span></button>
-                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
-                  <span class="fa fa-trash"></span></button>
-              </td>
-            </tr>
           </tbody>
 
           <tfoot>
             <tr>
-              <th>Nama Lengkap</th>
-              <th>Username</th>
-              <th>Role</th>
-              <th>Area</th>
-              <th>Station</th>
-              <th></th>
+              <th>Area Name</th>
+              <th>Description</th>
+              <th>Country</th>
+              <th>Member</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
@@ -110,23 +83,34 @@
       </div>
 
       <div class="modal-body ">
-        <form role="form" action="{{action("adminController\KelolaAreaController@tambah")}}" method="post">
+        <form role="form" action="kelolaArea/tambahArea" method="post">
           <div class="box-body">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+
+             <div class="form-group">
+              <label for="AreaName">Area Name</label>
+              <input type="text" name="AreaName" class="form-control"  placeholder="Area Name" required>
             </div>
 
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+              <label for="Description">Description</label>
+              <input type="text" name="Description" class="form-control"  placeholder="Description" required>
             </div>
 
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+              <label for="Remark">Remark</label>
+              <input type="text" name="Remark" class="form-control"  placeholder="Remark" required>
             </div>
 
+            <div class="form-group">
+              <label for="Country_ID">Country ID (bentuk option)</label>
+              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Member_ID">Member_ID (bentuk option)</label>
+              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+            </div>
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="modal-footer">
               <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
             </div>

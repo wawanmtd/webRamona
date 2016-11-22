@@ -17,9 +17,9 @@ public function MemberData(){
 
 //belongsTo
 public function BlobTypeData(){
-	return $this->belongsTo('BlobType', 'BlobType_ID');
+	return $this->belongsTo('App\Models\Blob\BlobType', 'BlobType_ID');
 }
 public function CountryData(){
-	return $this->belongsTo('Country', 'Country_ID');
+	return $this->belongsTo('App\Models\Country\Country', 'Country_ID');
 }
 }

@@ -14,10 +14,10 @@ class Area extends Model
 //belongsTo
 ////////////////////////////////
 public function CountryData(){
-	return $this->belongsTo('Country', 'Country_ID');
+	return $this->belongsTo('App\Models\Country\Country', 'Country_ID');
 }
 public function MemberData(){
-	return $this->belongsTo('Member', 'Member_ID');
+	return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
 }
 
 

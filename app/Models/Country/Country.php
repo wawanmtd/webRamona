@@ -12,19 +12,19 @@ class Country extends Model
 
 //hasmany
 public function AreaData(){
-	return $this->hasMany('Area', 'Country_ID');
+	return $this->hasMany('App\Models\Area\Area', 'Country_ID');
 }
 public function StationData(){
-	return $this->hasMany('Station', 'Country_ID');
+	return $this->hasMany('App\Models\Station\Station', 'Country_ID');
 }
 public function DeviceData(){
-	return $this->hasMany('Device', 'Country_ID');
+	return $this->hasMany('App\Models\Device\Device', 'Country_ID');
 }
 public function PersonData(){
-	return $this->hasMany('Person', 'Country_ID');
+	return $this->hasMany('App\Models\Person\Person', 'Country_ID');
 }
 public function VendorData(){
-	return $this->hasMany('Vendor', 'Country_ID');
+	return $this->hasMany('App\Models\Vendor\Vendor', 'Country_ID');
 }
 
 

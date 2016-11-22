@@ -37,17 +37,17 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/dashboard', 'AdminController@index');
 
   Route::get('/kelolaAdmin', 'KelolaAdminController@index');
-  Route::get('/kelolaAdmin/tambahAdmin', 'KelolaAdminController@tambah');
+  Route::post('/kelolaAdmin/tambahAdmin', 'KelolaAdminController@tambah');
   Route::get('/kelolaAdmin/ubahAdmin', 'KelolaAdminController@ubah');
-  Route::get('/kelolaAdmin/hapusAdmin', 'KelolaAdminController@hapus');
+  Route::Post('/kelolaAdmin/hapusAdmin', 'KelolaAdminController@hapus');
 
   Route::get('/kelolaArea', 'KelolaAreaController@index');
-  Route::get('/kelolaArea/tambahArea', 'KelolaAreaController@tambah');
+  Route::post('/kelolaArea/tambahArea', 'KelolaAreaController@tambah');
   Route::get('/kelolaArea/ubahArea', 'KelolaAreaController@ubah');
   Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
 
   Route::get('/kelolaStation', 'KelolaStationController@index');
-  Route::get('/kelolaStation/tambahStation', 'KelolaStationController@tambah');
+  Route::post('/kelolaStation/tambahStation', 'KelolaStationController@tambah');
   Route::get('/kelolaStation/ubahStation', 'KelolaStationController@ubah');
   Route::get('/kelolaStation/hapusStation', 'KelolaStationController@hapus');
 
