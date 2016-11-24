@@ -12,18 +12,21 @@ class Device extends Model
 
 //belongsto
 public function CountryData(){
-	return $this->belongsTo('Country', 'Country_ID');
+	return $this->belongsTo('App\Models\Country\Country', 'Country_ID');
 }
 public function DocumentTypeData(){
-	return $this->belongsTo('DocumentType', 'DocumentType_ID');
+	return $this->belongsTo('App\Models\Types\DocumentType', 'DocumentType_ID');
+}
+public function MemberData(){
+	return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
 }
 
 //has
 public function DeviceListData(){
-	return $this->hasMany('DeviceList', 'Device_ID');
+	return $this->hasMany('App\Models\Device\DeviceList', 'Device_ID');
 }
 public function DeviceSensor(){
-	return $this->belongsTo('Country', 'Country_ID');
+	return $this->belongsTo('App\Models\Country\Country', 'Country_ID');
 }
 
 

@@ -19,24 +19,25 @@
     <table id="tableDevice" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Device Name</th>
-          <th>Device Type</th>
-          <th>Address</th>
-          <th>Area</th>
+          <th>Device Model</th>
+          <th>Description</th>
+          <th>SensorCount</th>
+          <th>Country</th>
+          <th>Voltage Range</th>
           <th>Member</th>
-          <th>Installation Date</th>
           <th colspan="2">Action</th>
         </tr>
       </thead>
 
       <tbody>
+      @foreach ($DeviceShow as $deviceshow)
         <tr>
-          <td>Device Name</td>
-          <td>Desc</td>
-          <td>Address</td>
-          <td>-</td>
-          <th>Member</th>
-          <td>Installation</td>
+          <td>{{$deviceshow->DeviceModel}}</td>
+          <td>{{$deviceshow->Description}}</td>
+          <td>{{$deviceshow->SensorCount}}</td>
+          <td>{{$deviceshow->CountryData->CountryName}}</td>
+          <th>{{$deviceshow->VoltageRange}}</th>
+          <td>{{$deviceshow->MemberData->PersonData->PersonName}}</td>
           <td style="width:5%">
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahDeviceModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
@@ -47,15 +48,17 @@
           </td>
         </tr>
 
+        @endforeach
         
       </tbody>
 
       <tfoot >
         <tr>
-          <th>Device Name</th>
-          <th>Device Type</th>
-          <th>Address</th>
-          <th>Area</th>
+          <th>Device Model</th>
+          <th>Description</th>
+          <th>SensorCount</th>
+          <th>Country</th>
+          <th>Voltage Range</th>
           <th>Member</th>
           <th>Installation Date</th>
           <th colspan="2">Action</th>
@@ -82,18 +85,13 @@
           <div class="box-body">
 
              <div class="form-group">
-              <label for="Device">DeviceType_ID</label>
-              <input type="text" name="DeviceType_ID" class="form-control"  placeholder="DeviceType_ID" required>
+              <label for="Device">Device Model</label>
+              <input type="text" name="DeviceModel" class="form-control"  placeholder="DeviceModel" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Location</label>
-              <input type="text" name="Location" class="form-control"  placeholder="Location" required>
-            </div>
-
-            <div class="form-group">
-              <label for="Device">Device Name</label>
-              <input type="text" name="DeviceName" class="form-control"  placeholder="DeviceName" required>
+              <label for="Device">Manufacturer ID</label>
+              <input type="text" name="Manufacturer_ID" class="form-control"  placeholder="Manufacturer_ID" required>
             </div>
 
             <div class="form-group">
@@ -102,13 +100,8 @@
             </div>
 
             <div class="form-group">
-              <label for="Device">Address</label>
-              <input type="text" name="Address" class="form-control"  placeholder="Address" required>
-            </div>
-
-            <div class="form-group">
-              <label for="Device">City</label>
-              <input type="text" name="City" class="form-control"  placeholder="City" required>
+              <label for="Device">Sensor Count</label>
+              <input type="text" name="SensorCount" class="form-control"  placeholder="SensorCount" required>
             </div>
 
             <div class="form-group">
@@ -117,13 +110,13 @@
             </div>
 
             <div class="form-group">
-              <label for="Device">Power Source</label>
-              <input type="text" name="PowerSource" class="form-control"  placeholder="PowerSource" required>
+              <label for="Device">Remark</label>
+              <input type="text" name="Remark" class="form-control"  placeholder="Remark" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Installation Date</label>
-              <input type="Date" name="InstallationDate" class="form-control"  placeholder="InstallationDate" required>
+              <label for="Device">Voltage Range</label>
+              <input type="text" name="VoltageRange" class="form-control"  placeholder="VoltageRange" required>
             </div>
 
             <div class="form-group">
@@ -132,18 +125,8 @@
             </div>
 
             <div class="form-group">
-              <label for="Device">MarkerType_ID</label>
-              <input type="text" name="MarkerType_ID" class="form-control"  placeholder="MarkerType_ID" required>
-            </div>
-
-            <div class="form-group">
               <label for="Device">DocumentType_ID</label>
               <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
-            </div>
-
-            <div class="form-group">
-              <label for="Device">Device Marker</label>
-              <input type="text" name="DeviceMarker" class="form-control"  placeholder="DeviceMarker" required>
             </div>
 
             <div class="form-group">

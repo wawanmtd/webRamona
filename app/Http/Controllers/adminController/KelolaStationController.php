@@ -5,6 +5,8 @@ namespace App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Station\Station;
+use App\Models\Station\StationArea;
+Use Session;
 
 class KelolaStationController extends Controller
 {
@@ -33,6 +35,12 @@ class KelolaStationController extends Controller
         $stationnew->StationMarker = $request->StationMarker;
         $stationnew->StationDocument = $request->StationDocument;
         $stationnew->save();
+
+        $stationareanew = new Station.StationAreaData();
+        $stationareanew->Station_ID = $stationnew->Station_ID;
+        $stationareanew->Area_ID = $request->Area_ID;
+        $stationareanew->Member_ID = $request->Member_ID;
+        $stationareanew->save();
 
        // return view("admin.kelolaStation");
 

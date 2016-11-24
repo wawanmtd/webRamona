@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Member\Member;
 use App\Models\Person\Person;
 use App\Models\Person\PersonContact;
+use Session;
 class KelolaAdminController extends Controller
 {
     public function index()
@@ -42,6 +43,8 @@ class KelolaAdminController extends Controller
         $membernew->Remark = $request->Remark;
         $membernew->IsActive = 0;
         $membernew->save();
+
+        Session::flash('Success', 'Your data successfully recorded');
 
         return redirect()->action('adminController\KelolaAdminController@index');
         //return view('admin.kelolaAdmin');

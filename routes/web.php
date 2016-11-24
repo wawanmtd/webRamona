@@ -52,12 +52,12 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/kelolaStation/hapusStation', 'KelolaStationController@hapus');
 
   Route::get('/kelolaSensor', 'KelolaSensorController@index');
-  Route::get('/kelolaSensor/tambahSensor', 'KelolaSensorController@tambah');
+  Route::post('/kelolaSensor/tambahSensor', 'KelolaSensorController@tambah');
   Route::get('/kelolaSensor/ubahSensor', 'KelolaSensorController@ubah');
   Route::get('/kelolaSensor/hapusSensor', 'KelolaSensorController@hapus');
 
   Route::get('/kelolaDevice', 'KelolaDeviceController@index');
-  Route::get('/kelolaDevice/tambahDevice', 'KelolaDeviceController@tambah');
+  Route::post('/kelolaDevice/tambahDevice', 'KelolaDeviceController@tambah');
   Route::get('/kelolaDevice/ubahDevice', 'KelolaDeviceController@ubah');
   Route::get('/kelolaDevice/hapusDevice', 'KelolaDeviceController@hapus');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Area\Area;
+use Session;
 
 class KelolaAreaController extends Controller
 {
@@ -24,6 +25,8 @@ class KelolaAreaController extends Controller
         $areanew->Country_ID = $request->Country_ID;
         $areanew->Member_ID = $request->Member_ID;
         $areanew->save();
+
+        Session::flash('Success', 'Your data successfully recorded');
 
        // return view("admin.kelolaArea");
         return redirect()->action('adminController\KelolaAreaController@index');

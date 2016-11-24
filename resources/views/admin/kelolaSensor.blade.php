@@ -19,22 +19,25 @@
     <table id="tableSensor" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Nama Lengkap</th>
-          <th>Username</th>
-          <th>Role</th>
-          <th>Station</th>
-          <th>Area</th>
+          <th>Field Name</th>
+          <th>Sensor Name</th>
+          <th>Value Count</th>
+          <th>Member</th>
+          <th>Device</th>
           <th colspan="2">Action</th>
         </tr>
       </thead>
 
       <tbody>
+      @foreach ($SensorShow as $sensorshow)
         <tr>
-          <td>Mochamad Tri Dharmawan</td>
-          <td>wawanmtd</td>
-          <td>Super Admin</td>
-          <td>-</td>
-          <td>-</td>
+          <td>{{$sensorshow->FieldName}}</td>
+          <td>{{$sensorshow->SensorTypeData->SensorTypeName}}</td>
+          <td>{{$sensorshow->ValueCount}}</td>
+          <td>{{$sensorshow->MemberData->PersonData->PersonName}}
+          </td>
+          <!-- sementara, belongstomany belum berhasil -->
+          <td>{{$sensorshow->DeviceSensorData->DeviceData->DeviceModel}}</td>
           <td style="width:5%">
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahSensorModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
@@ -45,46 +48,17 @@
           </td>
         </tr>
 
-        <tr>
-          <td>Muchtar Prawira</td>
-          <td>muchtarpr</td>
-          <td>Admin</td>
-          <td>Batan</td>
-          <td>Puspiptek</td>
-          <td>
-            <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahSensorModal" class="btn btn-info">
-              <span class="fa fa-edit"></span></button>
-          </td>
-          <td>
-            <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusSensorModal" class="btn btn-danger">
-              <span class="fa fa-trash"></span></button>
-          </td>
-        </tr>
+        @endforeach
 
-        <tr>
-          <td>Gerald Viko Ananda</td>
-          <td>seishiro</td>
-          <td>Manajerial</td>
-          <td>Batan</td>
-          <td>Puspiptek</td>
-          <td>
-            <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahSensorModal" class="btn btn-info">
-              <span class="fa fa-edit"></span></button>
-          </td>
-          <td>
-            <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusSensorModal" class="btn btn-danger">
-              <span class="fa fa-trash"></span></button>
-          </td>
-        </tr>
       </tbody>
 
       <tfoot >
         <tr>
-          <th>Nama Lengkap</th>
-          <th>Username</th>
-          <th>Role</th>
-          <th>Station</th>
-          <th>Area</th>
+          <th>Field Name</th>
+          <th>Sensor Name</th>
+          <th>Value Count</th>
+          <th>Member</th>
+          <th>Device</th>
           <th colspan="2">Action</th>
 
         </tr>
@@ -105,22 +79,55 @@
       </div>
 
       <div class="modal-body ">
-        <form role="form" action="{{action("adminController\KelolaSensorController@tambah")}}" method="post">
+        <form role="form" action="kelolaSensor/tambahSensor" method="post">
           <div class="box-body">
+            
             <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+              <label for="Sensor">Sensor Type</label>
+              <input type="text" name="SensorType_ID" class="form-control"  placeholder="SensorType_ID" required>
             </div>
 
             <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+              <label for="Sensor">Field Name</label>
+              <input type="text" name="FieldName" class="form-control"  placeholder="FieldName" required>
             </div>
 
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+              <label for="Sensor">Description</label>
+              <input type="text" name="Description" class="form-control"  placeholder="Description" required>
             </div>
+
+            <div class="form-group">
+              <label for="Sensor">Member_ID</label>
+              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Sensor">MarkerType_ID (option)</label>
+              <input type="text" name="MarkerType_ID" class="form-control"  placeholder="MarkerType_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Sensor">DocumentType_ID (option)</label>
+              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Sensor">SensorMarker</label>
+              <input type="text" name="SensorMarker" class="form-control"  placeholder="SensorMarker" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Sensor">SensorDocument</label>
+              <input type="text" name="SensorDocument" class="form-control"  placeholder="SensorDocument" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Sensor">Device_ID</label>
+              <input type="text" name="Device_ID" class="form-control"  placeholder="Device_ID" required>
+            </div>
+
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
 
             <div class="modal-footer">
               <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>

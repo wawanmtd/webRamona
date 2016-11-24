@@ -68,6 +68,7 @@
 
   </div>
 </div>
+
 <!-- end Table Data Station -->
 
 <!-- modal Tambah Station -->
@@ -82,6 +83,11 @@
       <div class="modal-body ">
         <form role="form" action="kelolaStation/tambahStation" method="post">
           <div class="box-body">
+
+            <div class="form-group">
+              <label for="Station">Area_ID</label>
+              <input type="text" name="Area_ID" class="form-control"  placeholder="Area_ID" required>
+            </div>
 
              <div class="form-group">
               <label for="Station">StationType_ID</label>

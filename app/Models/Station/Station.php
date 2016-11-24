@@ -21,6 +21,13 @@ public function MemberData(){
 	return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
 }
 
+///////////////////////////////////////
+//sementara, harusnya pake blongstomany
+///////////////////////////////////////
+public function StationAreaData(){
+	return $this->belongsTo('App\Models\Station\StationArea', 'Area_ID');
+}
+
 
 
 
