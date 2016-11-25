@@ -228,12 +228,12 @@
               <li class="{{Request::is('kelolaStation') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaStationController@index")}}">
                   <i class="fa fa-map-marker"></i> <span>Kelola Station</span></a></li>
-              <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
-                <a href="{{action("adminController\KelolaSensorController@index")}}">
-                  <i class="fa fa-wifi"></i> <span>Kelola Sensor</span></a></li>
               <li class="{{Request::is('kelolaDevice') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaDeviceController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Device</span></a></li>
+              <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
+                <a href="{{action("adminController\KelolaSensorController@index")}}">
+                  <i class="fa fa-wifi"></i> <span>Kelola Sensor</span></a></li>
               <li class="{{Request::is('kelolaBerita') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaBeritaController@index")}}">
                   <i class="fa fa-newspaper-o"></i> <span>Kelola Berita</span></a></li>

@@ -24,12 +24,20 @@ public function MemberData(){
 ///////////////////////////////////////
 //sementara, harusnya pake blongstomany
 ///////////////////////////////////////
+//belongsto
+// public function AreaData(){
+// 	return $this->belongstoMany('App\Models\Area\Area','station_areas', 'Station_ID', 'Area_ID');
+// }
+
+//has
 public function StationAreaData(){
-	return $this->belongsTo('App\Models\Station\StationArea', 'Area_ID');
+	return $this->hasOne('App\Models\Station\StationArea','Station_ID');
 }
 
 
-
+// public function StationAreaData(){
+// 	return $this->belongsTo('App\Models\Station\StationArea', 'Area_ID');
+// }
 
 
 

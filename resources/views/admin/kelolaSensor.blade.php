@@ -19,6 +19,7 @@
     <table id="tableSensor" class="table table-bordered table-striped">
       <thead>
         <tr>
+          <th>No</th>
           <th>Field Name</th>
           <th>Sensor Name</th>
           <th>Value Count</th>
@@ -31,6 +32,7 @@
       <tbody>
       @foreach ($SensorShow as $sensorshow)
         <tr>
+          <td></td>
           <td>{{$sensorshow->FieldName}}</td>
           <td>{{$sensorshow->SensorTypeData->SensorTypeName}}</td>
           <td>{{$sensorshow->ValueCount}}</td>
@@ -41,19 +43,19 @@
           <td style="width:5%">
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahSensorModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
-          </td>
+          </td>                                            
           <td style="width:5%">
             <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusSensorModal" class="btn btn-danger">
               <span class="fa fa-trash"></span></button>
           </td>
         </tr>
-
         @endforeach
 
       </tbody>
 
       <tfoot >
         <tr>
+          <th>No</th>
           <th>Field Name</th>
           <th>Sensor Name</th>
           <th>Value Count</th>

@@ -35,7 +35,7 @@
           <td>{{$showstation->StationName}}</td>
           <td>{{$showstation->StationTypeData->Description}}</td>
           <td>{{$showstation->Address}}</td>
-          <td>-</td>
+          <td>{{$showstation->StationAreaData->AreaData->AreaName}}</td>
           <th>{{$showstation->MemberData->PersonData->PersonName}}</th>
           <td>{{$showstation->InstallationDate}}</td>
           <td style="width:5%">

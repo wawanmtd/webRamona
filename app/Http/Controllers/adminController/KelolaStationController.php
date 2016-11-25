@@ -36,7 +36,8 @@ class KelolaStationController extends Controller
         $stationnew->StationDocument = $request->StationDocument;
         $stationnew->save();
 
-        $stationareanew = new Station.StationAreaData();
+        //harusnya ga manggil stationarea langsung sih
+        $stationareanew = new StationArea;
         $stationareanew->Station_ID = $stationnew->Station_ID;
         $stationareanew->Area_ID = $request->Area_ID;
         $stationareanew->Member_ID = $request->Member_ID;
