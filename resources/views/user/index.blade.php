@@ -92,7 +92,7 @@
                 </div>
                 <div>
                   <label>
-                    <input type="hidden" name="_token" value="{{csrf_token()}}"> Remember me
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                   </label>
                 </div>
                 <div class="modal-footer">
@@ -106,7 +106,7 @@
 
     <footer class="footer">
       <div class="container ">
-        <a href="http://www.batan.go.id" target="_blank">Badan Tenaga Nuklir Nasional</a> &copy2016
+        <a href="http://www.batan.go.id" target="_blank">Badan Tenaga Nuklir Nasional</a> &copy;2016
       </div>
     </footer>
   </body>

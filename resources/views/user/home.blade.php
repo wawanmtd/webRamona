@@ -7,7 +7,18 @@
 @section ('konten')
 <html>
   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      height: 100%;
+    }
+  </style>
+
+      <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
       <script src="../ammap/ammap.js" type="text/javascript"></script>
       <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
@@ -36,11 +47,32 @@
 
           map.write("mapdiv");
         });
-      </script>
+      </script> -->
+      <script>
+      function initMap() {
+          var myLatLng = {lat: -25.363, lng: 131.044};
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+          });
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&signed_in=true&callback=initMap"></script>
+
   </head>
 
   <body>
-    <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div>
+    <!-- <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div> -->
+    <div id="map"></div>
+
     <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a>
   </body>
 
@@ -68,7 +100,7 @@
                   <h4 class="text-center">{{$termoDeg}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-1">
-                  <h5>&degC</h5>
+                  <h5>&deg;C</h5>
               </div>
             </div>
           </div>
@@ -113,7 +145,7 @@
                   <h4>{{$solarRad}}</h4>
               </div>
               <div class="col-md-2">
-                  <h5>Wm&sup2</h5>
+                  <h5>Wm&sup2;</h5>
               </div>
             </div>
           </div>
