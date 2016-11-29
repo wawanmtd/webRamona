@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
   public function index()
   {
+
     $nameStation = "Batan";
     $termoDeg = 100;
     $windDir = "NNE";
@@ -18,6 +19,7 @@ class HomeController extends Controller
     $barometer = 1000;
     $percipitation = 0;
     $humidity = 100;
+
 
     date_default_timezone_set("Asia/Jakarta");
 

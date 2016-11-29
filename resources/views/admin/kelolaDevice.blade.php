@@ -10,67 +10,78 @@
   <span class="fa fa-plus"></span> Tambah</button>
 
 <!-- Table Data Device -->
-<div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Daftar Device</h3>
-  </div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Daftar Device</h3>
+        <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahDeviceModal" class="btn btn-success">
+          <span class="fa fa-plus"></span> Tambah</button>
+      </div>
 
-  <div class="box-body">
-    <table id="tableDevice" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Device Model</th>
-          <th>Description</th>
-          <th>SensorCount</th>
-          <th>Country</th>
-          <th>Voltage Range</th>
-          <th>Member</th>
-          <th colspan="2">Action</th>
-        </tr>
-      </thead>
+      <div class="box-body">
+        <table id="tableDevice" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Device Model</th>
+              <th>Description</th>
+              <th>SensorCount</th>
+              <th>Country</th>
+              <th>Voltage Range</th>
+              <th>Member</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
 
-      <tbody>
-      @foreach ($DeviceShow as $deviceshow)
-        <tr>
-          <td>{{$deviceshow->DeviceModel}}</td>
-          <td>{{$deviceshow->Description}}</td>
-          <td>{{$deviceshow->SensorCount}}</td>
-          <td>{{$deviceshow->CountryData->CountryName}}</td>
-          <th>{{$deviceshow->VoltageRange}}</th>
-          <td>{{$deviceshow->MemberData->PersonData->PersonName}}</td>
-          <td style="width:5%">
-            <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahDeviceModal" class="btn btn-info">
-              <span class="fa fa-edit"></span></button>
-          </td>
-          <td style="width:5%">
-            <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusDeviceModal" class="btn btn-danger">
-              <span class="fa fa-trash"></span></button>
-          </td>
-        </tr>
+          <tbody>
+          @foreach ($DeviceShow as $deviceshow)
+            <tr>
+              <td>{{$deviceshow->DeviceModel}}</td>
+              <td>{{$deviceshow->Description}}</td>
+              <td>{{$deviceshow->SensorCount}}</td>
+              <td>{{$deviceshow->CountryData->CountryName}}</td>
+              <th>{{$deviceshow->VoltageRange}}</th>
+              <td>{{$deviceshow->MemberData->PersonData->PersonName}}</td>
+              <td style="width:5%">
+                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahDeviceModal" class="btn btn-info">
+                  <span class="fa fa-edit"></span></button>
+              </td>
+              <td style="width:5%">
+                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusDeviceModal" class="btn btn-danger">
+                  <span class="fa fa-trash"></span></button>
+              </td>
+            </tr>
 
-        @endforeach
-        
-      </tbody>
+            @endforeach
 
-      <tfoot >
-        <tr>
-          <th>Device Model</th>
-          <th>Description</th>
-          <th>SensorCount</th>
-          <th>Country</th>
-          <th>Voltage Range</th>
-          <th>Member</th>
-          <th>Installation Date</th>
-          <th colspan="2">Action</th>
+          </tbody>
 
-        </tr>
-      </tfoot>
-    </table>
+          <tfoot >
+            <tr>
+              <th>Device Model</th>
+              <th>Description</th>
+              <th>SensorCount</th>
+              <th>Country</th>
+              <th>Voltage Range</th>
+              <th>Member</th>
+              <th>Installation Date</th>
+              <th colspan="2">Action</th>
 
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
   </div>
 </div>
 <!-- end Table Data Device -->
 
+<script>
+  $(function () {
+    $("#tableDevice").DataTable();
+  });
+</script>
 <!-- modal Tambah Device -->
 <div class="modal fade" id="tambahDeviceModal" tabindex="-1" role="dialog" aria-labelledby="tambahDeviceModalLabel">
   <div class="modal-dialog modal-lg" role="document">

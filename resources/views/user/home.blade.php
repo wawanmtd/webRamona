@@ -7,82 +7,158 @@
 @section ('konten')
 <html>
   <head>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    #map {
-      height: 100%;
-    }
-  </style>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
 
-      <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
-      <script src="../ammap/ammap.js" type="text/javascript"></script>
-      <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
-      <script>
-        var map;
+    <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
+    <script src="../ammap/ammap.js" type="text/javascript"></script>
+    <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../bootstrap/amchartstyle.css" type="text/css">
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
-        AmCharts.ready(function() {
-          map = new AmCharts.AmMap();
+    <script>
+      var targetSVG = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z";
+      // var targetSVG = "../resources/assets/img/svgPath/radiatonYellwow.svg";
+      var map = AmCharts.makeChart( "mapdiv", {
+                "type": "map",
+                "theme": "light",
+                "projection": "miller",
 
-          map.balloon.color = "#000000";
+                "imagesSettings": {
+                  "rollOverColor": "#089282",
+                  "rollOverScale": 3,
+                  "selectedScale": 3,
+                  "selectedColor": "#089282",
+                  "color": "#13564e",
+                },
 
-          var dataProvider = {
-            mapVar: AmCharts.maps.indonesiaLow,
-            getAreasFromMap:true
+                "areasSettings": {
+                  "unlistedAreasColor": "#15A892"
+                },
 
-          };
+                "dataProvider": {
+                  "map": "indonesiaLow",
+                  "images": [{
+                    // "imageURL" : "../resources/assets/img/svgPath/radiationYellow.svg",
+                    "zoomLevel": 10,
+                    "scale": 0.5,
+                    "title": "PRFN Batan",
+                    "latitude": -6.3507952,
+                    "longitude": 106.6608021,
+                    "autoZoom" : true,
+                    "url" : "#"
+                  },
+                  {
+                    // "imageURL" : "../resources/assets/img/svgPath/radiationRed.svg",
+                    "zoomLevel": 10,
+                    "scale": 0.5,
+                    "title": "Komplek Puspiptek",
+                    "latitude": -6.353642,
+                    "longitude": 106.676552
+                  }],
+                  getAreasFromMap:true
+                },
 
-          map.dataProvider = dataProvider;
+                "export": {
+                  "enabled": true
+                },
+              });
 
-          map.areasSettings = {
-            autoZoom: true,
-            selectedColor: "#CC0000"
-          };
+        // add events to recalculate map position when the map is moved or zoomed
+        map.addListener( "positionChanged", updateCustomMarkers );
 
-          map.smallMap = new AmCharts.SmallMap();
+        // this function will take current images on the map and create HTML elements for them
+        function updateCustomMarkers( event ) {
+          // get map object
+          var map = event.chart;
 
-          map.write("mapdiv");
-        });
-      </script> -->
-      <script>
-      function initMap() {
-          var myLatLng = {lat: -25.363, lng: 131.044};
+          // go through all of the images
+          for ( var x in map.dataProvider.images ) {
+            // get MapImage object
+            var image = map.dataProvider.images[ x ];
 
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: myLatLng
-          });
+            // check if it has corresponding HTML element
+            if ( 'undefined' == typeof image.externalElement )
+              image.externalElement = createCustomMarker( image );
 
-          var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
-          });
+            // reposition the element accoridng to coordinates
+            var xy = map.coordinatesToStageXY( image.longitude, image.latitude );
+            image.externalElement.style.top = xy.y + 'px';
+            image.externalElement.style.left = xy.x + 'px';
+          }
         }
 
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&signed_in=true&callback=initMap"></script>
+        // this function creates and returns a new marker element
+        function createCustomMarker( image ) {
+          // create holder
+          var holder = document.createElement( 'div' );
+          holder.className = 'map-marker map-clickable';
+          holder.title = image.title;
+          holder.style.position = 'absolute';
 
+          // maybe add a link to it?
+          if ( undefined != image.url ) {
+            holder.onclick = function() {
+              window.location.href = image.url;
+            };
+            holder.className += ' map-clickable';
+          }
+
+          // create dot
+          var dot = document.createElement( 'div' );
+          dot.className = 'dot';
+          holder.appendChild( dot );
+
+          // create pulse
+          var pulse = document.createElement( 'div' );
+          pulse.className = 'pulse';
+          holder.appendChild( pulse );
+
+          // append the marker to the map container
+          image.chart.chartDiv.appendChild( holder );
+
+          $(holder).popover(
+            {
+              title: function()
+              {
+                return $("#currentCondition-title").html();
+              },
+              content: function()
+              {
+                return $("#currentCondition-content").html();
+              },
+              placement: "top",
+              html: true,
+              container: "body"
+
+            });
+          return holder;
+        }
+      </script>
   </head>
 
   <body>
-    <!-- <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div> -->
-    <div id="map"></div>
-
-    <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a>
+    <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div>
+    <!-- <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a> -->
   </body>
 
   <div id="currentCondition-title" class="popover hidden">
     <div class="row">
       <div class="col-md-3 col-md-offset-1">
-        <h5>{{$nameStation}}</h5>
+        {{$nameStation}}
       </div>
       <div class="col-md-3 col-md-offset-3" style="float:right" >
-        <h5>{{date("m | d")}}</h5>
+        {{date("m | d")}}
       </div>
     </div>
   </div>
@@ -240,22 +316,4 @@
   </div>
 </html>
 
-<script>
-  $(function () {
-    $('[data-toggle=popover]').popover(
-      {
-        title: function()
-        {
-          return $("#currentCondition-title").html();
-        },
-        content: function()
-        {
-          return $("#currentCondition-content").html();
-        },
-        placement: "top",
-        html: true,
-        container: "body"
-      });
-    });
-  </script>
 @stop
