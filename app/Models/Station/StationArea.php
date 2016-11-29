@@ -15,6 +15,11 @@ class StationArea extends Model
     	return $this->belongsTo('App\Models\Area\Area', 'Area_ID');
     }
 
+//has
+    public function StationData(){
+    	return $this->belongsTo('App\Models\Station\Station', 'Station_ID');
+    }
+
 
 
 

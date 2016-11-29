@@ -33,13 +33,42 @@ class KelolaAreaController extends Controller
 
     }
 
-    public function ubah()
+    public function ubah(Request $request, $id)
     {
+        $areanew = Area::find($id);
+        $areanew->AreaName = $request->AreaName;
+        $areanew->Description = $request->Description;
+        $areanew->Remark = $request->Remark;
+        $areanew->Country_ID = $request->Country_ID;
+        $areanew->Member_ID = $request->Member_ID;
+        $areanew->save();
 
+        Session::flash('Success', 'Your data successfully recorded');
+
+       // return view("admin.kelolaArea");
+        return redirect()->action('adminController\KelolaAreaController@index');
     }
 
-    public function hapus()
+    public function hapus($id)
     {
+        $areadelete = Area::find($id);
+        $areadelete->StationAreaData()->delete();
+        
+        $areadelete->delete();
 
+        Session::flash('Success', 'Your data successfully Deleted');
+
+       // return view("admin.kelolaArea");
+        return redirect()->action('adminController\KelolaAreaController@index');
+    }
+
+    public function areaeditmodal_data($id){
+        $areaeditmodal = Area::find($id);
+        return view('admin/areaeditmodal')->with('areaeditmodal', $areaeditmodal);
+    }
+
+    public function areahapusmodal_data($id){
+        $areahapus = Area::find($id);
+        return view('admin/areahapusmodal')->with('areahapus', $areahapus);
     }
 }

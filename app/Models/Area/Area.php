@@ -20,6 +20,10 @@ public function MemberData(){
 	return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
 }
 
+public function StationAreaData(){
+	return $this->hasMany('App\Models\Station\StationArea', 'Area_ID');
+}
+
 
 
 

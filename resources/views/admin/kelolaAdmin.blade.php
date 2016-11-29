@@ -47,7 +47,7 @@
                 <span class="fa fa-edit"></span></button>
             </td>
             <td style="width:5%">
-              <button type="button"  action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" data-book-id='asd' class="btn btn-danger">
+              <button type="button"  action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" data-book-id='asd' class="btn btn-danger" data-hapusbutton="{{$showmember->Member_ID}}">
                 <span class="fa fa-trash"></span></button>
             </td>
           </tr>
@@ -210,7 +210,7 @@
 
               <div class="form-group">
                 <label for="Nickname">Nickname</label>
-                <input type="text" name="Nickname" class="form-control" placeholder="Nickname" required>
+                <input type="text" name="Nickname" class="form-control nickname" placeholder="Nickname" required>
               </div>
 
               <div class="form-group">
@@ -282,18 +282,20 @@
 <!-- end Ubah Admin -->
 
 
+
 <script>
 $(document).ready(function(){
   $('#ubahAdminModal').on('show.bs.modal', function(event){
     var button = $(event.relatedTarget);
-    var recipient = button.data('ubahbutton');
+    //var recipient = button.data('ubahbutton');
     var row = button.closest("tr");
-    var person = row.find("td:nth-child(1)").text();
 
+    var person = row.find("td:nth-child(1)").text();
+    var nickame = row.find('td:nth-child(2)').text();
     var modal = $(this);
     modal.find('.modal-body .personname').val(person);
+    $(this).find('.modal-body .nickname').val(nickame);
   });
-
 });
 </script>
 

@@ -14,6 +14,7 @@ class KelolaAdminController extends Controller
     {
         $ShowMember = Member::all()->where('MemberRole_ID', 2);
         return view('admin.kelolaAdmin', compact('ShowMember'));
+        
     }
 
     public function tambah(Request $request)

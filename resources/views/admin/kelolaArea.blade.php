@@ -24,7 +24,7 @@
               <th>Description</th>
               <th>Country</th>
               <th>Member</th>
-              <th>Action</th>
+              <th colspan="2">Action</th>
             </tr>
           </thead>
 
@@ -36,11 +36,13 @@
               <td>{{$showarea->Description}}</td>
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
-              <td style="width:10%">
-                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAreaModal" class="btn btn-info">
-                  <span class="fa fa-edit"></span></button>
-                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAreaModal" class="btn btn-danger">
-                  <span class="fa fa-trash"></span></button>
+
+              <td style="width:5%">
+                <a class="btn btn-info" data-toggle='modal' data-target='#ubahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a>
+              </td>
+              
+              <td style="width:5%">
+                <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a>
               </td>
             </tr>
               @endforeach
@@ -53,7 +55,7 @@
               <th>Description</th>
               <th>Country</th>
               <th>Member</th>
-              <th>Action</th>
+              <th colspan="2">Action</th>
             </tr>
           </tfoot>
         </table>
@@ -74,9 +76,9 @@
 <!-- end Table Data Area -->
 
 <!-- modal Tambah Area -->
-<div class="modal fade" id="tambahAreaModal" tabindex="-1" role="dialog" aria-labelledby="tambahAreaModalLabel">
+<div class="modal modaltambah fade" id="tambahAreaModal" tabindex="-1" role="dialog" aria-labelledby="tambahAreaModalLabel">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
+    <div class="modal-content tambahareaa">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Area</h4>
@@ -88,7 +90,7 @@
 
              <div class="form-group">
               <label for="AreaName">Area Name</label>
-              <input type="text" name="AreaName" class="form-control"  placeholder="Area Name" required>
+              <input type="text" name="AreaName" class="form-control areanames"  placeholder="Area Name" required>
             </div>
 
             <div class="form-group">
@@ -126,34 +128,48 @@
 <div class="modal fade" id="ubahAreaModal" tabindex="0" role="dialog" aria-labelledby="ubahAreaModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Ubah Area</h4>
-      </div>
-
-      <div class="modal-body ">
-        <form role="form" action="{{action("adminController\KelolaAreaController@ubah")}}" method="post">
-          <div class="box-body">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Enter email" value="" required>
-            </div>
-
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username" value="" required>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" value="" required>
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            </div>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Ubah Area</h4>
           </div>
-        </form>
+
+          <div class="modal-body ">
+            <form role="form" action="" method="post">
+              <div class="box-body">
+
+                 <div class="form-group">
+                  <label for="AreaName">Area Name</label>
+                  <input type="text" name="AreaName" class="form-control"  placeholder="Area Name" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="Description">Description</label>
+                  <input type="text" name="Description" class="form-control"  placeholder="Description" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="Remark">Remark</label>
+                  <input type="text" name="Remark" class="form-control"  placeholder="Remark" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="Country_ID">Country ID (bentuk option)</label>
+                  <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="Member_ID">Member_ID (bentuk option)</label>
+                  <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="" required>
+                </div>
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="modal-footer">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -164,17 +180,26 @@
 <div class="modal fade" id="hapusAreaModal" tab-index="-1" role="dialog" aria-labeledby="hapusAreaModalLabel">
   <div class="modal-dialog modal-sm" role="alertdialog">
     <div class="modal-content">
+      <!--  -->
       <div class="modal-header">
-        <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus?</h4>
+        <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus Area?</h4>
       </div>
 
       <div class="modal-footer">
-        <a role="button" type="button" class="btn btn-danger" href="{{action("adminController\KelolaAreaController@hapus")}}">Hapus</a>
+        <a role="button" type="button" class="btn btn-danger" href="">Hapus</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
       </div>
     </div>
   </div>
 </div>
 <!-- end modal Hapus Area -->
+
+<script >
+$(document).ready(function() {
+  $(".modal").on("hidden.bs.modal", function() {
+    $(this).removeData();
+  });
+});
+</script>
 
 @stop
