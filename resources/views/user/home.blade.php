@@ -50,6 +50,7 @@
                   "map": "indonesiaLow",
                   "images": [{
                     // "imageURL" : "../resources/assets/img/svgPath/radiationYellow.svg",
+                    "id" : 1,
                     "zoomLevel": 10,
                     "scale": 0.5,
                     "title": "PRFN Batan",
@@ -60,6 +61,7 @@
                   },
                   {
                     // "imageURL" : "../resources/assets/img/svgPath/radiationRed.svg",
+                    "id" : 2,
                     "zoomLevel": 10,
                     "scale": 0.5,
                     "title": "Komplek Puspiptek",
@@ -103,13 +105,14 @@
           // create holder
           var holder = document.createElement( 'div' );
           holder.className = 'map-marker map-clickable';
-          holder.title = image.title;
+          // holder.title = image.title;
           holder.style.position = 'absolute';
-
+          holder.role = 'button';
           // maybe add a link to it?
           if ( undefined != image.url ) {
             holder.onclick = function() {
               window.location.href = image.url;
+
             };
             holder.className += ' map-clickable';
           }
@@ -126,39 +129,49 @@
 
           // append the marker to the map container
           image.chart.chartDiv.appendChild( holder );
-
+          // $(holder).popover('show');
           $(holder).popover(
             {
-              title: function()
-              {
-                return $("#currentCondition-title").html();
-              },
-              content: function()
-              {
-                return $("#currentCondition-content").html();
-              },
-              placement: "top",
-              html: true,
-              container: "body"
-
+            title: function()
+            {
+              return $("#currentCondition-title").html();
+            },
+            content: function()
+            {
+              return $("#currentCondition-content").html();
+            },
+            placement: "top",
+            html: true,
+            container: "body"
+          }).click(function(e) {
+              $(this).popover('toggle');
+              // $('.close').remove();
+              // $('.popover-title').append('<a type="button" class="close" style="float:right">&times;</a>');
+              $('.close').click(function(e){
+                  $(this).parents('.popover').remove();
+              });
             });
           return holder;
         }
       </script>
   </head>
 
-  <body>
+  <body >
     <div id="mapdiv" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div>
     <!-- <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a> -->
   </body>
 
   <div id="currentCondition-title" class="popover hidden">
     <div class="row">
-      <div class="col-md-3 col-md-offset-1">
+      <div class="col-md-2 col-md-offset-1">
         {{$nameStation}}
       </div>
-      <div class="col-md-3 col-md-offset-3" style="float:right" >
-        {{date("m | d")}}
+      <div class="col-md-3 col-md-offset-2" style="float:right" >
+        {{date("M | d ")}}
+        <a role="button" type="button" class="close">&times;</a>
+
+      </div>
+      <div class="col-md-1 col-md-offset-3" style="float:right" >
       </div>
     </div>
   </div>
@@ -241,7 +254,7 @@
                   <h3>{{$gammaDoseRates}}</h3>
               </div>
               <div class="col-md-2 col-md-offset-1">
-                  <h5>&microSv/h</h5>
+                  <h5>&micro;Sv/h</h5>
               </div>
             </div>
           </div>
@@ -312,8 +325,10 @@
       </div>
     </div>
 
-    <a href="stationStatus/{{$nameStation}}" style="float:right" target="_new">view details &raquo </a>
+    <!-- <a href="stationStatus/{$map->dataProvider->images->id}" style="float:right" target="_blank">view details &raquo; </a> -->
+    <a href="stationStatus/{{$nameStation}}" style="float:right" target="_blank">view details &raquo; </a>
   </div>
+
 </html>
 
 @stop
