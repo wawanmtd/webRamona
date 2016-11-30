@@ -14,6 +14,9 @@ class Person extends Model
 public function MemberData(){
     return $this->HasOne('App\Models\Member\Member', 'Person_ID');
 }
+public function PersonContactData(){
+	return $this->HasOne('App\Models\Person\PersonContact', 'Person_ID');
+}
 
 //belongsTo
 public function BlobTypeData(){

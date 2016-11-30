@@ -26,7 +26,7 @@
             <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Nama Lengkap: active to sort column ascending">Nama Lengkap</th>
             <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Username: active to sort column ascending">Username</th>
             <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Role: active to sort column ascending">Role</th>
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Station: active to sort column ascending">Station</th>
+            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Contact: active to sort column ascending">Contact</th>
             <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Area: active to sort column ascending">Country</th>
             <th colspan="2">Action</th>
           </tr>
@@ -40,15 +40,13 @@
             <td >{{$showmember->PersonData->PersonName}}</td>
             <td >{{$showmember->Username}}</td>
             <td >{{$showmember->MemberRoleData->NameRole}}</td>
-            <td >{{$showmember->StationData->StationName}}</td>
-            <td ><?php if ($showmember->PersonData->CountryData->CountryName ) echo $showmember->PersonData->CountryData->CountryName ?></td>
+            <td >{{$showmember->PersonData->PersonContactData->ContactValue}}</td>
+            <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
             <td style="width:5%">
-              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" data-content class="btn btn-info" data-ubahbutton="{{$showmember->Member_ID}}"/>
-                <span class="fa fa-edit"></span></button>
+                <a class="btn btn-info" data-toggle='modal' data-target='#ubahAdminModal' href="kelolaAdmin/admineditmodal/{{$showmember->Member_ID}}"><span class="fa fa-edit"/></a>
             </td>
             <td style="width:5%">
-              <button type="button"  action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" data-book-id='asd' class="btn btn-danger" data-hapusbutton="{{$showmember->Member_ID}}">
-                <span class="fa fa-trash"></span></button>
+                <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAdminModal' data-hapusbutton="{{$showmember->Member_ID}}" href="kelolaAdmin/adminhapusmodal/{{$showmember->Member_ID}}"> <span class="fa fa-trash"/></a>
             </td>
           </tr>
 
@@ -60,7 +58,7 @@
             <th>Nama Lengkap</th>
             <th>Username</th>
             <th>Role</th>
-            <th>Station</th>
+            <th>Contact</th>
             <th>Country</th>
             <th colspan="2">Action</th>
           </tr>
@@ -200,7 +198,7 @@
         </div>
 
         <div class="modal-body ">
-          <form role="form" action="{{action("adminController\KelolaAdminController@ubah")}}" method="post">
+          <form role="form" action="" method="post">
             <div class="box-body">
               
               <div class="form-group">
@@ -285,16 +283,16 @@
 
 <script>
 $(document).ready(function(){
-  $('#ubahAdminModal').on('show.bs.modal', function(event){
-    var button = $(event.relatedTarget);
-    //var recipient = button.data('ubahbutton');
-    var row = button.closest("tr");
+  $('#ubahAdminModal').on('hidden.bs.modal', function(event){
+    // var button = $(event.relatedTarget);
+    // //var recipient = button.data('ubahbutton');
+    // var row = button.closest("tr");
 
-    var person = row.find("td:nth-child(1)").text();
-    var nickame = row.find('td:nth-child(2)').text();
-    var modal = $(this);
-    modal.find('.modal-body .personname').val(person);
-    $(this).find('.modal-body .nickname').val(nickame);
+    // var person = row.find("td:nth-child(1)").text();
+    // var nickame = row.find('td:nth-child(2)').text();
+    // var modal = $(this);
+    // modal.find('.modal-body .personname').val('');
+    // $(this).find('.modal-body .nickname').val(nickame);
   });
 });
 </script>

@@ -50,14 +50,65 @@ class KelolaAdminController extends Controller
         //return view('admin.kelolaAdmin');
     }
 
-    public function ubah()
+    public function ubah(Request $request, $id)
     {
+        $personnew = Person::find($id);
+        $personnew->PersonName = $request->PersonName;
+        $personnew->Nickname = $request->Nickname;
+        $personnew->Address = $request->Address;
+        $personnew->City = $request->City;
+        $personnew->Country_ID = $request->Country_ID;
+        $personnew->BlobType_ID = $request->BlobType_ID;
+        $personnew->PersonPicture = $request->PersonPicture;
+        $personnew->save();
 
+        $pc = PersonContact::where('Person_ID', $id)->first();
+        // return $pc->Person_ID;
+        $pc = PersonContact::find($pc->Person_ID);
+        $pc->ContactType_ID = $request->ContactType_ID;
+        $pc->ContactValue = $request->ContactValue;
+        $pc->save();
+
+        $membernew = Member::where('Person_ID', $id)->first();
+        $membernew = Member::find($membernew->Member_ID);
+        $membernew->Username = $request->Username;
+        $membernew->AccessCode = $request->AccessCode;
+        $membernew->MemberRole_ID = $request->MemberRole_ID;
+        $membernew->Remark = $request->Remark;
+        $membernew->IsActive = 0;
+        $membernew->save();
+
+        Session::flash('Success', 'Your data successfully recorded');
+
+       // return view("admin.kelolaArea");
+        return redirect()->action('adminController\KelolaAdminController@index');
     }
 
-    public function hapus()
+    public function hapus($id)
     {
+
+        $member = Member::find($id);          
+        $personcontact = $member->PersonData->PersonContactData;
+        $person = $member->PersonData;
+        
+        $member->delete();
+        $personcontact->delete();
+        $person->delete();
+
+        Session::flash('Success', 'Your data successfully Deleted');
+        return redirect()->action('adminController\KelolaAdminController@index');
+
       //  return "data terhapus";
        return redirect()->action('adminController\KelolaAdminController@index');
+    }
+
+    public function admineditmodal_data($id){
+        $admineditmodal = Member::find($id);
+        return view('admin/admineditmodal')->with('admineditmodal', $admineditmodal);
+    }
+
+    public function adminhapusmodal_data($id){
+        $adminhapus = Member::find($id);
+        return view('admin/adminhapusmodal')->with('adminhapus', $adminhapus);
     }
 }

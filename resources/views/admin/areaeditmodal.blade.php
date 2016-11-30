@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>untuk tampil area</title>
-
-</head>
-<body>
-
 <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Ubah Area</h4>
@@ -47,9 +39,3 @@
           </div>
         </form>
       </div>
-    </div>
-
-
-
-</body>
-</html>

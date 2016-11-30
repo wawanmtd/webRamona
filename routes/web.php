@@ -40,11 +40,15 @@ Route::group(['namespace' => 'adminController'], function()
   Route::post('/kelolaAdmin/tambahAdmin', 'KelolaAdminController@tambah');
   Route::get('/kelolaAdmin/ubahAdmin', 'KelolaAdminController@ubah');
   Route::Post('/kelolaAdmin/hapusAdmin', 'KelolaAdminController@hapus');
+  Route::get('/kelolaAdmin/admineditmodal/{id}', 'KelolaAdminController@admineditmodal_data');
+  Route::put('/kelolaAdmin/ubah/{id}', 'KelolaAdminController@ubah');
+  Route::get('/kelolaAdmin/adminhapusmodal/{id}', 'KelolaAdminController@adminhapusmodal_data');
+  Route::get('/kelolaAdmin/hapus/{id}', 'KelolaAdminController@hapus');
 
   Route::get('/kelolaArea', 'KelolaAreaController@index');
   Route::post('/kelolaArea/tambahArea', 'KelolaAreaController@tambah');
   Route::get('/kelolaArea/ubahArea', 'KelolaAreaController@ubah');
-  Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
+  //Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
   Route::get('/kelolaArea/areaeditmodal/{id}', 'KelolaAreaController@areaeditmodal_data');
   Route::put('/kelolaArea/ubah/{id}', 'KelolaAreaController@ubah');
   Route::get('/kelolaArea/areahapusmodal/{id}', 'KelolaAreaController@areahapusmodal_data');

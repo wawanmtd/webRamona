@@ -12,7 +12,7 @@ class Member extends Model
 
     //has
     public function AreaData(){
-	return $this->hasMany('App\Models\Area\Area', 'Member_ID');    
+	return $this->hasOne('App\Models\Area\Area', 'Member_ID');    
     }
     public function StationData(){
         return $this->hasOne('App\Models\Station\Station', 'Member_ID');

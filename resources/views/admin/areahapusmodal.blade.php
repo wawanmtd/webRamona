@@ -6,7 +6,7 @@
 <body>
 	<!-- untuk hapus -->
 	<div class="modal-header">
-        <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus Area {{$areahapus->AreaName}}?</h4>
+        <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus Area  "{{$areahapus->AreaName}}"?</h4>
       </div>
 
       <div class="modal-footer">

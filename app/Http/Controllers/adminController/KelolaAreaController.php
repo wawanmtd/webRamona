@@ -5,6 +5,8 @@ namespace App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Area\Area;
+use App\Models\Station\StationArea;
+use App\Models\Station\Station;
 use Session;
 
 class KelolaAreaController extends Controller
@@ -51,14 +53,21 @@ class KelolaAreaController extends Controller
 
     public function hapus($id)
     {
-        $areadelete = Area::find($id);
-        $areadelete->StationAreaData()->delete();
         
-        $areadelete->delete();
+        $area = Area::find($id);                //mencari dari id area
+        $stationarea = $area->StationAreaData;  //mencari data di stationarea
+        
+
+        //untuk mendelete station satu per satu, karena sifatnya "hasmany"
+        foreach ($stationarea as $stationareadata) {    
+            $stationareadata->delete();
+            $stationdata = Station::find($stationareadata->Station_ID);
+            $stationdata->delete();
+        }
+        $area->delete();
+
 
         Session::flash('Success', 'Your data successfully Deleted');
-
-       // return view("admin.kelolaArea");
         return redirect()->action('adminController\KelolaAreaController@index');
     }
 
