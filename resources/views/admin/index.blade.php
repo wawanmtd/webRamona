@@ -1,5 +1,5 @@
 @include('Session._messages')
-
+@include('Session._islogin')
 <!DOCTYPE html>
 <html>
   <head>
@@ -151,15 +151,15 @@
                   <!-- The user image in the navbar-->
                   <img src="../bootstrap/adminlte/img/avatar.png" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">{nameAdmin}</span>
+                  <span class="hidden-xs">{{Session::get('PersonName')}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
                     <img src="../bootstrap/adminlte/img/avatar.png" class="img-circle" alt="User Image">
                     <p>
-                      {nameAdmin}
-                      <small>{roleAdmin} - {lokasi}</small>
+                      {{Session::get('PersonName')}}
+                      <small>{{Session::get('Role')}} - {{Session::get('Station')}}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -208,8 +208,8 @@
               <img src="../bootstrap/adminlte/img/avatar.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{nameAdmin}</p>
-              {roleAdmin}
+              <p>{{Session::get('PersonName')}}</p>
+              {{Session::get('Role')}}
             </div>
           </div>
 
