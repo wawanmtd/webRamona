@@ -43,13 +43,14 @@
                 },
 
                 "areasSettings": {
-                  "unlistedAreasColor": "#15A892"
+                  "unlistedAreasColor": "#15A892",
+                  "autoZoom":true
                 },
 
                 "dataProvider": {
                   "map": "indonesiaLow",
                   "images": [{
-                    // "imageURL" : "../resources/assets/img/svgPath/radiationYellow.svg",
+                    "imageURL" : "../resources/assets/img/svgPath/radiationYellow.svg",
                     "zoomLevel": 10,
                     "scale": 0.5,
                     "title": "PRFN Batan",
@@ -59,7 +60,7 @@
                     "url" : "#"
                   },
                   {
-                    // "imageURL" : "../resources/assets/img/svgPath/radiationRed.svg",
+                    "imageURL" : "../resources/assets/img/svgPath/radiationRed.svg",
                     "zoomLevel": 10,
                     "scale": 0.5,
                     "title": "Komplek Puspiptek",
