@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{Admin} Dashboard</title>
+    <title>{{Session::get('PersonName')}} | Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
@@ -29,7 +29,7 @@
         <a href="{{action("adminController\AdminController@index")}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
-            <img src="../../resources/assets/img/MONLINK.png" alt="" width="60%"/>
+            <img src="../resources/assets/img/MONLINK.png" alt="" width="60%"/>
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg">
@@ -268,7 +268,7 @@
             <h1>
               @yield('content-header')
             </h1>
-            
+
           </section>
 
           <!-- Main content -->

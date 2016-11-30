@@ -11,7 +11,6 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title"></h3>
         <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAreaModal" class="btn btn-success">
           <span class="fa fa-plus"></span> Tambah</button>
       </div>
@@ -24,24 +23,20 @@
               <th>Description</th>
               <th>Country</th>
               <th>Member</th>
-              <th colspan="2">Action</th>
+              <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
-          
+
               @foreach ($ShowArea as $showarea)
             <tr>
               <td>{{$showarea->AreaName}}</td>
               <td>{{$showarea->Description}}</td>
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
-
-              <td style="width:5%">
+              <td style="width:10%">
                 <a class="btn btn-info" data-toggle='modal' data-target='#ubahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a>
-              </td>
-              
-              <td style="width:5%">
                 <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a>
               </td>
             </tr>

@@ -6,13 +6,17 @@
 @stop
 
 @section('konten')
-<button type="button" action="#tambah" data-toggle="modal" data-target="#tambahSensorModal" class="btn btn-success">
-  <span class="fa fa-plus"></span> Tambah</button>
+
 
 <!-- Table Data Sensor -->
+<div class="row">
+  <div class="col-xs-12">
+
+
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title">Daftar Sensor</h3>
+    <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahSensorModal" class="btn btn-success">
+      <span class="fa fa-plus"></span> Tambah</button>
   </div>
 
   <div class="box-body">
@@ -25,7 +29,7 @@
           <th>Value Count</th>
           <th>Member</th>
           <th>Device</th>
-          <th colspan="2">Action</th>
+          <th>Action</th>
         </tr>
       </thead>
 
@@ -40,11 +44,9 @@
           </td>
           <!-- sementara, belongstomany belum berhasil -->
           <td>{{$sensorshow->DeviceSensorData->DeviceData->DeviceModel}}</td>
-          <td style="width:5%">
+          <td style="width:10%">
             <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahSensorModal" class="btn btn-info">
               <span class="fa fa-edit"></span></button>
-          </td>                                            
-          <td style="width:5%">
             <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusSensorModal" class="btn btn-danger">
               <span class="fa fa-trash"></span></button>
           </td>
@@ -61,16 +63,21 @@
           <th>Value Count</th>
           <th>Member</th>
           <th>Device</th>
-          <th colspan="2">Action</th>
+          <th>Action</th>
 
         </tr>
       </tfoot>
     </table>
-
+  </div>
+  </div>
   </div>
 </div>
 <!-- end Table Data Sensor -->
-
+<script>
+  $(function () {
+    $("#tableSensor").DataTable();
+  });
+</script>
 <!-- modal Tambah Sensor -->
 <div class="modal fade" id="tambahSensorModal" tabindex="-1" role="dialog" aria-labelledby="tambahSensorModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -83,7 +90,7 @@
       <div class="modal-body ">
         <form role="form" action="kelolaSensor/tambahSensor" method="post">
           <div class="box-body">
-            
+
             <div class="form-group">
               <label for="Sensor">Sensor Type</label>
               <input type="text" name="SensorType_ID" class="form-control"  placeholder="SensorType_ID" required>
