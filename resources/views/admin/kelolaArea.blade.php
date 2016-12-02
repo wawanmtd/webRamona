@@ -219,6 +219,7 @@ function getData(id){
 
 </script>
 
+<<<<<<< HEAD
 <!-- <script>
 $('#ubahAreaModal').on('shown.bs.modal', function () {
   // $('#myInput').focus();
@@ -245,5 +246,14 @@ $(function() {
 </script> -->
 
 
+=======
+<script >
+ //  $(".modal").on("hidden.bs.modal", function() {
+ //     //$(this).removeData();
+ //        modal.find('.modal').val('');
+ //   });
+ // )};
+</script>
+>>>>>>> origin/master
 
 @stop
