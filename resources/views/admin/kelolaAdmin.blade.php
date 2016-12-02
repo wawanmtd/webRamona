@@ -10,27 +10,27 @@
 @stop
 
 @section('konten')
-  <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAdminModal" class="btn btn-success">
-    <span class="fa fa-plus"></span> Tambah</button>
+
 
 <!-- Table Data Admin -->
 <div class="row">
   <div class="col-sm-12">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Daftar Admin</h3>
+      <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAdminModal" class="btn btn-success">
+        <span class="fa fa-plus"></span> Tambah</button>
     </div>
 
     <div class="box-body">
       <table id="tableAdmin" class="table table-bordered table-striped">
         <thead>
           <tr role="row">
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Nama Lengkap: active to sort column ascending">Nama Lengkap</th>
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Username: active to sort column ascending">Username</th>
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Role: active to sort column ascending">Role</th>
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Contact: active to sort column ascending">Contact</th>
-            <th class="sorting" tabindex="0" aria-controls="tableAdmin" aria-label="Area: active to sort column ascending">Country</th>
-            <th colspan="2">Action</th>
+            <th>Nama Lengkap</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Contact</th>
+            <th>Country</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -44,11 +44,13 @@
             <td >{{$showmember->MemberRoleData->NameRole}}</td>
             <td >{{$showmember->PersonData->PersonContactData->ContactValue}}</td>
             <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
-            <td style="width:5%">
-                <a class="btn btn-info" data-toggle='modal' data-target='#ubahAdminModal' href="kelolaAdmin/admineditmodal/{{$showmember->Member_ID}}"><span class="fa fa-edit"/></a>
-            </td>
-            <td style="width:5%">
-                <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAdminModal' data-hapusbutton="{{$showmember->Member_ID}}" href="kelolaAdmin/adminhapusmodal/{{$showmember->Member_ID}}"> <span class="fa fa-trash"/></a>
+            <td style="width:10%">
+              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
+                <span class="fa fa-edit"></span></button>
+              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
+                <span class="fa fa-trash"></span></button>
+                <!-- <a class="btn btn-info" data-toggle='modal' data-target='#ubahAdminModal' href="kelolaAdmin/admineditmodal/{{$showmember->Member_ID}}"><span class="fa fa-edit"/></a>
+                <a class="btn btn-danger" data-toggle='modal' data-target='#hapusAdminModal' data-hapusbutton="{{$showmember->Member_ID}}" href="kelolaAdmin/adminhapusmodal/{{$showmember->Member_ID}}"> <span class="fa fa-trash"/></a> -->
             </td>
           </tr>
 
@@ -62,19 +64,20 @@
             <th>Role</th>
             <th>Contact</th>
             <th>Country</th>
-            <th colspan="2">Action</th>
+            <th>Action</th>
           </tr>
         </tfoot>
       </table>
     </div>
     </div>
   </div>
-</div>    
+</div>
 <!-- end Table Data Admin -->
 <script type="text/javascript">
-//   $(document).ready(function() {
-//     $('#tableAdmin').dataTable();
-// });
+  $(document).ready(function() {
+   $('#tableAdmin').dataTable();
+
+});
 
 
 </script>
@@ -108,7 +111,7 @@
         <div class="modal-body ">
           <form role="form" action="kelolaAdmin/tambahAdmin" method="post">
             <div class="box-body">
-              
+
               <div class="form-group">
                 <label for="FullName">Full Name</label>
                 <input type="text" name="PersonName" class="form-control" placeholder="Full Name" id="edit_personname" required>
@@ -131,12 +134,22 @@
 
               <div class="form-group">
                 <label for="Country_ID">Country (harusnya pake option sih)</label>
-                <input type="text" name="Country_ID" class="form-control" placeholder="Country" required>
+                <select class="form-control" name="Country_ID" required>
+                  <option value="">-- Select Country --</option>
+                  <option value="1">Indonesia</option>
+                </select>
+                <!-- <input type="text" name="Country_ID" class="form-control" placeholder="Country" required> -->
               </div>
 
               <div class="form-group">
                 <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
-                <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required>
+                <select class="form-control" name="BlobType_ID" required>
+                  <option value="">-- Select Blob Type --</option>
+                  <option value="1">JPG</option>
+                  <option value="2">PNG</option>
+                  <option value="3">BMP</option>
+                </select>
+                <!-- <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -146,8 +159,14 @@
 
               <div class="form-group">
                 <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
-                <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required>
-              </div>              
+                <select class="form-control" name="ContactType_ID" required>
+                  <option value="">-- Select Contact Type --</option>
+                  <option value="1">Phone</option>
+                  <option value="2">Email</option>
+                  <option value="3">etc</option>
+                </select>
+                <!-- <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required> -->
+              </div>
 
               <div class="form-group">
                 <label for="ContactValue">Contact Value</label>
@@ -166,7 +185,13 @@
 
               <div class="form-group">
                 <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
-                <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required>
+                <select class="form-control" name="MemberRole_ID" required>
+                  <option value="">-- Select Member Role --</option>
+                  <option value="1">Super Admin</option>
+                  <option value="2">Admin</option>
+                  <option value="3">Manajerial</option>
+                </select>
+                <!-- <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -202,7 +227,7 @@
         <div class="modal-body ">
           <form role="form" action="" method="post">
             <div class="box-body">
-              
+
               <div class="form-group">
                 <label for="FullName">Full Name</label>
                 <input type="text" value="" data-fullname="" name="PersonName" class="form-control personname" placeholder="Full Name" required>
@@ -225,12 +250,22 @@
 
               <div class="form-group">
                 <label for="Country_ID">Country (harusnya pake option sih)</label>
-                <input type="text" name="Country_ID" class="form-control" placeholder="Country" required>
+                <select class="form-control" name="Country_ID" required>
+                  <option value="">-- Select Country --</option>
+                  <option value="1">Indonesia</option>
+                </select>
+                <!-- <input type="text" name="Country_ID" class="form-control" placeholder="Country" required> -->
               </div>
 
               <div class="form-group">
                 <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
-                <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required>
+                <select class="form-control" name="BlobType_ID" required>
+                  <option value="">-- Select Blob Type --</option>
+                  <option value="1">JPG</option>
+                  <option value="2">PNG</option>
+                  <option value="3">BMP</option>
+                </select>
+                <!-- <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -240,8 +275,14 @@
 
               <div class="form-group">
                 <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
-                <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required>
-              </div>              
+                <select class="form-control" name="ContactType_ID" required>
+                  <option value="">-- Select Contact Type --</option>
+                  <option value="1">Phone</option>
+                  <option value="2">Email</option>
+                  <option value="3">etc</option>
+                </select>
+                <!-- <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required> -->
+              </div>
 
               <div class="form-group">
                 <label for="ContactValue">Contact Value</label>
@@ -260,7 +301,13 @@
 
               <div class="form-group">
                 <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
-                <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required>
+                <select class="form-control" name="MemberRole_ID" required>
+                  <option value="">-- Select Member Role --</option>
+                  <option value="1">Super Admin</option>
+                  <option value="2">Admin</option>
+                  <option value="3">Manajerial</option>
+                </select>
+                <!-- <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -300,6 +347,9 @@ $(document).ready(function(){
 </script>
 
 @stop
+<<<<<<< HEAD
 
 
 @endif
+=======
+>>>>>>> origin/master

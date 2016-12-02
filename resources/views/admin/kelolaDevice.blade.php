@@ -6,15 +6,11 @@
 @stop
 
 @section('konten')
-<button type="button" action="#tambah" data-toggle="modal" data-target="#tambahDeviceModal" class="btn btn-success">
-  <span class="fa fa-plus"></span> Tambah</button>
-
 <!-- Table Data Device -->
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Daftar Device</h3>
         <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahDeviceModal" class="btn btn-success">
           <span class="fa fa-plus"></span> Tambah</button>
       </div>
@@ -29,7 +25,7 @@
               <th>Country</th>
               <th>Voltage Range</th>
               <th>Member</th>
-              <th colspan="2">Action</th>
+              <th>Action</th>
             </tr>
           </thead>
 
@@ -42,11 +38,9 @@
               <td>{{$deviceshow->CountryData->CountryName}}</td>
               <th>{{$deviceshow->VoltageRange}}</th>
               <td>{{$deviceshow->MemberData->PersonData->PersonName}}</td>
-              <td style="width:5%">
+              <td style="width:10%">
                 <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahDeviceModal" class="btn btn-info">
                   <span class="fa fa-edit"></span></button>
-              </td>
-              <td style="width:5%">
                 <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusDeviceModal" class="btn btn-danger">
                   <span class="fa fa-trash"></span></button>
               </td>
@@ -65,7 +59,7 @@
               <th>Voltage Range</th>
               <th>Member</th>
               <th>Installation Date</th>
-              <th colspan="2">Action</th>
+              <th>Action</th>
 
             </tr>
           </tfoot>

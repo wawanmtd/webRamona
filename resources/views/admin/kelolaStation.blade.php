@@ -6,71 +6,74 @@
 @stop
 
 @section('konten')
-<button type="button" action="#tambah" data-toggle="modal" data-target="#tambahStationModal" class="btn btn-success">
-  <span class="fa fa-plus"></span> Tambah</button>
-
 <!-- Table Data Station -->
-<div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Daftar Station</h3>
-  </div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahStationModal" class="btn btn-success">
+          <span class="fa fa-plus"></span> Tambah</button>
+      </div>
 
-  <div class="box-body">
-    <table id="tableStation" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Station Name</th>
-          <th>Station Type</th>
-          <th>Address</th>
-          <th>Area</th>
-          <th>Member</th>
-          <th>Installation Date</th>
-          <th colspan="2">Action</th>
-        </tr>
-      </thead>
+      <div class="box-body">
+        <table id="tableStation" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Station Name</th>
+              <th>Station Type</th>
+              <th>Address</th>
+              <th>Area</th>
+              <th>Member</th>
+              <th>Installation Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-      <tbody>
-      @foreach ($ShowStation as $showstation)
-        <tr>
-          <td>{{$showstation->StationName}}</td>
-          <td>{{$showstation->StationTypeData->Description}}</td>
-          <td>{{$showstation->Address}}</td>
-          <td>{{$showstation->StationAreaData->AreaData->AreaName}}</td>
-          <th>{{$showstation->MemberData->PersonData->PersonName}}</th>
-          <td>{{$showstation->InstallationDate}}</td>
-          <td style="width:5%">
-            <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahStationModal" class="btn btn-info">
-              <span class="fa fa-edit"></span></button>
-          </td>
-          <td style="width:5%">
-            <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusStationModal" class="btn btn-danger">
-              <span class="fa fa-trash"></span></button>
-          </td>
-        </tr>
-        @endforeach
+          <tbody>
+          @foreach ($ShowStation as $showstation)
+            <tr>
+              <td>{{$showstation->StationName}}</td>
+              <td>{{$showstation->StationTypeData->Description}}</td>
+              <td>{{$showstation->Address}}</td>
+              <td>{{$showstation->StationAreaData->AreaData->AreaName}}</td>
+              <th>{{$showstation->MemberData->PersonData->PersonName}}</th>
+              <td>{{$showstation->InstallationDate}}</td>
+              <td style="width:10%">
+                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahStationModal" class="btn btn-info">
+                  <span class="fa fa-edit"></span></button>
+                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusStationModal" class="btn btn-danger">
+                  <span class="fa fa-trash"></span></button>
+              </td>
+            </tr>
+            @endforeach
 
-        
-      </tbody>
 
-      <tfoot >
-        <tr>
-          <th>Station Name</th>
-          <th>Station Type</th>
-          <th>Address</th>
-          <th>Area</th>
-          <th>Member</th>
-          <th>Installation Date</th>
-          <th colspan="2">Action</th>
+          </tbody>
 
-        </tr>
-      </tfoot>
-    </table>
+          <tfoot>
+            <tr>
+              <th>Station Name</th>
+              <th>Station Type</th>
+              <th>Address</th>
+              <th>Area</th>
+              <th>Member</th>
+              <th>Installation Date</th>
+              <th>Action</th>
 
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- end Table Data Station -->
-
+<script>
+  $(function () {
+    $("#tableStation").DataTable();
+  });
+</script>
 <!-- modal Tambah Station -->
 <div class="modal fade" id="tambahStationModal" tabindex="-1" role="dialog" aria-labelledby="tambahStationModalLabel">
   <div class="modal-dialog modal-lg" role="document">
