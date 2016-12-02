@@ -1,3 +1,5 @@
+@if (Session::get('Member_ID') == 1)
+
 @extends('admin.index')
 
 
@@ -298,3 +300,6 @@ $(document).ready(function(){
 </script>
 
 @stop
+
+
+@endif

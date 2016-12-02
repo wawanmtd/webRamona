@@ -195,11 +195,11 @@
 <!-- end modal Hapus Area -->
 
 <script >
-$(document).ready(function() {
-  $(".modal").on("hidden.bs.modal", function() {
-    $(this).removeData();
-  });
-});
+ //  $(".modal").on("hidden.bs.modal", function() {
+ //     //$(this).removeData();
+ //        modal.find('.modal').val('');
+ //   });
+ // )};
 </script>
 
 @stop
