@@ -36,7 +36,8 @@
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
               <td style="width:10%">
-                <a class="btn btn-info" data-toggle='modal' data-target='#ubahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a>
+                <!-- <a class="btn btn-info" data-toggle='modal' data-target='#ubahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a> -->
+                <button class="btn btn-info" onclick="getData({{$showarea->Area_ID}})"><span class="fa fa-edit"/></button>
                 <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a>
               </td>
             </tr>
@@ -129,37 +130,37 @@
           </div>
 
           <div class="modal-body ">
-            <form role="form" action="" method="post">
+            <form id="formUbah" role="form" action="" method="post">
               <div class="box-body">
 
                  <div class="form-group">
                   <label for="AreaName">Area Name</label>
-                  <input type="text" name="AreaName" class="form-control"  placeholder="Area Name" value="" required>
+                  <input id="ubahAreaName" type="text" name="AreaName" class="form-control"  placeholder="Area Name" value="" required>
                 </div>
 
                 <div class="form-group">
                   <label for="Description">Description</label>
-                  <input type="text" name="Description" class="form-control"  placeholder="Description" value="" required>
+                  <input id="ubahDescription" type="text" name="Description" class="form-control"  placeholder="Description" value="" required>
                 </div>
 
                 <div class="form-group">
                   <label for="Remark">Remark</label>
-                  <input type="text" name="Remark" class="form-control"  placeholder="Remark" value="" required>
+                  <input id="ubahRemark" type="text" name="Remark" class="form-control"  placeholder="Remark" value="" required>
                 </div>
 
                 <div class="form-group">
                   <label for="Country_ID">Country ID (bentuk option)</label>
-                  <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="" required>
+                  <input id="ubahCountry_ID" type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="" required>
                 </div>
 
                 <div class="form-group">
                   <label for="Member_ID">Member_ID (bentuk option)</label>
-                  <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="" required>
+                  <input id="ubahMember_ID" type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="" required>
                 </div>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="modal-footer">
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                  <button id="submitUbah" class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                 </div>
               </div>
             </form>
@@ -188,13 +189,61 @@
   </div>
 </div>
 <!-- end modal Hapus Area -->
+<script>
+function getData(id){
+  $.ajax({
+    url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+    type: "GET",
+    data: {idArea: id},
+    dataType: 'json',
+  }).done(function(data){
+      console.log(data.AreaName);
+      // console.log(data);
+      // $('#ubahAreaModal').modal({backdrop: 'static', keyboard: false});
+      // $('#ubahAreaModal').on('showbs.modal', function () {
+          $('#formUbah').attr('action', "{{URL::to('kelolaArea/ubah')}}" + "/" + data.Area_ID);
+          $('#ubahAreaName').val(data.AreaName);
+          $('#ubahDescription').val(data.Description);
+          $('#ubahRemark').val(data.Remark);
+          $('#ubahCountry_ID').val(data.Country_ID);
+          $('#ubahMember_ID').val(data.Member_ID);
+          $('#ubahAreaModal').modal('show');
+      // });
+        // .on('click', '#submitUbah', function(){
+        //
+        // });
+  }).error(function(jqXHR, textStatus){
+    alert(textStatus);
+  });
+}
 
-<script >
-$(document).ready(function() {
+</script>
+
+<!-- <script>
+$('#ubahAreaModal').on('shown.bs.modal', function () {
+  // $('#myInput').focus();
+  // $('input').val('');
+})
+$(function() {
   $(".modal").on("hidden.bs.modal", function() {
     $(this).removeData();
   });
 });
-</script>
+// function getData(id){
+//   console.log(id);
+//   $.ajax({
+//     url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+//     type: "GET",
+//     data: {idArea: id},
+//     dataType: 'json',
+//   }).done(function(data){
+//       console.log(data);
+//   }).error(function(jqXHR, textStatus){
+//     alert(textStatus);
+//   });
+// }
+</script> -->
+
+
 
 @stop

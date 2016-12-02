@@ -11,7 +11,7 @@
 <script src="../../amcharts/themes/light.js"></script>
 <style type="text/css"></style>
 <style>
-#chartdiv {
+.chartdiv {
 	width	: 100%;
 	height	: 170px;
 }
@@ -62,7 +62,7 @@
             </div>
           </div>
           <div class="col-md-10">
-            <div id="chartdiv"></div>
+            <div id="gammaDoseChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="termoChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="solarRadiationChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -131,7 +131,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="barometerChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -154,7 +154,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="windChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -177,7 +177,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="percipitationChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -200,7 +200,7 @@
             </div>
           </div>
           <div class="col-md-10">
-
+            <div id="humidityChart" class="chartdiv"></div>
           </div>
         </div>
 
@@ -213,7 +213,7 @@
 <script>
 var chartData = generateChartData();
 
-var chart = AmCharts.makeChart("chartdiv", {
+var chart = AmCharts.makeChart("gammaDoseChart", {
     "type": "serial",
     "theme": "light",
     "marginRight": 80,

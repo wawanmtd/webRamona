@@ -53,13 +53,13 @@ class KelolaAreaController extends Controller
 
     public function hapus($id)
     {
-        
+
         $area = Area::find($id);                //mencari dari id area
         $stationarea = $area->StationAreaData;  //mencari data di stationarea
-        
+
 
         //untuk mendelete station satu per satu, karena sifatnya "hasmany"
-        foreach ($stationarea as $stationareadata) {    
+        foreach ($stationarea as $stationareadata) {
             $stationareadata->delete();
             $stationdata = Station::find($stationareadata->Station_ID);
             $stationdata->delete();
@@ -71,9 +71,11 @@ class KelolaAreaController extends Controller
         return redirect()->action('adminController\KelolaAreaController@index');
     }
 
-    public function areaeditmodal_data($id){
+    public function areaeditmodal_data(Request $request){
+        $id = $request->idArea;
         $areaeditmodal = Area::find($id);
-        return view('admin/areaeditmodal')->with('areaeditmodal', $areaeditmodal);
+        // return view('admin/areaeditmodal')->with('areaeditmodal', $areaeditmodal);
+        return response()->json($areaeditmodal);
     }
 
     public function areahapusmodal_data($id){

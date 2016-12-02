@@ -69,12 +69,13 @@ function initMap() {
 
 
 <script type="text/html" id="currentCondition-contents" class="popover hidden">
-  <div class="row">
-    <div class="col-md-2 ">
-      {{$nameStation}}
+
+  <div class="row" style="backgroundFill:#000000">
+    <div class="col-md-4  ">
+      <h4> {{$nameStation}} </h4>
     </div>
     <div class="col-md-3" style="float:right">
-      {{date("M | d ")}}
+      <h4>{{date("M | d")}}</h4>
     </div>
   </div>
   <div class="row">
@@ -106,15 +107,15 @@ function initMap() {
             <div class="col-md-6">
               <div class="row">
                 <div class="col-md-3 col-md-offset-4">
-                  {{$windDir}}
+                  <strong>{{$windDir}}</strong>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-2">
-                  {{$windSpeed}}
+                  <strong>{{$windSpeed}}</strong>
                 </div>
                 <div class="col-md-2">
-                  km/h
+                  <strong>km/h<strong>
                 </div>
               </div>
             </div>

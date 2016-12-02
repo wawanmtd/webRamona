@@ -10,7 +10,7 @@ class HomeController extends Controller
   public function index()
   {
 
-    $nameStation = "Batan";
+    $nameStation = "Perumahan Puspiptek";
     $termoDeg = 100;
     $windDir = "NNE";
     $windSpeed = 25;
