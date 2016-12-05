@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap-theme.min.css">
     <script src="../bootstrap/dist/js/jquery-1.11.2.min.js"></script>
 		<script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bootstrap/jput-js/jput.min.js"></script>
 		<style type="text/css"></style>
     @show
   </head>

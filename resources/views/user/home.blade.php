@@ -35,7 +35,7 @@
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 8,
     center: {lat: -6.3537604, lng: 106.6631774}
   });
 
@@ -48,8 +48,9 @@ function initMap() {
 
 
   var marker = new google.maps.Marker({
-    position: {lat:-6.350593, lng: 106.659015},
+    position: {lat:-6.349738, lng: 106.664119},
     icon: radiationRed,
+    iconWidth: 10,
     map: map
   });
 

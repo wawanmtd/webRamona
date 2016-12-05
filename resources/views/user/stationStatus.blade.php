@@ -52,7 +52,8 @@
                     <img src="../../resources/assets/img/svgPath/radiationYellow.svg" width="70px" alt="" />
                   </div>
                   <div class="col-md-2">
-                    <h4>1000</h4>
+										<h4>1000</h4>
+										<!-- <h4 jput="gammadoserates"></h4> -->
                   </div>
                   <div class="col-md-1 col-md-offset-2">
                     <h5><small>&micro;Sv/h</small></h5>
@@ -289,5 +290,11 @@ function generateChartData() {
     }
     return chartData;
 }
+$(document).ready(function()
+{
+	var data = chartData;
+	jPut.gammadoserates.data = data;
+
+});
 </script>
 @stop
