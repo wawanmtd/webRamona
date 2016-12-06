@@ -51,7 +51,7 @@
               <th>Description</th>
               <th>Country</th>
               <th>Member</th>
-              <th colspan="2">Action</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
@@ -101,12 +101,20 @@
 
             <div class="form-group">
               <label for="Country_ID">Country ID (bentuk option)</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
+              <!-- <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required> -->
+              <select class="form-control" name="Country_ID" required>
+                <option value="">--Select Country ID--</option>
+                <option value="1">1</option>
+              </select>
             </div>
 
             <div class="form-group">
               <label for="Member_ID">Member_ID (bentuk option)</label>
-              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+              <!-- <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required> -->
+              <select class="form-control" name="Member_ID" required>
+                <option value="">--Select Member ID--</option>
+                <option value="1">1</option>
+              </select>
             </div>
           <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="modal-footer">
@@ -150,12 +158,20 @@
 
                 <div class="form-group">
                   <label for="Country_ID">Country ID (bentuk option)</label>
-                  <input id="ubahCountry_ID" type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="" required>
+                  <!-- <input id="ubahCountry_ID" type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="" required> -->
+                  <select class="form-control" name="Country_ID" id="ubahCountry_ID" required>
+                    <option value="">--Select Country ID--</option>
+                    <option value="1">1</option>
+                  </select>
                 </div>
 
                 <div class="form-group">
                   <label for="Member_ID">Member_ID (bentuk option)</label>
-                  <input id="ubahMember_ID" type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="" required>
+                  <!-- <input id="ubahMember_ID" type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="" required> -->
+                  <select class="form-control" name="Member_ID" id="ubahMember_ID" required>
+                    <option value="">--Select Member ID--</option>
+                    <option value="">1</option>
+                  </select>
                 </div>
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="_method" value="PUT">

@@ -32,38 +32,91 @@
 // as the icon for a marker. The resulting icon is a star-shaped symbol
 // with a pale yellow fill and a thick yellow border.
 
+function CenterControl(controlDiv, map){
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor ='#fff';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.title = 'Click to re-center map';
+  controlUI.style.textAlign = 'center';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+
+  // controlUI.style.
+  controlDiv.appendChild(controlUI);
+
+  var controlText = document.createElement('div');
+  controlText.innerHTML = '<span class="fa fa-home"></span>';
+  controlUI.appendChild(controlText);
+
+  controlUI.addEventListener('click', function(){
+    map.setZoom(13);
+    map.setCenter({lat: -6.3537604, lng: 106.6631774});
+  })
+}
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
+    zoom: 13,
     center: {lat: -6.3537604, lng: 106.6631774}
   });
 
+  var buttonCenterDiv = document.createElement('div');
+  var centerControl = new CenterControl(buttonCenterDiv, map);
+
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(buttonCenterDiv);
+
   var radiationRed = "../resources/assets/img/svgPath/radiationRed.svg";
+  var radiationYellow = "../resources/assets/img/svgPath/radiationYellow.svg";
+  var radiationGreen = "../resources/assets/img/svgPath/radiationGreen.svg";
+
   var infowindow = new google.maps.InfoWindow({
     content: ($('#currentCondition-contents').html()),
     maxWidth: 500
 
   });
 
+  var stationMarker =
+    [
+      {
+        "lat" : -6.323651,
+        "lng": 106.706313,
+        "title" : "Batan"
+      },
+      {
+        "lat" : -6.349738,
+        "lng" : 106.664119,
+        "title" : "Puspiptek"
+      }
+    ];
 
-  var marker = new google.maps.Marker({
-    position: {lat:-6.349738, lng: 106.664119},
-    icon: radiationRed,
-    iconWidth: 10,
-    map: map
+  $.each(stationMarker, function (key, data)
+  {
+    var latLng = new google.maps.LatLng(data.lat, data.lng);
+
+    var marker = new google.maps.Marker({
+      position: latLng,
+      title : data.title,
+      map : map
+    });
+
+    if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
+      marker.setIcon(radiationYellow);
+    }
+    else if ({{$gammaDoseRates}} > 2000) {
+      marker.setIcon(radiationRed);
+    }
+
+    marker.addListener('click', function(){
+      map.setZoom(16);
+      infowindow.open(map, marker);
+    });
   });
 
-
-  //
-  marker.addListener('click', function(){
-    map.setZoom(16);
-    infowindow.open(map, marker);
-  });
 }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer>
-    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
 
     <!-- <a tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus" data-placement="top">Click Popover</a> -->
   </body>
@@ -72,7 +125,7 @@ function initMap() {
 <script type="text/html" id="currentCondition-contents" class="popover hidden">
 
   <div class="row" style="backgroundFill:#000000">
-    <div class="col-md-4  ">
+    <div class="col-md-6  ">
       <h4> {{$nameStation}} </h4>
     </div>
     <div class="col-md-3" style="float:right">
