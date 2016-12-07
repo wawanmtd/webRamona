@@ -45,7 +45,7 @@
             <td >{{$showmember->PersonData->PersonContactData->ContactValue}}</td>
             <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
             <td style="width:10%">
-              <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahAdminModal" class="btn btn-info">
+              <button type="button" class="btn btn-info" id="{{$showmember->Member_ID}}" onclick="getData({{$showmember->Member_ID}})">
                 <span class="fa fa-edit"></span></button>
               <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
                 <span class="fa fa-trash"></span></button>
@@ -109,32 +109,32 @@
         </div>
 
         <div class="modal-body ">
-          <form role="form" action="kelolaAdmin/tambahAdmin" method="post">
+          <form role="form" action="kelolaAdmin/tambahAdmin" id="tambahAdminModals" method="post">
             <div class="box-body">
 
               <div class="form-group">
                 <label for="FullName">Full Name</label>
-                <input type="text" name="PersonName" class="form-control" placeholder="Full Name" id="edit_personname" required>
+                <input type="text" name="PersonName" class="form-control" placeholder="Full Name" id="personname" required>
               </div>
 
               <div class="form-group">
                 <label for="Nickname">Nickname</label>
-                <input type="text" name="Nickname" class="form-control" placeholder="Nickname" required>
+                <input type="text" name="Nickname" class="form-control" placeholder="Nickname" id="nickname" required>
               </div>
 
               <div class="form-group">
                 <label for="Address">Address</label>
-                <input type="text" name="Address" class="form-control" placeholder="Address" required>
+                <input type="text" name="Address" class="form-control" placeholder="Address" id="address" required>
               </div>
 
               <div class="form-group">
                 <label for="City">City</label>
-                <input type="text" name="City" class="form-control" placeholder="City" required>
+                <input type="text" name="City" class="form-control" placeholder="City" id="city" required>
               </div>
 
               <div class="form-group">
                 <label for="Country_ID">Country (harusnya pake option sih)</label>
-                <select class="form-control" name="Country_ID" required>
+                <select class="form-control" name="Country_ID" id="country_id" required>
                   <option value="">-- Select Country --</option>
                   <option value="1">Indonesia</option>
                 </select>
@@ -143,7 +143,7 @@
 
               <div class="form-group">
                 <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="BlobType_ID" required>
+                <select class="form-control" name="BlobType_ID" id="blobtype_id" required>
                   <option value="">-- Select Blob Type --</option>
                   <option value="1">JPG</option>
                   <option value="2">PNG</option>
@@ -154,12 +154,12 @@
 
               <div class="form-group">
                 <label for="Picture">Picture (upload*)</label>
-                <input type="text" name="PersonPicture" class="form-control" placeholder="PersonPicture" required>
+                <input type="text" name="PersonPicture" id="picture" class="form-control" placeholder="PersonPicture" required>
               </div>
 
               <div class="form-group">
                 <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="ContactType_ID" required>
+                <select class="form-control" name="ContactType_ID" id="Contacttype_id" required>
                   <option value="">-- Select Contact Type --</option>
                   <option value="1">Phone</option>
                   <option value="2">Email</option>
@@ -170,22 +170,22 @@
 
               <div class="form-group">
                 <label for="ContactValue">Contact Value</label>
-                <input type="text" name="ContactValue" class="form-control"  placeholder="Enter Contact Value" required>
+                <input type="text" name="ContactValue" class="form-control"  placeholder="Enter Contact Value" id="contactvalue" required>
               </div>
 
               <div class="form-group">
                 <label for="Username">Username</label>
-                <input type="text" name="Username" class="form-control"  placeholder="Username" required>
+                <input type="text" name="Username" class="form-control"  placeholder="Username" id="username" required>
               </div>
 
               <div class="form-group">
                 <label for="AccessCode">Password</label>
-                <input type="password" name="AccessCode" class="form-control" placeholder="Password" required>
+                <input type="password" name="AccessCode" class="form-control" placeholder="Password" id="accesscode" required>
               </div>
 
               <div class="form-group">
                 <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="MemberRole_ID" required>
+                <select class="form-control" name="MemberRole_ID" id="memberrole_id" required>
                   <option value="">-- Select Member Role --</option>
                   <option value="1">Super Admin</option>
                   <option value="2">Admin</option>
@@ -196,11 +196,11 @@
 
               <div class="form-group">
                 <label for="Remark">Remark</label>
-                <input type="text" name="Remark" class="form-control" placeholder="Remark" required>
+                <input type="text" name="Remark" class="form-control" placeholder="Remark" id="remark" required>
               </div>
 
               <input type="hidden" name="_token" value="{{csrf_token()}}">
-
+              <input type="hidden" name="_method" value="POST" id="_method">
               <div class="modal-footer">
                 <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Submit</button>
               </div>
@@ -331,27 +331,35 @@
 
 
 <script>
-$(document).ready(function(){
-  $('#ubahAdminModal').on('hidden.bs.modal', function(event){
-    // var button = $(event.relatedTarget);
-    // //var recipient = button.data('ubahbutton');
-    // var row = button.closest("tr");
-
-    // var person = row.find("td:nth-child(1)").text();
-    // var nickame = row.find('td:nth-child(2)').text();
-    // var modal = $(this);
-    // modal.find('.modal-body .personname').val('');
-    // $(this).find('.modal-body .nickname').val(nickame);
+function getData(id){
+  $.ajax({
+    url : 'kelolaAdmin/admineditmodal',
+    type: 'GET',
+    data: {Member_ID:id},
+    dataType: 'json'
+  }).done(function(data){
+    console.log(data.PersonName)
   });
-});
+}
+
+// $(document).ready(function(){
+//   $('#ubahAdminModal').on('hidden.bs.modal', function(event){
+//     // var button = $(event.relatedTarget);
+//     // //var recipient = button.data('ubahbutton');
+//     // var row = button.closest("tr");
+
+//     // var person = row.find("td:nth-child(1)").text();
+//     // var nickame = row.find('td:nth-child(2)').text();
+//     // var modal = $(this);
+//     // modal.find('.modal-body .personname').val('');
+//     // $(this).find('.modal-body .nickname').val(nickame);
+//   });
+// });
 </script>
 
 @stop
-<<<<<<< HEAD
 
 
 @endif
-=======
->>>>>>> origin/master
 
 

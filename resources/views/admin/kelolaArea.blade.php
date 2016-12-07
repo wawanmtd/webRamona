@@ -11,7 +11,7 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAreaModal" class="btn btn-success">
+        <button type="button" action="#tambah" data-toggle="modal" data-target="#tambahAreaModal" class="btn btn-success asdasd">
           <span class="fa fa-plus"></span> Tambah</button>
       </div>
 
@@ -36,8 +36,17 @@
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
               <td style="width:10%">
-                <!-- <a class="btn btn-info" data-toggle='modal' data-target='#ubahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a> -->
+
+                <!-- <a class="btn btn-info ubahlink" data-toggle='modal' data-target='#tambahAreaModal' href="kelolaArea/areaeditmodal/{{$showarea->Area_ID}}"><span class="fa fa-edit"/></a> -->
+                <!-- <button class="btn btn-info edit_data" data-toggle='modal' data-target='#tambahAreaModal'><span  class="fa fa-edit"/></button> -->
+
+                <!-- punya wawan -->
                 <button class="btn btn-info" onclick="getData({{$showarea->Area_ID}})"><span class="fa fa-edit"/></button>
+
+                <!-- <button class="btn btn-info edit_data" id="{{$showarea->Area_ID}}" onclick="getData({{$showarea->Area_ID}})" data-edit="{{$showarea->Area_ID}}"><span class="fa fa-edit"/></button> -->
+
+                <!-- <button class="btn btn-info edit_data" id="{{$showarea->Area_ID}}" data-toggle='modal' ><span  class="fa fa-edit"/></button> -->
+
                 <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a>
               </td>
             </tr>
@@ -81,34 +90,44 @@
       </div>
 
       <div class="modal-body ">
-        <form role="form" action="kelolaArea/tambahArea" method="post">
+        <form role="form" action="kelolaArea/tambahArea" method="post" id="tambahAreaModals">
           <div class="box-body">
 
              <div class="form-group">
               <label for="AreaName">Area Name</label>
-              <input type="text" name="AreaName" class="form-control areanames"  placeholder="Area Name" required>
+              <input type="text" name="AreaName" class="form-control areaname"  placeholder="Area Name" required>
             </div>
 
             <div class="form-group">
               <label for="Description">Description</label>
-              <input type="text" name="Description" class="form-control"  placeholder="Description" required>
+              <input type="text" name="Description" class="form-control description"  placeholder="Description" required>
             </div>
 
             <div class="form-group">
               <label for="Remark">Remark</label>
-              <input type="text" name="Remark" class="form-control"  placeholder="Remark" required>
+              <input type="text" name="Remark" class="form-control remark"  placeholder="Remark" required>
             </div>
 
             <div class="form-group">
               <label for="Country_ID">Country ID (bentuk option)</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
+              <input type="text" name="Country_ID" class="form-control country_id"  placeholder="Country_ID" required>
             </div>
 
             <div class="form-group">
               <label for="Member_ID">Member_ID (bentuk option)</label>
-              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+              <!-- <input type="text" name="Member_ID" class="form-control member_id"  placeholder="Member_ID" required> -->
+
+              <select class="form-control" name="Member_ID" required>
+                  <option value="1">asdas</option>
+                  <option value="2">Email</option>
+                  <option value="3">etc</option>
+                </select>
+
             </div>
-          <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+            <input type="hidden" name="Area_ID" class="area_id">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+            <input type="hidden" name="_method" id="_method" value="POST">
             <div class="modal-footer">
               <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
             </div>
@@ -120,7 +139,7 @@
 </div>
 <!-- end modal Tambah Area -->
 
-<!-- modal Ubah Area -->
+<!-- modal Ubah Area
 <div class="modal fade" id="ubahAreaModal" tabindex="0" role="dialog" aria-labelledby="ubahAreaModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -170,7 +189,7 @@
     </div>
   </div>
 </div>
-<!-- end Ubah Area -->
+ end Ubah Area -->
 
 <!-- modal Hapus Area -->
 <div class="modal fade" id="hapusAreaModal" tab-index="-1" role="dialog" aria-labeledby="hapusAreaModalLabel">
@@ -189,71 +208,104 @@
   </div>
 </div>
 <!-- end modal Hapus Area -->
+
 <script>
+
+
+ //     //$(this).removeData();
+ //        modal.find('.modal').val('');
+ //   });
+ // )};
+
+
+// $(document).on('click', '.edit_data', function(event){
+//   var Area_ID = $(this).attr('id');
+//   window.href='kelolaArea/areaeditmodal/'+Area_ID;
+//   //alert('asdasdasdasdasd' + Area_ID);
+// });
+
+// $(document).ready(function(){  
+//       $('.asdasd').click(function(){    
+//            $('#tambahAreaModals')[0].reset();  
+//       }); 
+
+// $(document).on('click', '.edit_data', function(){
+//   //var Area_ID = $(this).attr('id');
+//   var Area_ID = button.data('edit');
+//   $.ajax({
+//     url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+//     type: "GET",
+//     data: {idArea: id},
+//     dataType: 'json'})
+//     .done(function(data){
+//       $('.areanames').val(data.AreaName);
+//       $('#tambahAreaModal').modal('show');
+//     }
+//   });
+// });
+
+
+
 function getData(id){
+  //alert('asdasdasd');
+  
+
+
   $.ajax({
-    url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+    // url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+    url: 'kelolaArea/areaeditmodal',
     type: "GET",
-    data: {idArea: id},
+    data: {Area_ID: id},
     dataType: 'json',
   }).done(function(data){
       console.log(data.AreaName);
-      // console.log(data);
-      // $('#ubahAreaModal').modal({backdrop: 'static', keyboard: false});
-      // $('#ubahAreaModal').on('showbs.modal', function () {
           $('#formUbah').attr('action', "{{URL::to('kelolaArea/ubah')}}" + "/" + data.Area_ID);
-          $('#ubahAreaName').val(data.AreaName);
-          $('#ubahDescription').val(data.Description);
-          $('#ubahRemark').val(data.Remark);
-          $('#ubahCountry_ID').val(data.Country_ID);
-          $('#ubahMember_ID').val(data.Member_ID);
-          $('#ubahAreaModal').modal('show');
-      // });
-        // .on('click', '#submitUbah', function(){
-        //
-        // });
+          $('.areaname').val(data.AreaName);
+          $('.description').val(data.Description);
+          $('.remark').val(data.Remark);
+          $('.country_id').val(data.Country_ID);
+          $('.member_id').val(data.Member_ID);
+          $('#myModalLabel').text('Edit Area : ' + data.AreaName);
+          $('#tambahAreaModal').modal('show');
+          document.getElementById('tambahAreaModals').action='kelolaArea/ubah/'+data.Area_ID;
+          $('#_method').val('PUT');
   }).error(function(jqXHR, textStatus){
     alert(textStatus);
   });
 }
 
-</script>
-
-<<<<<<< HEAD
-<!-- <script>
-$('#ubahAreaModal').on('shown.bs.modal', function () {
-  // $('#myInput').focus();
-  // $('input').val('');
-})
-$(function() {
-  $(".modal").on("hidden.bs.modal", function() {
-    $(this).removeData();
-  });
-});
 // function getData(id){
-//   console.log(id);
 //   $.ajax({
 //     url: "{{URL::to('kelolaArea/areaeditmodal')}}",
 //     type: "GET",
-//     data: {idArea: id},
+//     data: {Area_ID: id},
 //     dataType: 'json',
 //   }).done(function(data){
-//       console.log(data);
+//       console.log(data.AreaName);
+//       // console.log(data);
+//       // $('#ubahAreaModal').modal({backdrop: 'static', keyboard: false});
+//       // $('#ubahAreaModal').on('showbs.modal', function () {
+//           // $('#formUbah').attr('action', "{{URL::to('kelolaArea/ubah')}}" + "/" + data.Area_ID);
+//           // $('#ubahAreaName').val(data.AreaName);
+//           // $('#ubahDescription').val(data.Description);
+//           // $('#ubahRemark').val(data.Remark);
+//           // $('#ubahCountry_ID').val(data.Country_ID);
+//           // $('#ubahMember_ID').val(data.Member_ID);
+//           $('#tambahAreaModal').modal('show');
+//       // });
+//         // .on('click', '#submitUbah', function(){
+//         //
+//         // });
 //   }).error(function(jqXHR, textStatus){
 //     alert(textStatus);
 //   });
 // }
-</script> -->
 
-
-=======
-<script >
  //  $(".modal").on("hidden.bs.modal", function() {
  //     //$(this).removeData();
  //        modal.find('.modal').val('');
  //   });
  // )};
 </script>
->>>>>>> origin/master
 
 @stop

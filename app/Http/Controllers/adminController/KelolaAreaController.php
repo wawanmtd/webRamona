@@ -71,10 +71,12 @@ class KelolaAreaController extends Controller
         return redirect()->action('adminController\KelolaAreaController@index');
     }
 
+    // public function areaeditmodal_data(Request $request){
     public function areaeditmodal_data(Request $request){
-        $id = $request->idArea;
+        $id = $request->Area_ID;
         $areaeditmodal = Area::find($id);
         // return view('admin/areaeditmodal')->with('areaeditmodal', $areaeditmodal);
+        // return $areaeditmodal;
         return response()->json($areaeditmodal);
     }
 

@@ -13,6 +13,8 @@ class KelolaAdminController extends Controller
     public function index()
     {
         $ShowMember = Member::all()->where('MemberRole_ID', 2);
+        
+
         return view('admin.kelolaAdmin', compact('ShowMember'));
         
     }
