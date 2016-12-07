@@ -58,7 +58,7 @@
               <th>Country</th>
               <th>Voltage Range</th>
               <th>Member</th>
-              <th>Installation Date</th>
+              <!-- <th>Installation Date</th> -->
               <th>Action</th>
 
             </tr>

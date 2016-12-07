@@ -15,7 +15,7 @@ class HomeController extends Controller
     $windDir = "NNE";
     $windSpeed = 25;
     $solarRad = 94;
-    $gammaDoseRates = 1000;
+    $gammaDoseRates = 2500;
     $barometer = 1000;
     $percipitation = 0;
     $humidity = 100;
