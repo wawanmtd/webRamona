@@ -57,7 +57,6 @@ class KelolaAreaController extends Controller
         $area = Area::find($id);                //mencari dari id area
         $stationarea = $area->StationAreaData;  //mencari data di stationarea
 
-
         //untuk mendelete station satu per satu, karena sifatnya "hasmany"
         foreach ($stationarea as $stationareadata) {
             $stationareadata->delete();
@@ -72,7 +71,7 @@ class KelolaAreaController extends Controller
     }
 
     // public function areaeditmodal_data(Request $request){
-    public function areaeditmodal_data($id){
+    public function editmodal_data($id){
         // $id = $request->Area_ID;
         $areaeditmodal = Area::find($id);
         return view('modals/Area_EditModal')->with('areaeditmodal', $areaeditmodal);
@@ -80,7 +79,7 @@ class KelolaAreaController extends Controller
         // return response()->json($areaeditmodal);
     }
 
-    public function areahapusmodal_data($id){
+    public function hapusmodal_data($id){
         $areahapus = Area::find($id);
         return view('modals/Area_HapusModal')->with('areahapus', $areahapus);
     }

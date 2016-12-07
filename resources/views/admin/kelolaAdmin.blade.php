@@ -1,9 +1,12 @@
-@if (Session::get('Member_ID') == 1)
+<!--jika bukan accesslevel 1 -->
+@if (Session::get('Member_ID') !=1)
+<script type="text/javascript">
+      window.location.href = "dashboard";
+  </script>
+@endif
+<!--  -->
 
 @extends('admin.index')
-
-
-
 @section('content-header')
   Kelola Admin
   <small>Lihat Admin</small>
@@ -45,15 +48,16 @@
             <td >{{$showmember->PersonData->PersonContactData->ContactValue}}</td>
             <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
             <td style="width:10%">
-              <button type="button" class="btn btn-info" id="{{$showmember->Member_ID}}" onclick="getData({{$showmember->Member_ID}})">
-                <span class="fa fa-edit"></span></button>
-              <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger">
-                <span class="fa fa-trash"></span></button>
+              <button class="btn btn-info" onclick="getData_Edit({{$showmember->Member_ID}})"><span class="fa fa-edit"></span></button>
+              <button class="btn btn-danger" onclick="getData_Delete({{$showmember->Member_ID}})"><span class="fa fa-trash"></span></button>
+              <!-- <button type="button" class="btn btn-info" id="{{$showmember->Member_ID}}" onclick="getData({{$showmember->Member_ID}})">
+                <span class="fa fa-edit"></span></button> -->
+              <!-- <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger"> -->
+                <!-- <span class="fa fa-trash"></span></button> -->
                 <!-- <a class="btn btn-info" data-toggle='modal' data-target='#ubahAdminModal' href="kelolaAdmin/admineditmodal/{{$showmember->Member_ID}}"><span class="fa fa-edit"/></a>
                 <a class="btn btn-danger" data-toggle='modal' data-target='#hapusAdminModal' data-hapusbutton="{{$showmember->Member_ID}}" href="kelolaAdmin/adminhapusmodal/{{$showmember->Member_ID}}"> <span class="fa fa-trash"/></a> -->
             </td>
           </tr>
-
               @endforeach
         </tbody>
 
@@ -78,25 +82,7 @@
    $('#tableAdmin').dataTable();
 
 });
-
-
 </script>
-<!-- modal Hapus Admin -->
-  <div class="modal fade" id="hapusAdminModal" tab-index="-1" role="dialog" aria-labeledby="hapusAdminModalLabel">
-    <div class="modal-dialog modal-sm" role="alertdialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus?</h4>
-        </div>
-
-        <div class="modal-footer">
-          <a role="button" type="button" class="btn btn-danger" href="kelolaAdmin/hapusAdmin">Hapus</a>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- end modal Hapus Admin -->
 
 
 <!-- modal Tambah Admin -->
@@ -212,137 +198,49 @@
   </div>
 <!-- end modal Tambah Admin -->
 
-<!-- modal Ubah Admin -->
+<!-- modal Ubah Admin
+  //changed.
+end Ubah Admin -->
 
-
-
-  <div class="modal fade" id="ubahAdminModal" tabindex="0" role="dialog" aria-labelledby="ubahAdminModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Ubah Admin</h4>
-        </div>
-
-        <div class="modal-body ">
-          <form role="form" action="" method="post">
-            <div class="box-body">
-
-              <div class="form-group">
-                <label for="FullName">Full Name</label>
-                <input type="text" value="" data-fullname="" name="PersonName" class="form-control personname" placeholder="Full Name" required>
-              </div>
-
-              <div class="form-group">
-                <label for="Nickname">Nickname</label>
-                <input type="text" name="Nickname" class="form-control nickname" placeholder="Nickname" required>
-              </div>
-
-              <div class="form-group">
-                <label for="Address">Address</label>
-                <input type="text" name="Address" class="form-control" placeholder="Address" required>
-              </div>
-
-              <div class="form-group">
-                <label for="City">City</label>
-                <input type="text" name="City" class="form-control" placeholder="City" required>
-              </div>
-
-              <div class="form-group">
-                <label for="Country_ID">Country (harusnya pake option sih)</label>
-                <select class="form-control" name="Country_ID" required>
-                  <option value="">-- Select Country --</option>
-                  <option value="1">Indonesia</option>
-                </select>
-                <!-- <input type="text" name="Country_ID" class="form-control" placeholder="Country" required> -->
-              </div>
-
-              <div class="form-group">
-                <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="BlobType_ID" required>
-                  <option value="">-- Select Blob Type --</option>
-                  <option value="1">JPG</option>
-                  <option value="2">PNG</option>
-                  <option value="3">BMP</option>
-                </select>
-                <!-- <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required> -->
-              </div>
-
-              <div class="form-group">
-                <label for="Picture">Picture (upload*)</label>
-                <input type="text" name="PersonPicture" class="form-control" placeholder="PersonPicture" required>
-              </div>
-
-              <div class="form-group">
-                <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="ContactType_ID" required>
-                  <option value="">-- Select Contact Type --</option>
-                  <option value="1">Phone</option>
-                  <option value="2">Email</option>
-                  <option value="3">etc</option>
-                </select>
-                <!-- <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required> -->
-              </div>
-
-              <div class="form-group">
-                <label for="ContactValue">Contact Value</label>
-                <input type="text" name="ContactValue" class="form-control"  placeholder="Enter Contact Value" required>
-              </div>
-
-              <div class="form-group">
-                <label for="Username">Username</label>
-                <input type="text" name="Username" class="form-control"  placeholder="Username" required>
-              </div>
-
-              <div class="form-group">
-                <label for="AccessCode">Password</label>
-                <input type="password" name="AccessCode" class="form-control" placeholder="Password" required>
-              </div>
-
-              <div class="form-group">
-                <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
-                <select class="form-control" name="MemberRole_ID" required>
-                  <option value="">-- Select Member Role --</option>
-                  <option value="1">Super Admin</option>
-                  <option value="2">Admin</option>
-                  <option value="3">Manajerial</option>
-                </select>
-                <!-- <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required> -->
-              </div>
-
-              <div class="form-group">
-                <label for="Remark">Remark</label>
-                <input type="text" name="Remark" class="form-control" placeholder="Remark" required>
-              </div>
-
-              <input type="hidden" name="_token" value="{{csrf_token()}}">
-
-              <div class="modal-footer">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+<!-- modal Hapus Admin -->
+  <div class="modal fade" id="hapusAdminModal" tab-index="-1" role="dialog" aria-labeledby="hapusAdminModalLabel">
+    <!-- some content -->
   </div>
-<!-- end Ubah Admin -->
-
-
+<!-- end modal Hapus Admin -->
 
 <script>
-function getData(id){
+function getData_Edit(id){
   $.ajax({
-    url : 'kelolaAdmin/admineditmodal',
-    type: 'GET',
-    data: {Member_ID:id},
-    dataType: 'json'
-  }).done(function(data){
-    console.log(data.PersonName)
+    url:'kelolaAdmin/editmodal/'+id,
+    dataType:'html',
+    cache:false
+  }).done(function(modalcontent){
+    $('#hapusAdminModal').modal('show');
+    $('#hapusAdminModal').html(modalcontent);
+  }).fail(function(jqXHR, textStatus){
+    alert('Request Failed : '+textStatus);
   });
 }
 
-// $(document).ready(function(){
+function getData_Delete(id){
+  $.ajax({
+    url: 'kelolaAdmin/hapusmodal/'+id,
+    dataType: 'html',
+    cache:false
+  }).done(function(modalContent){
+    $('#hapusAdminModal').modal('show');
+    $('#hapusAdminModal').html(modalContent);
+  }).fail(function(jqXHR, textStatus){
+    alert('Request Failed : '+textStatus);
+  });
+}
+
+
+
+</script>
+@stop
+
+<!-- // $(document).ready(function(){
 //   $('#ubahAdminModal').on('hidden.bs.modal', function(event){
 //     // var button = $(event.relatedTarget);
 //     // //var recipient = button.data('ubahbutton');
@@ -355,11 +253,3 @@ function getData(id){
 //     // $(this).find('.modal-body .nickname').val(nickame);
 //   });
 // });
-</script>
-
-@stop
-
-
-@endif
-
-
