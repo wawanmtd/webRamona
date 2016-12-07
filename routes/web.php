@@ -48,15 +48,10 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/kelolaArea', 'KelolaAreaController@index');
   Route::post('/kelolaArea/tambahArea', 'KelolaAreaController@tambah');
   Route::get('/kelolaArea/ubahArea', 'KelolaAreaController@ubah');
-<<<<<<< HEAD
-  //Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
   Route::get('/kelolaArea/areaeditmodal/{id}', 'KelolaAreaController@areaeditmodal_data');
+  //kalau pakai caranya wawan
   // Route::get('/kelolaArea/areaeditmodal', 'KelolaAreaController@areaeditmodal_data');
-=======
   Route::get('/kelolaArea/hapus', 'KelolaAreaController@hapus');
-  //Route::get('/kelolaArea/areaeditmodal/{id}', 'KelolaAreaController@areaeditmodal_data');
-  Route::get('/kelolaArea/areaeditmodal', 'KelolaAreaController@areaeditmodal_data');
->>>>>>> origin/master
   Route::put('/kelolaArea/ubah/{id}', 'KelolaAreaController@ubah');
   Route::get('/kelolaArea/areahapusmodal/{id}', 'KelolaAreaController@areahapusmodal_data');
   Route::get('/kelolaArea/hapus/{id}', 'KelolaAreaController@hapus');
@@ -91,9 +86,5 @@ Route::group(['namespace' => 'adminController'], function()
 
   Route::get('/logout', 'LoginController@logout');
 });
-
-// Route::group(['namespace'=>'areaController'], function(){
-//    Route::get('/kelolaArea', 'AreaController@index');
-// });
 
 //artisan = CLI atau aplikasi buat laravel
