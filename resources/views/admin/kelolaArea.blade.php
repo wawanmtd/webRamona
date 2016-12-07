@@ -41,13 +41,14 @@
                 <!-- <button class="btn btn-info edit_data" data-toggle='modal' data-target='#tambahAreaModal'><span  class="fa fa-edit"/></button> -->
 
                 <!-- punya wawan -->
-                <button class="btn btn-info" onclick="getData({{$showarea->Area_ID}})"><span class="fa fa-edit"/></button>
+                <button class="btn btn-info" onclick="getData_edit({{$showarea->Area_ID}})"><span class="fa fa-edit"/></button>
+                <button class="btn btn-danger" onclick="getData_delete({{$showarea->Area_ID}})"><span class="fa fa-trash"/></button>
 
                 <!-- <button class="btn btn-info edit_data" id="{{$showarea->Area_ID}}" onclick="getData({{$showarea->Area_ID}})" data-edit="{{$showarea->Area_ID}}"><span class="fa fa-edit"/></button> -->
 
                 <!-- <button class="btn btn-info edit_data" id="{{$showarea->Area_ID}}" data-toggle='modal' ><span  class="fa fa-edit"/></button> -->
 
-                <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a>
+                <!-- <a  class="btn btn-danger" data-toggle='modal' data-target='#hapusAreaModal' href="kelolaArea/areahapusmodal/{{$showarea->Area_ID}}"> <span class="fa fa-trash"/></a> -->
               </td>
             </tr>
               @endforeach
@@ -210,69 +211,55 @@
 <!-- end modal Hapus Area -->
 
 <script>
-
-
- //     //$(this).removeData();
- //        modal.find('.modal').val('');
- //   });
- // )};
-
-
-// $(document).on('click', '.edit_data', function(event){
-//   var Area_ID = $(this).attr('id');
-//   window.href='kelolaArea/areaeditmodal/'+Area_ID;
-//   //alert('asdasdasdasdasd' + Area_ID);
-// });
-
-// $(document).ready(function(){  
-//       $('.asdasd').click(function(){    
-//            $('#tambahAreaModals')[0].reset();  
-//       }); 
-
-// $(document).on('click', '.edit_data', function(){
-//   //var Area_ID = $(this).attr('id');
-//   var Area_ID = button.data('edit');
-//   $.ajax({
-//     url: "{{URL::to('kelolaArea/areaeditmodal')}}",
-//     type: "GET",
-//     data: {idArea: id},
-//     dataType: 'json'})
-//     .done(function(data){
-//       $('.areanames').val(data.AreaName);
-//       $('#tambahAreaModal').modal('show');
-//     }
-//   });
-// });
-
-
-
-function getData(id){
-  //alert('asdasdasd');
-  
-
-
+function getData_edit(id){
+    //alert(id);
   $.ajax({
-    // url: "{{URL::to('kelolaArea/areaeditmodal')}}",
-    url: 'kelolaArea/areaeditmodal',
-    type: "GET",
-    data: {Area_ID: id},
-    dataType: 'json',
-  }).done(function(data){
-      console.log(data.AreaName);
-          $('#formUbah').attr('action', "{{URL::to('kelolaArea/ubah')}}" + "/" + data.Area_ID);
-          $('.areaname').val(data.AreaName);
-          $('.description').val(data.Description);
-          $('.remark').val(data.Remark);
-          $('.country_id').val(data.Country_ID);
-          $('.member_id').val(data.Member_ID);
-          $('#myModalLabel').text('Edit Area : ' + data.AreaName);
-          $('#tambahAreaModal').modal('show');
-          document.getElementById('tambahAreaModals').action='kelolaArea/ubah/'+data.Area_ID;
-          $('#_method').val('PUT');
-  }).error(function(jqXHR, textStatus){
-    alert(textStatus);
+    url: 'kelolaArea/areaeditmodal/'+id,
+    dataType:'html',
+    class:false
+  }).done(function(modalContent){
+    $('#hapusAreaModal').modal('show');
+    $('#hapusAreaModal').html(modalContent);
+  }).fail(function(jqXHR, textStatus){
+      alert('Request Failed : '+textStatus);
   });
 }
+
+function getData_delete(id){
+    alert(id);
+  $.ajax({
+    url: 'kelolaArea/areahapusmodal/'+id,
+    dataType:'html',
+    cache:false
+  }).done(function(modalContent){
+    $('#tambahAreaModal').modal('show');
+    $('#tambahAreaModal').html(modalContent);
+  }).fail(function(jqXHR, textStatus){
+      alert('Request Failed : '+textStatus);
+  });
+}
+
+  // $.ajax({
+  //   // url: "{{URL::to('kelolaArea/areaeditmodal')}}",
+  //   url: 'kelolaArea/areaeditmodal',
+  //   type: "GET",
+  //   data: {Area_ID: id},
+  //   dataType: 'json',
+  // }).done(function(data){
+  //     console.log(data.AreaName);
+  //         $('#formUbah').attr('action', "{{URL::to('kelolaArea/ubah')}}" + "/" + data.Area_ID);
+  //         $('.areaname').val(data.AreaName);
+  //         $('.description').val(data.Description);
+  //         $('.remark').val(data.Remark);
+  //         $('.country_id').val(data.Country_ID);
+  //         $('.member_id').val(data.Member_ID);
+  //         $('#myModalLabel').text('Edit Area : ' + data.AreaName);
+  //         $('#tambahAreaModal').modal('show');
+  //         document.getElementById('tambahAreaModals').action='kelolaArea/ubah/'+data.Area_ID;
+  //         $('#_method').val('PUT');
+  // }).error(function(jqXHR, textStatus){
+  //   alert(textStatus);
+  // });
 
 // function getData(id){
 //   $.ajax({
