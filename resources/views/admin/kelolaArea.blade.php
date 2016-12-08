@@ -30,7 +30,7 @@
           <tbody>
               @foreach ($ShowArea as $showarea)
             <tr>
-              <td>{{$showarea->AreaName}}</td>
+              <td onclick="getData_Detail({{$showarea->Area_ID}})">{{$showarea->AreaName}}</td>
               <td>{{$showarea->Description}}</td>
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
@@ -137,6 +137,20 @@
 <!-- end modal Hapus Area -->
 
 <script>
+function getData_Detail(id){
+  $.ajax({
+    url: 'kelolaArea/detail/'+id,
+    dataType:'html',
+    cache :false
+  }).done(function(modalContent){
+    $('#hapusAreaModal').modal('show');
+    $('#hapusAreaModal').html(modalContent);
+  }).fail(function(jqXHR, textStatus){
+      alert('Request Failed : '+textStatus);
+  });
+}
+
+
 function getData_Edit(id){
     //alert(id);
   $.ajax({

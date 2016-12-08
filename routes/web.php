@@ -55,6 +55,7 @@ Route::group(['namespace' => 'adminController'], function()
   Route::put('/kelolaArea/ubah/{id}', 'KelolaAreaController@ubah');
   Route::get('/kelolaArea/hapusmodal/{id}', 'KelolaAreaController@hapusmodal_data');
   Route::get('/kelolaArea/hapus/{id}', 'KelolaAreaController@hapus');
+  Route::get('/kelolaArea/detail/{id}','KelolaAreaController@detail');
 
   Route::get('/kelolaStation', 'KelolaStationController@index');
   Route::post('/kelolaStation/tambahStation', 'KelolaStationController@tambah');

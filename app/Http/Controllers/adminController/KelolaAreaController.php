@@ -83,4 +83,9 @@ class KelolaAreaController extends Controller
         $areahapus = Area::find($id);
         return view('modals/Area_HapusModal')->with('areahapus', $areahapus);
     }
+
+    public function detail($id){
+        $areadetail = Area::find($id);
+        return view('modals/Area_Detail')->with('areadetail',$areadetail);
+    }
 }
