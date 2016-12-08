@@ -13,6 +13,8 @@ class KelolaAdminController extends Controller
     public function index()
     {
         $ShowMember = Member::all()->where('MemberRole_ID', 2);
+        
+
         return view('admin.kelolaAdmin', compact('ShowMember'));
         
     }
@@ -64,7 +66,7 @@ class KelolaAdminController extends Controller
 
         $pc = PersonContact::where('Person_ID', $id)->first();
         // return $pc->Person_ID;
-        $pc = PersonContact::find($pc->Person_ID);
+        // $pc = PersonContact::find($pc->Person_ID);
         $pc->ContactType_ID = $request->ContactType_ID;
         $pc->ContactValue = $request->ContactValue;
         $pc->save();
@@ -102,13 +104,13 @@ class KelolaAdminController extends Controller
        return redirect()->action('adminController\KelolaAdminController@index');
     }
 
-    public function admineditmodal_data($id){
+    public function editmodal_data($id){
         $admineditmodal = Member::find($id);
-        return view('admin/admineditmodal')->with('admineditmodal', $admineditmodal);
+        return view('modals/Admin_EditModal')->with('admineditmodal', $admineditmodal);
     }
 
-    public function adminhapusmodal_data($id){
+    public function hapusmodal_data($id){
         $adminhapus = Member::find($id);
-        return view('admin/adminhapusmodal')->with('adminhapus', $adminhapus);
+        return view('modals/Admin_HapusModal')->with('adminhapus', $adminhapus);
     }
 }

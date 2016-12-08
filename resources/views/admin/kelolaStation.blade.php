@@ -39,10 +39,8 @@
               <th>{{$showstation->MemberData->PersonData->PersonName}}</th>
               <td>{{$showstation->InstallationDate}}</td>
               <td style="width:10%">
-                <button type="button" action="#ubah" data-toggle="modal" data-target="#ubahStationModal" class="btn btn-info">
-                  <span class="fa fa-edit"></span></button>
-                <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusStationModal" class="btn btn-danger">
-                  <span class="fa fa-trash"></span></button>
+                <button class="btn btn-info" onclick="getData_Edit({{$showstation->Station_ID}})"><span class="fa fa-edit"></span></button>
+                <button class="btn btn-danger" onclick="getData_Delete({{$showstation->Station_ID}})"><span class="fa fa-trash"></span></button>
               </td>
             </tr>
             @endforeach
@@ -175,59 +173,37 @@
 </div>
 <!-- end modal Tambah Station -->
 
-<!-- modal Ubah Station -->
-<div class="modal fade" id="ubahStationModal" tabindex="0" role="dialog" aria-labelledby="ubahStationModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Ubah Station</h4>
-      </div>
-
-      <div class="modal-body ">
-        <form role="form" action="{{action("adminController\KelolaStationController@ubah")}}" method="post">
-          <div class="box-body">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Enter email" value="" required>
-            </div>
-
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="inputUsername" placeholder="Username" value="" required>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" value="" required>
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end Ubah Station -->
+<!-- modal Ubah Station 
+    //changed.
+ end Ubah Station -->
 
 <!-- modal Hapus Station -->
 <div class="modal fade" id="hapusStationModal" tab-index="-1" role="dialog" aria-labeledby="hapusStationModalLabel">
-  <div class="modal-dialog modal-sm" role="alertdialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="gridSystemModalLabel">Yakin hapus?</h4>
-      </div>
-
-      <div class="modal-footer">
-        <a role="button" type="button" class="btn btn-danger" href="{{action("adminController\KelolaStationController@hapus")}}">Hapus</a>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-      </div>
-    </div>
-  </div>
+  <!-- some content. -->
 </div>
 <!-- end modal Hapus Station -->
 
+<script>
+  function getData_Edit(id){
+    $.ajax({
+      url: 'kelolaStation/editmodal/'+id,
+      dataType: 'html',
+      cache:false
+    }).done(function(modalContent){
+      $('#hapusStationModal').modal('show');
+      $('#hapusStationModal').html(modalContent);
+    });
+  }
+
+  function getData_Delete(id){
+    $.ajax({
+      url: 'kelolaStation/hapusmodal/'+id,
+      dataType: 'html',
+      cache:false
+    }).done(function(modalContent){
+      $('#hapusStationModal').modal('show');
+      $('#hapusStationModal').html(modalContent);
+    });
+  }
+</script>
 @stop
