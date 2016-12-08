@@ -1,8 +1,5 @@
 @extends('admin.index')
 
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
-
 @section('content-header')
   Dashboard
   <small>Main</small>
@@ -131,7 +128,8 @@
             </h3>
           </div>
           <div class="box-body">
-            <div id="mapdiv" style="height: 250px; width: 100%;"></div>
+            <!-- <div id="mapdiv" style="height: 250px; width: 100%;"></div> -->
+            <div id="world-map" style="height: 250px; width: 100%;"></div>
           </div>
           <!-- /.box-body-->
           <div class="box-footer no-border">

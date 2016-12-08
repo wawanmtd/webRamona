@@ -347,11 +347,9 @@ $(document).ready(function(){
 </script>
 
 @stop
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD -->
 
 
 @endif
-=======
->>>>>>> origin/master
-
-
+<!-- =======
+>>>>>>> origin/master -->

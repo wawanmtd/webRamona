@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
 
+    <link rel="stylesheet" href="../bootstrap/adminlte/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="../bootstrap/adminlte/plugins/daterangepicker/daterangepicker.css">
+
     <script src="../bootstrap/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/jQuery/jquery-ui-1.11.4.min.js"></script>
     <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
@@ -27,15 +30,19 @@
     <script src="../ammap/ammap.js" type="text/javascript"></script>
     <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
 
-
-    <!-- <script src="../bootstrap/adminlte/plugins/daterangepicker/moment.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-    <link rel="stylesheet" href="../bootstrap/adminlte/plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="../bootstrap/adminlte/plugins/daterangepicker/daterangepicker.css">
     <script src="../bootstrap/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
     <script src="../bootstrap/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script src="../bootstrap/adminlte/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../bootstrap/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../bootstrap/adminlte/plugins/knob/jquery.knob.js"></script>
     <script>
-    $.widget.bridge('uibutton', $.ui.button);
+      $.widget.bridge('uibutton', $.ui.button);
     </script>
   </head>
 
