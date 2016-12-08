@@ -259,6 +259,9 @@
               <li class="{{Request::is('kelolaDevice') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaDeviceController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Device</span></a></li>
+              <li class="{{Request::is('kelolaDeviceList') ? 'active' : ''}}">
+                <a href="{{action("adminController\KelolaDeviceListController@index")}}">
+                  <i class="fa fa-wifi"></i> <span>Kelola Device List</span></a></li>
               <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaSensorController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Sensor</span></a></li>
