@@ -35,11 +35,11 @@
               <td>{{$devicelistshow->SerialNumber}}</td>
               <td>{{$devicelistshow->PurchaseDate}}</td>
               <td>{{$devicelistshow->DeviceStatus_ID}}</td>
-              <th>{{$devicelistshow->DeviceInStationData->StationName}}</th>
+              <th>{{$devicelistshow->DeviceInStationData->StationData->StationName}}</th>
               <td>{{$devicelistshow->MemberData->PersonData->PersonName}}</td>
               <td style="width:10%">
-                <button class="btn btn-info" onclick="getData_Edit({{$devicelistshow->Device_ID}})"><span class="fa fa-edit"></span></button>
-                <button class="btn btn-danger" onclick="getData_Delete({{$devicelistshow->Device_ID}})"><span class="fa fa-trash"></span></button>
+                <button class="btn btn-info" onclick="getData_Edit({{$devicelistshow->DeviceList_ID}})"><span class="fa fa-edit"></span></button>
+                <button class="btn btn-danger" onclick="getData_Delete({{$devicelistshow->DeviceList_ID}})"><span class="fa fa-trash"></span></button>
               </td>
             </tr>
 
@@ -80,42 +80,63 @@
       </div>
 
       <div class="modal-body ">
-        <form role="form" action="kelolaDevice/tambahDevice" method="post">
+        <form role="form" action="kelolaDeviceList/tambahDeviceList" method="post">
           <div class="box-body">
 
              <div class="form-group">
-              <label for="Device">Device Model</label>
-              <input type="text" name="DeviceModel" class="form-control"  placeholder="DeviceModel" required>
+              <label for="Device">Device ID</label>
+              <input type="text" name="Device_ID" class="form-control"  placeholder="Device_ID" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Manufacturer ID</label>
-              <input type="text" name="Manufacturer_ID" class="form-control"  placeholder="Manufacturer_ID" required>
+              <label for="Device">Station ID</label>
+              <input type="text" name="Station_ID" class="form-control"  placeholder="Station_ID" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Description</label>
-              <input type="text" name="Description" class="form-control"  placeholder="Description" required>
+              <label for="Device">Altitude</label>
+              <input type="text" name="Altitude" class="form-control"  placeholder="Altitude" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Sensor Count</label>
-              <input type="text" name="SensorCount" class="form-control"  placeholder="SensorCount" required>
+              <label for="Device">Serial Number</label>
+              <input type="text" name="SerialNumber" class="form-control"  placeholder="SerialNumber" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Country_ID</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
+              <label for="Device">Manufacture Date</label>
+              <input type="Date" name="ManufactureDate" class="form-control"  placeholder="ManufactureDate" required>
             </div>
+
+            <div class="form-group">
+              <label for="Device">Purchase Date</label>
+              <input type="Date" name="PurchaseDate" class="form-control"  placeholder="PurchaseDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">Supplier ID</label>
+              <input type="text" name="Supplier_ID" class="form-control"  placeholder="Supplier_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">DeviceStatus ID</label>
+              <input type="text" name="DeviceStatus_ID" class="form-control"  placeholder="DeviceStatus_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">Sales ID</label>
+              <input type="text" name="Sales_ID" class="form-control"  placeholder="Sales_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">Support ID</label>
+              <input type="text" name="Support_ID" class="form-control"  placeholder="Support_ID" required>
+            </div>
+
 
             <div class="form-group">
               <label for="Device">Remark</label>
               <input type="text" name="Remark" class="form-control"  placeholder="Remark" required>
-            </div>
-
-            <div class="form-group">
-              <label for="Device">Voltage Range</label>
-              <input type="text" name="VoltageRange" class="form-control"  placeholder="VoltageRange" required>
             </div>
 
             <div class="form-group">
@@ -124,13 +145,28 @@
             </div>
 
             <div class="form-group">
+              <label for="Device">Picture ID</label>
+              <input type="text" name="Pic_ID" class="form-control"  placeholder="Pic_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">Picture Type ID</label>
+              <input type="text" name="PictureType_ID" class="form-control"  placeholder="PictureType_ID" required>
+            </div>
+
+            <div class="form-group">
+              <label for="Device">DeviceList Picture</label>
+              <input type="text" name="DeviceListPicture" class="form-control"  placeholder="DeviceListPicture" required>
+            </div>
+
+            <div class="form-group">
               <label for="Device">DocumentType_ID</label>
               <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
             </div>
 
             <div class="form-group">
-              <label for="Device">Device Document</label>
-              <input type="text" name="DeviceDocument" class="form-control"  placeholder="DeviceDocument" required>
+              <label for="Device">DeviceList Document</label>
+              <input type="text" name="DeviceListDocument" class="form-control"  placeholder="DeviceListDocument" required>
             </div>
 
             <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -151,7 +187,7 @@
  end Ubah Device -->
 
 <!-- modal Hapus Device -->
-<div class="modal fade" id="hapusDeviceModal" tab-index="-1" role="dialog" aria-labeledby="hapusDeviceModalLabel">
+<div class="modal fade" id="hapusDeviceListModal" tab-index="-1" role="dialog" aria-labeledby="hapusDeviceListModalLabel">
   <!-- some content. -->
 </div>
 <!-- end modal Hapus Device -->
@@ -159,25 +195,28 @@
 <script>
   function getData_Edit(id){
     $.ajax({
-      url: 'kelolaDevice/editmodal/'+id,
+      url: 'kelolaDeviceList/editmodal/'+id,
       dataType: 'html',
       cache:false
     }).done(function(modalContent){
-      $('#hapusDeviceModal').modal('show');
-      $('#hapusDeviceModal').html(modalContent);
+      $('#hapusDeviceListModal').modal('show');
+      $('#hapusDeviceListModal').html(modalContent);
     });
   }
 
   function getData_Delete(id){
     $.ajax({
-      url: 'kelolaDevice/hapusmodal/'+id,
+      url: 'kelolaDeviceList/hapusmodal/'+id,
       dataType: 'html',
       cache:false
     }).done(function(modalContent){
-      $('#hapusDeviceModal').modal('show');
-      $('#hapusDeviceModal').html(modalContent);
+      $('#hapusDeviceListModal').modal('show');
+      $('#hapusDeviceListModal').html(modalContent);
     });
   }
 
 </script>
 @stop
+
+
+<!-- kenapa edit/hapus, pakenya hapus modal? itu cuma buat manggil div nya aja, ga mesti hapus modal sih -->

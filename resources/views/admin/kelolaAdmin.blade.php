@@ -235,17 +235,6 @@ function getData_Delete(id){
   });
 }
 
-<<<<<<< HEAD
-@stop
-<!-- <<<<<<< HEAD -->
-
-
-@endif
-<!-- =======
->>>>>>> origin/master -->
-=======
-
-
 </script>
 @stop
 

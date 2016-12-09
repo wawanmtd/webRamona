@@ -26,24 +26,9 @@
     <script src="../bootstrap/adminlte/js/app.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="../bootstrap/adminlte/js/pages/dashboard.js"></script>
-    <script src="../ammap/ammap.js" type="text/javascript"></script>
-    <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-    <script src="../bootstrap/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script src="../bootstrap/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
-
-    <script src="../bootstrap/adminlte/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="../bootstrap/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="../bootstrap/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="../bootstrap/adminlte/plugins/knob/jquery.knob.js"></script>
-    <script>
-      $.widget.bridge('uibutton', $.ui.button);
-    </script>
+    @section('script-dashboard')
+    
+    @show
   </head>
 
   <body class="hold-transition skin-green-light sidebar-mini">
@@ -258,10 +243,10 @@
                   <i class="fa fa-map-marker"></i> <span>Kelola Station</span></a></li>
               <li class="{{Request::is('kelolaDevice') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaDeviceController@index")}}">
-                  <i class="fa fa-wifi"></i> <span>Kelola Device</span></a></li>
+                  <i class="fa fa-wifi"></i> <span>Kelola Model Device</span></a></li>
               <li class="{{Request::is('kelolaDeviceList') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaDeviceListController@index")}}">
-                  <i class="fa fa-wifi"></i> <span>Kelola Device List</span></a></li>
+                  <i class="fa fa-wifi"></i> <span>Kelola Device</span></a></li>
               <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaSensorController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Sensor</span></a></li>
