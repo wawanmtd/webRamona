@@ -109,7 +109,8 @@ function initMap() {
 
     marker.addListener('click', function(){
       map.setZoom(16);
-      infowindow.open(map, marker);
+      infowindow.setContent('<div>'+marker.title+'</div>')
+      infowindow.open(map, this);
     });
   });
 

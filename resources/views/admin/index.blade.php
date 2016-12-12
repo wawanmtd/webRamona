@@ -23,7 +23,11 @@
     <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
     @section('script-dashboard')
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     @show
   </head>
 
@@ -239,6 +243,9 @@
                   <i class="fa fa-map-marker"></i> <span>Kelola Station</span></a></li>
               <li class="{{Request::is('kelolaDevice') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaDeviceController@index")}}">
+                  <i class="fa fa-wifi"></i> <span>Kelola Model Device</span></a></li>
+              <li class="{{Request::is('kelolaDeviceList') ? 'active' : ''}}">
+                <a href="{{action("adminController\KelolaDeviceListController@index")}}">
                   <i class="fa fa-wifi"></i> <span>Kelola Device</span></a></li>
               <li class="{{Request::is('kelolaSensor') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaSensorController@index")}}">

@@ -84,6 +84,15 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/kelolaDevice/hapusmodal/{id}','KelolaDeviceController@hapusmodal_data');
   Route::get('/kelolaDevice/hapus/{id}','KelolaDeviceController@hapus');
 
+  Route::get('/kelolaDeviceList', 'KelolaDeviceListController@index');
+  Route::post('/kelolaDeviceList/tambahDeviceList', 'KelolaDeviceListController@tambah');
+  // Route::get('/kelolaDevice/ubahDevice', 'KelolaDeviceController@ubah');
+  // Route::get('/kelolaDevice/hapusDevice', 'KelolaDeviceController@hapus');
+  Route::get('/kelolaDeviceList/editmodal/{id}', 'KelolaDeviceListController@editmodal_data');
+  Route::put('/kelolaDeviceList/ubah/{id}', 'KelolaDeviceListController@ubah');
+  Route::get('/kelolaDeviceList/hapusmodal/{id}','KelolaDeviceListController@hapusmodal_data');
+  Route::get('/kelolaDeviceList/hapus/{id}','KelolaDeviceListController@hapus');
+
   Route::get('/kelolaBerita', 'KelolaBeritaController@index');
   Route::get('/kelolaBerita/tambahBerita', 'KelolaBeritaController@tambah');
   Route::get('/kelolaBerita/ubahBerita', 'KelolaBeritaController@ubah');
