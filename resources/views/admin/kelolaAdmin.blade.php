@@ -1,6 +1,6 @@
 <!--jika bukan accesslevel 1 -->
 @if (Session::get('Member_ID') !=1)
-<script type="text/javascript">
+  <script type="text/javascript">
       window.location.href = "dashboard";
   </script>
 @endif
@@ -27,7 +27,7 @@
     <div class="box-body">
       <table id="tableAdmin" class="table table-bordered table-striped">
         <thead>
-          <tr role="row">
+          <tr>
             <th>Nama Lengkap</th>
             <th>Username</th>
             <th>Role</th>
@@ -41,7 +41,7 @@
 
         @foreach ($ShowMember as $showmember)
 
-          <tr class="odd" role="row">
+          <tr>
             <td >{{$showmember->PersonData->PersonName}}</td>
             <td >{{$showmember->Username}}</td>
             <td >{{$showmember->MemberRoleData->NameRole}}</td>
@@ -50,12 +50,6 @@
             <td style="width:10%">
               <button class="btn btn-info" onclick="getData_Edit({{$showmember->Member_ID}})"><span class="fa fa-edit"></span></button>
               <button class="btn btn-danger" onclick="getData_Delete({{$showmember->Member_ID}})"><span class="fa fa-trash"></span></button>
-              <!-- <button type="button" class="btn btn-info" id="{{$showmember->Member_ID}}" onclick="getData({{$showmember->Member_ID}})">
-                <span class="fa fa-edit"></span></button> -->
-              <!-- <button type="button" action="#hapus" data-toggle="modal" data-target="#hapusAdminModal" class="btn btn-danger"> -->
-                <!-- <span class="fa fa-trash"></span></button> -->
-                <!-- <a class="btn btn-info" data-toggle='modal' data-target='#ubahAdminModal' href="kelolaAdmin/admineditmodal/{{$showmember->Member_ID}}"><span class="fa fa-edit"/></a>
-                <a class="btn btn-danger" data-toggle='modal' data-target='#hapusAdminModal' data-hapusbutton="{{$showmember->Member_ID}}" href="kelolaAdmin/adminhapusmodal/{{$showmember->Member_ID}}"> <span class="fa fa-trash"/></a> -->
             </td>
           </tr>
               @endforeach
@@ -208,58 +202,32 @@ end Ubah Admin -->
   </div>
 <!-- end modal Hapus Admin -->
 
-<script>
-function getData_Edit(id){
-  $.ajax({
-    url:'kelolaAdmin/editmodal/'+id,
-    dataType:'html',
-    cache:false
-  }).done(function(modalcontent){
-    $('#hapusAdminModal').modal('show');
-    $('#hapusAdminModal').html(modalcontent);
-  }).fail(function(jqXHR, textStatus){
-    alert('Request Failed : '+textStatus);
-  });
-}
+  <script>
+  function getData_Edit(id){
+    $.ajax({
+      url:'kelolaAdmin/editmodal/'+id,
+      dataType:'html',
+      cache:false
+    }).done(function(modalcontent){
+      $('#hapusAdminModal').modal('show');
+      $('#hapusAdminModal').html(modalcontent);
+    }).fail(function(jqXHR, textStatus){
+      alert('Request Failed : '+textStatus);
+    });
+  }
 
-function getData_Delete(id){
-  $.ajax({
-    url: 'kelolaAdmin/hapusmodal/'+id,
-    dataType: 'html',
-    cache:false
-  }).done(function(modalContent){
-    $('#hapusAdminModal').modal('show');
-    $('#hapusAdminModal').html(modalContent);
-  }).fail(function(jqXHR, textStatus){
-    alert('Request Failed : '+textStatus);
-  });
-}
+  function getData_Delete(id){
+    $.ajax({
+      url: 'kelolaAdmin/hapusmodal/'+id,
+      dataType: 'html',
+      cache:false
+    }).done(function(modalContent){
+      $('#hapusAdminModal').modal('show');
+      $('#hapusAdminModal').html(modalContent);
+    }).fail(function(jqXHR, textStatus){
+      alert('Request Failed : '+textStatus);
+    });
+  }
 
-<<<<<<< HEAD
+  </script>
 @stop
-<!-- <<<<<<< HEAD -->
-
-
-@endif
-<!-- =======
->>>>>>> origin/master -->
-=======
-
-
-</script>
-@stop
-
-<!-- // $(document).ready(function(){
-//   $('#ubahAdminModal').on('hidden.bs.modal', function(event){
-//     // var button = $(event.relatedTarget);
-//     // //var recipient = button.data('ubahbutton');
-//     // var row = button.closest("tr");
-
-//     // var person = row.find("td:nth-child(1)").text();
-//     // var nickame = row.find('td:nth-child(2)').text();
-//     // var modal = $(this);
-//     // modal.find('.modal-body .personname').val('');
-//     // $(this).find('.modal-body .nickname').val(nickame);
-//   });
-// });
->>>>>>> origin/master
