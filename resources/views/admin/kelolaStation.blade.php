@@ -36,9 +36,9 @@
               <td>{{$showstation->StationTypeData->Description}}</td>
               <td>{{$showstation->Address}}</td>
               <td>{{$showstation->StationAreaData->AreaData->AreaName}}</td>
-              <th>{{$showstation->MemberData->PersonData->PersonName}}</th>
+              <th>{{$showstation->MemberData->PersonData->PersonName}} ({{$showstation->MemberData->MemberRoleData->NameRole}})</th>
               <td>{{$showstation->InstallationDate}}</td>
-              <td style="width:10%">
+              <td style="width:11%">
                 <button class="btn btn-info" onclick="getData_Edit({{$showstation->Station_ID}})"><span class="fa fa-edit"></span></button>
                 <button class="btn btn-danger" onclick="getData_Delete({{$showstation->Station_ID}})"><span class="fa fa-trash"></span></button>
               </td>
@@ -86,13 +86,21 @@
           <div class="box-body">
 
             <div class="form-group">
-              <label for="Station">Area_ID</label>
-              <input type="text" name="Area_ID" class="form-control"  placeholder="Area_ID" required>
+              <label for="Station">Area</label>
+              <select class="form-control" name="Area_ID">
+              @foreach($area as $ao)
+                <option value="{{$ao->Area_ID}}">{{$ao->AreaName}}</option>
+              @endforeach
+              </select>
             </div>
 
-             <div class="form-group">
-              <label for="Station">StationType_ID</label>
-              <input type="text" name="StationType_ID" class="form-control"  placeholder="StationType_ID" required>
+            <div class="form-group">
+              <label for="Station">Station Type</label>
+              <select class="form-control" name="StationType_ID">
+              @foreach ($stationtype as $sto)
+                <option value="{{$sto->StationType_ID}}">{{$sto->Description}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -121,9 +129,13 @@
             </div>
 
             <div class="form-group">
-              <label for="Station">Country_ID</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
-            </div>
+                <label for="Country_ID">Country</label>
+                <select class="form-control" name="Country_ID" id="country_id" required>
+                @foreach ($country as $co)
+                  <option value="{{$co->Country_ID}}">{{$co->CountryName}}</option>
+                @endforeach
+                </select>
+              </div>
 
             <div class="form-group">
               <label for="Station">Power Source</label>
@@ -136,18 +148,30 @@
             </div>
 
             <div class="form-group">
-              <label for="Station">Member_ID</label>
-              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+              <label for="Station">Member</label>
+              <select class="form-control" name="Member_ID">
+              @foreach($member as $mo)
+                <option value="{{$mo->Member_ID}}">{{$mo->MemberRoleData->NameRole}} - {{$mo->PersonData->PersonName}} ({{$mo->Username}})</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Station">MarkerType_ID</label>
-              <input type="text" name="MarkerType_ID" class="form-control"  placeholder="MarkerType_ID" required>
+              <label for="Station">Marker Type</label>
+              <select class="form-control" name="MarkerType_ID">
+              @foreach($markertype as $mto)
+                <option value="{{$mto->MarkerType_ID}}">{{$mto->MarkerTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Station">DocumentType_ID</label>
-              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
+              <label for="Station">Document Type</label>
+              <select class="form-control" name="DocumentType_ID">
+              @foreach($documenttype as $dto)
+                <option value="{{$dto->DocumentType_ID}}">{{$dto->DocumentTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">

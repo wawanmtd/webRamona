@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sensor\Sensor;
 use App\Models\Device\DeviceSensor;
+use App\Models\Sensor\SensorType;
+use App\Models\Types\MarkerType;
+use App\Models\Types\DocumentType;
+use App\Models\Device\Device;
+
 use Session;
 
 class KelolaSensorController extends Controller
@@ -13,7 +18,11 @@ class KelolaSensorController extends Controller
     public function index()
     {
         $SensorShow = Sensor::all();
-      return view("admin.kelolaSensor", compact('SensorShow'));
+        $sensortype = SensorType::all();
+        $markertype = MarkerType::all();
+        $documenttype = DocumentType::all();
+        $device = Device::all();
+      return view("admin.kelolaSensor", compact('SensorShow','sensortype','markertype','documenttype','device'));
 
     }
 
@@ -88,7 +97,11 @@ class KelolaSensorController extends Controller
 
     public function editmodal_data($id){
         $sensoredit = Sensor::find($id);
-        return view('modals/Sensor_EditModal')->with('sensoredit',$sensoredit);
+         $sensortype = SensorType::all();
+        $markertype = MarkerType::all();
+        $documenttype = DocumentType::all();
+        $device = Device::all();
+        return view('modals/Sensor_EditModal',compact('sensortype','markertype','documenttype','device'))->with('sensoredit',$sensoredit);
     }
 
     public function hapusmodal_data($id){

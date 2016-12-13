@@ -109,4 +109,5 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/logout', 'LoginController@logout');
 });
 
+
 //artisan = CLI atau aplikasi buat laravel

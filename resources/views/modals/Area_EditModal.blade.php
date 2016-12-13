@@ -24,15 +24,27 @@
                     <input type="text" name="Remark" class="form-control"  placeholder="Remark" value="{{$areaeditmodal->Remark}}" required>
                   </div>
 
+                  <!-- //option dari database -->
                   <div class="form-group">
-                    <label for="Country_ID">Country ID (bentuk option)</label>
-                    <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="{{$areaeditmodal->Country_ID}}" required>
+                    <label for="Country_ID">Country</label>
+                    <select class="form-control" name="Country_ID" id="country_id" required>
+                    @foreach ($country as $co)
+                      <option value="{{$co->Country_ID}}"
+                        @if($co->Country_ID == $areaeditmodal->Country_ID) 
+                          selected
+                        @endif>
+                        {{$co->CountryName}}
+                      </option>
+                    @endforeach
+                    </select>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="Member_ID">Member_ID (bentuk option)</label>
                     <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="{{$areaeditmodal->Member_ID}}" required>
-                  </div>
+                  </div> -->
+
+                  <input type="hidden" name="Member_ID" value="{{Session::get('Member_ID')}}">
                   <input type="hidden" name="_token" value="{{csrf_token()}}">
                   <input type="hidden" name="_method" value="PUT">
                   <div class="modal-footer">

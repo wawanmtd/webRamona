@@ -22,9 +22,10 @@
               <th>Device Model</th>
               <th>Serial Number</th>
               <th>Purchase Date</th>
-              <th>Device Status</th>
               <th>Station</th>
               <th>Member</th>
+              <th>Device Status</th>
+              <th>Action</th>
             </tr>
           </thead>
 
@@ -34,10 +35,10 @@
               <td>{{$devicelistshow->DeviceData->DeviceModel}}</td>
               <td>{{$devicelistshow->SerialNumber}}</td>
               <td>{{$devicelistshow->PurchaseDate}}</td>
-              <td>{{$devicelistshow->DeviceStatus_ID}}</td>
               <th>{{$devicelistshow->DeviceInStationData->StationData->StationName}}</th>
               <td>{{$devicelistshow->MemberData->PersonData->PersonName}}</td>
-              <td style="width:10%">
+              <td>{{$devicelistshow->DeviceStatusData->Description}}</td>
+              <td style="width:11%">
                 <button class="btn btn-info" onclick="getData_Edit({{$devicelistshow->DeviceList_ID}})"><span class="fa fa-edit"></span></button>
                 <button class="btn btn-danger" onclick="getData_Delete({{$devicelistshow->DeviceList_ID}})"><span class="fa fa-trash"></span></button>
               </td>
@@ -52,9 +53,10 @@
               <th>Device Model</th>
               <th>Serial Number</th>
               <th>Purchase Date</th>
-              <th>Device Status</th>
               <th>Station</th>
               <th>Member</th>
+              <th>Device Status</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
@@ -84,13 +86,21 @@
           <div class="box-body">
 
              <div class="form-group">
-              <label for="Device">Device ID</label>
-              <input type="text" name="Device_ID" class="form-control"  placeholder="Device_ID" required>
+              <label for="Device">Device Type</label>
+              <select class="form-control" name="Device_ID">
+              @foreach ($device as $do)
+                <option value="{{$do->Device_ID}}">{{$do->DeviceModel}} ({{$do->Description}})</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Device">Station ID</label>
-              <input type="text" name="Station_ID" class="form-control"  placeholder="Station_ID" required>
+              <label for="Device">Station</label>
+              <select class="form-control" name="Station_ID">
+                @foreach ($station as $so)
+                <option value="{{$so->Station_ID}}">{{$so->StationName}}</option>
+                @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -120,7 +130,11 @@
 
             <div class="form-group">
               <label for="Device">DeviceStatus ID</label>
-              <input type="text" name="DeviceStatus_ID" class="form-control"  placeholder="DeviceStatus_ID" required>
+              <select class="form-control" name="DeviceStatus_ID">
+                @foreach ($devicestatus as $dso)
+                <option value="{{$dso->DeviceStatus_ID}}">{{$dso->Description}}</option>
+                @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -139,10 +153,10 @@
               <input type="text" name="Remark" class="form-control"  placeholder="Remark" required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="Device">Member_ID</label>
               <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="Device">Picture ID</label>
@@ -151,7 +165,11 @@
 
             <div class="form-group">
               <label for="Device">Picture Type ID</label>
-              <input type="text" name="PictureType_ID" class="form-control"  placeholder="PictureType_ID" required>
+              <select class="form-control" name="PictureType_ID">
+                @foreach ($picturetype as $pto)
+                <option value="{{$pto->PictureType_ID}}">{{$pto->PictureTypeName}}</option>
+                @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -160,8 +178,12 @@
             </div>
 
             <div class="form-group">
-              <label for="Device">DocumentType_ID</label>
-              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
+              <label for="Station">Document Type</label>
+              <select class="form-control" name="DocumentType_ID">
+              @foreach($documenttype as $dto)
+                <option value="{{$dto->DocumentType_ID}}">{{$dto->DocumentTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">

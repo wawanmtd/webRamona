@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Area\Area;
 use App\Models\Station\StationArea;
 use App\Models\Station\Station;
+use App\Models\Country\Country;
 use Session;
 
 class KelolaAreaController extends Controller
@@ -14,8 +15,9 @@ class KelolaAreaController extends Controller
     public function index()
     {
         $ShowArea = Area::all();
+        $country = Country::all();
         //return $ShowArea;
-        return view("admin.kelolaArea", compact('ShowArea'));
+        return view("admin.kelolaArea", compact('ShowArea','country'));
     }
 
     public function tambah(Request $request)
@@ -74,7 +76,8 @@ class KelolaAreaController extends Controller
     public function editmodal_data($id){
         // $id = $request->Area_ID;
         $areaeditmodal = Area::find($id);
-        return view('modals/Area_EditModal')->with('areaeditmodal', $areaeditmodal);
+        $country = Country::all();
+        return view('modals/Area_EditModal',compact('country'))->with('areaeditmodal', $areaeditmodal);
         // return $areaeditmodal;
         // return response()->json($areaeditmodal);
     }

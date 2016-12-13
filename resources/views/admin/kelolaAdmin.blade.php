@@ -44,10 +44,10 @@
           <tr>
             <td >{{$showmember->PersonData->PersonName}}</td>
             <td >{{$showmember->Username}}</td>
-            <td >{{$showmember->MemberRoleData->NameRole}}</td>
+            <td ><strong>{{$showmember->MemberRoleData->NameRole}} </strong></td>
             <td >{{$showmember->PersonData->PersonContactData->ContactValue}}</td>
             <td >{{$showmember->PersonData->CountryData->CountryName}}</td>
-            <td style="width:10%">
+            <td style="width:11%">
               <button class="btn btn-info" onclick="getData_Edit({{$showmember->Member_ID}})"><span class="fa fa-edit"></span></button>
               <button class="btn btn-danger" onclick="getData_Delete({{$showmember->Member_ID}})"><span class="fa fa-trash"></span></button>
             </td>
@@ -112,24 +112,23 @@
                 <input type="text" name="City" class="form-control" placeholder="City" id="city" required>
               </div>
 
+              <!-- //option dari database -->
               <div class="form-group">
-                <label for="Country_ID">Country (harusnya pake option sih)</label>
+                <label for="Country_ID">Country</label>
                 <select class="form-control" name="Country_ID" id="country_id" required>
-                  <option value="">-- Select Country --</option>
-                  <option value="1">Indonesia</option>
+                @foreach ($country as $co)
+                  <option value="{{$co->Country_ID}}">{{$co->CountryName}}</option>
+                @endforeach
                 </select>
-                <!-- <input type="text" name="Country_ID" class="form-control" placeholder="Country" required> -->
               </div>
 
               <div class="form-group">
-                <label for="BlobType_ID">BlobType_ID (ini juga option ceritanya)</label>
+                <label for="BlobType_ID">Picture Type</label>
                 <select class="form-control" name="BlobType_ID" id="blobtype_id" required>
-                  <option value="">-- Select Blob Type --</option>
-                  <option value="1">JPG</option>
-                  <option value="2">PNG</option>
-                  <option value="3">BMP</option>
+                @foreach ($blob as $bo)
+                  <option value="{{$bo->BlobType_ID}}">{{$bo->TypeName}}</option>
+                @endforeach
                 </select>
-                <!-- <input type="text" name="BlobType_ID" class="form-control" placeholder="BlobType_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -138,14 +137,13 @@
               </div>
 
               <div class="form-group">
-                <label for="ContactType_ID">ContactType_ID (ini juga option ceritanya)</label>
+                <label for="ContactType_ID">Contact Type</label>
                 <select class="form-control" name="ContactType_ID" id="Contacttype_id" required>
-                  <option value="">-- Select Contact Type --</option>
-                  <option value="1">Phone</option>
-                  <option value="2">Email</option>
-                  <option value="3">etc</option>
+                  @foreach($contact as $co)
+                  <option value="{{$co->ContactType_ID}}">
+                  {{$co->ContactName}}</option>
+                  @endforeach
                 </select>
-                <!-- <input type="text" name="ContactType_ID" class="form-control" placeholder="ContactType_ID" required> -->
               </div>
 
               <div class="form-group">
@@ -164,14 +162,12 @@
               </div>
 
               <div class="form-group">
-                <label for="MemberRole_ID">MemberRole_ID (ini juga option ceritanya)</label>
+                <label for="MemberRole_ID">Member Role</label>
                 <select class="form-control" name="MemberRole_ID" id="memberrole_id" required>
-                  <option value="">-- Select Member Role --</option>
-                  <option value="1">Super Admin</option>
-                  <option value="2">Admin</option>
-                  <option value="3">Manajerial</option>
+                @foreach($memberrole as $mro)
+                  <option value="{{$mro->MemberRole_ID}}">{{$mro->NameRole}}</option>
+                @endforeach
                 </select>
-                <!-- <input type="text" name="MemberRole_ID" class="form-control" placeholder="MemberRole_ID" required> -->
               </div>
 
               <div class="form-group">

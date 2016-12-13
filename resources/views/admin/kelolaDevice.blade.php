@@ -38,7 +38,7 @@
               <td>{{$deviceshow->CountryData->CountryName}}</td>
               <th>{{$deviceshow->VoltageRange}}</th>
               <td>{{$deviceshow->MemberData->PersonData->PersonName}}</td>
-              <td style="width:10%">
+              <td style="width:11%">
                 <button class="btn btn-info" onclick="getData_Edit({{$deviceshow->Device_ID}})"><span class="fa fa-edit"></span></button>
                 <button class="btn btn-danger" onclick="getData_Delete({{$deviceshow->Device_ID}})"><span class="fa fa-trash"></span></button>
               </td>
@@ -108,9 +108,13 @@
             </div>
 
             <div class="form-group">
-              <label for="Device">Country_ID</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" required>
-            </div>
+                <label for="Country_ID">Country</label>
+                <select class="form-control" name="Country_ID" id="country_id" required>
+                @foreach ($country as $co)
+                  <option value="{{$co->Country_ID}}">{{$co->CountryName}}</option>
+                @endforeach
+                </select>
+              </div>
 
             <div class="form-group">
               <label for="Device">Remark</label>
@@ -122,14 +126,18 @@
               <input type="text" name="VoltageRange" class="form-control"  placeholder="VoltageRange" required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="Device">Member_ID</label>
               <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
-            </div>
+            </div> -->
 
             <div class="form-group">
-              <label for="Device">DocumentType_ID</label>
-              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
+              <label for="Station">Document Type</label>
+              <select class="form-control" name="DocumentType_ID">
+              @foreach($documenttype as $dto)
+                <option value="{{$dto->DocumentType_ID}}">{{$dto->DocumentTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -137,6 +145,7 @@
               <input type="text" name="DeviceDocument" class="form-control"  placeholder="DeviceDocument" required>
             </div>
 
+            <input type="hidden" name="Member_ID" value="{{Session::get('Member_ID')}}">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 
             <div class="modal-footer">

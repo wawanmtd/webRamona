@@ -13,7 +13,7 @@ class DeviceList extends Model
     public function DeviceData(){
     	return $this->belongsTo('App\Models\Device\Device', 'Device_ID');
     }
-    public function DeviceStatus(){
+    public function DeviceStatusData(){
     	return $this->belongsTo('App\Models\Device\DeviceStatus','DeviceStatus_ID');
     }
     public function MemberData(){

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\adminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Device\Device;
+use App\Models\Country\Country;
+use App\Models\Types\DocumentType;
+use App\Models\Station\Station;
+
 use Session;
 
 class KelolaDeviceController extends Controller
@@ -12,7 +16,9 @@ class KelolaDeviceController extends Controller
     public function index()
     {
         $DeviceShow = Device::all();
-      return view("admin.kelolaDevice", compact('DeviceShow'));
+        $country = Country::all();
+        $documenttype = DocumentType::all();
+      return view("admin.kelolaDevice", compact('DeviceShow','country','documenttype'));
     }
 
     public function tambah(Request $request)
@@ -68,7 +74,9 @@ class KelolaDeviceController extends Controller
 
     public function editmodal_data($id){
         $deviceedit = Device::find($id);
-        return view('modals/Device_EditModal')->with('deviceedit',$deviceedit);
+        $country = Country::all();
+        $documenttype = DocumentType::all();
+        return view('modals/Device_EditModal',compact('country','documenttype'))->with('deviceedit',$deviceedit);
     }
 
     public function hapusmodal_data($id){

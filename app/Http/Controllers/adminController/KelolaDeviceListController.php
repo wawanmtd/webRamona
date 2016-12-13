@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Device\Device;
 use App\Models\Device\DeviceList;
 use App\Models\Device\DeviceInStation;
+use App\Models\Station\Station;
+use App\Models\Device\DeviceStatus;
+use App\Models\Types\PictureType;
+use App\Models\Types\DocumentType;
 use Session;
 
 class KelolaDeviceListController extends Controller
@@ -14,7 +18,12 @@ class KelolaDeviceListController extends Controller
     public function index()
     {
         $DeviceListShow = DeviceList::all();
-      return view("admin.kelolaDeviceList", compact('DeviceListShow'));
+        $device = Device::all();
+        $station = Station::all();
+        $devicestatus = DeviceStatus::all();
+        $picturetype = PictureType::all();
+        $documenttype = DocumentType::all();
+      return view("admin.kelolaDeviceList", compact('DeviceListShow','device','station','devicestatus','picturetype','documenttype'));
     }
 
     public function tambah(Request $request)
@@ -30,11 +39,13 @@ class KelolaDeviceListController extends Controller
         $dl->Support_ID = $request->Support_ID;
         $dl->Pic_ID = $request->Pic_ID;
         $dl->Remark = $request->Remark;
-        $dl->Member_ID = $request->Member_ID;
         $dl->PictureType_ID = $request->PictureType_ID;
         $dl->DocumentType_ID = $request->DocumentType_ID;
         $dl->DeviceListPicture = $request->DeviceListPicture;
         $dl->DeviceListDocument = $request->DeviceListDocument;
+        //untuk nyari member_ID nya
+        $station = Station::find($request->Station_ID);
+        $dl->Member_ID = $station->Member_ID;
         $dl->save();
 
         //device in station
@@ -42,7 +53,7 @@ class KelolaDeviceListController extends Controller
         $dis->Station_ID = $request->Station_ID;
         $dis->DeviceList_ID = $dl->DeviceList_ID;
         $dis->Altitude = $request->Altitude;
-        $dis->Member_ID = $request->Member_ID;
+        $dis->Member_ID = $station->Member_ID;
         $dis->save();
 
          Session::flash('Success', 'Your data successfully recorded');
@@ -98,7 +109,12 @@ class KelolaDeviceListController extends Controller
 
     public function editmodal_data($id){
         $devicelistedit = DeviceList::find($id);
-        return view('modals/DeviceList_EditModal')->with('devicelistedit',$devicelistedit);
+        $device = Device::all();
+        $station = Station::all();
+        $devicestatus = DeviceStatus::all();
+        $picturetype = PictureType::all();
+        $documenttype = DocumentType::all();
+        return view('modals/DeviceList_EditModal',compact('device','station','devicestatus','picturetype','documenttype'))->with('devicelistedit',$devicelistedit);
     }
 
     public function hapusmodal_data($id){

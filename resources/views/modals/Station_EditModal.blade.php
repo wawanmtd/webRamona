@@ -10,13 +10,21 @@
           <div class="box-body">
 
             <div class="form-group">
-              <label for="Station">Area_ID</label>
-              <input type="text" name="Area_ID" class="form-control"  placeholder="Area_ID" value="{{$stationedit->StationAreaData->Area_ID}}" required>
+              <label for="Station">Area</label>
+              <select class="form-control" name="Area_ID">
+              @foreach($area as $ao)
+                <option value="{{$ao->Area_ID}}" @if($ao->Area_ID == $stationedit->StationAreaData->Area_ID) selected @endif>{{$ao->AreaName}}</option>
+              @endforeach
+              </select>
             </div>
 
-             <div class="form-group">
-              <label for="Station">StationType_ID</label>
-              <input type="text" name="StationType_ID" class="form-control"  placeholder="StationType_ID" value="{{$stationedit->StationType_ID}}" required>
+            <div class="form-group">
+              <label for="Station">Station Type</label>
+              <select class="form-control" name="StationType_ID">
+              @foreach ($stationtype as $sto)
+                <option value="{{$sto->StationType_ID}}" @if($sto->StationType_ID == $stationedit->StationType_ID) selected @endif>{{$sto->Description}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -45,9 +53,13 @@
             </div>
 
             <div class="form-group">
-              <label for="Station">Country_ID</label>
-              <input type="text" name="Country_ID" class="form-control"  placeholder="Country_ID" value="{{$stationedit->Country_ID}}" required>
-            </div>
+                <label for="Country_ID">Country</label>
+                <select class="form-control" name="Country_ID" id="country_id" required>
+                @foreach ($country as $co)
+                  <option value="{{$co->Country_ID}}" @if($co->Country_ID == $stationedit->COuntry_ID) selected @endif>{{$co->CountryName}}</option>
+                @endforeach
+                </select>
+              </div>
 
             <div class="form-group">
               <label for="Station">Power Source</label>
@@ -60,18 +72,30 @@
             </div>
 
             <div class="form-group">
-              <label for="Station">Member_ID</label>
-              <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" value="{{$stationedit->Member_ID}}" required>
+              <label for="Station">Member</label>
+              <select class="form-control" name="Member_ID">
+              @foreach($member as $mo)
+                <option value="{{$mo->Member_ID}}" @if($mo->Member_ID == $stationedit->Member_ID) selected @endif>{{$mo->MemberRoleData->NameRole}} - {{$mo->PersonData->PersonName}} ({{$mo->Username}})</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Station">MarkerType_ID</label>
-              <input type="text" name="MarkerType_ID" class="form-control"  placeholder="MarkerType_ID" value="{{$stationedit->MarkerType_ID}}" required>
+              <label for="Station">Marker Type</label>
+              <select class="form-control" name="MarkerType_ID">
+              @foreach($markertype as $mto)
+                <option value="{{$mto->MarkerType_ID}}" @if($mto->MarkerType_ID == $stationedit->MarkerType_ID) selected @endif>{{$mto->MarkerTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Station">DocumentType_ID</label>
-              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" value="{{$stationedit->DocumentType_ID}}" required>
+              <label for="Station">Document Type</label>
+              <select class="form-control" name="DocumentType_ID">
+              @foreach($documenttype as $dto)
+                <option value="{{$dto->DocumentType_ID}}"  @if($dto->DocumentType_ID == $stationedit->DocumentType_ID) selected @endif >{{$dto->DocumentTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">

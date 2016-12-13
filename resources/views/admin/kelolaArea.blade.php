@@ -34,7 +34,7 @@
               <td>{{$showarea->Description}}</td>
               <td>{{$showarea->CountryData->CountryName}}</td>
               <td>{{$showarea->MemberData->PersonData->PersonName}}</td>
-              <td style="width:10%">
+              <td style="width:11%">
                 <!-- punya wawan -->
                 <button class="btn btn-info" onclick="getData_Edit({{$showarea->Area_ID}})"><span class="fa fa-edit"/></button>
                 <button class="btn btn-danger" onclick="getData_Delete({{$showarea->Area_ID}})"><span class="fa fa-trash"/></button>
@@ -98,21 +98,26 @@
               <input type="text" name="Remark" class="form-control remark"  placeholder="Remark" required>
             </div>
 
-            <div class="form-group">
-              <label for="Country_ID">Country ID (bentuk option)</label>
-              <input type="text" name="Country_ID" class="form-control country_id"  placeholder="Country_ID" required>
-            </div>
+            <!-- //option dari database -->
+              <div class="form-group">
+                <label for="Country_ID">Country</label>
+                <select class="form-control" name="Country_ID" id="country_id" required>
+                @foreach ($country as $co)
+                  <option value="{{$co->Country_ID}}">{{$co->CountryName}}</option>
+                @endforeach
+                </select>
+              </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="Member_ID">Member_ID (bentuk option)</label>
               <input type="text" name="Member_ID" class="form-control member_id"  placeholder="Member_ID" required>
               <select class="form-control" name="Member_ID" required>
-                <option value="">--Select Member ID--</option>
+                <option value="">Select Member ID</option>
                 <option value="1">1</option>
               </select>
-            </div>
+            </div> -->
 
-            <input type="hidden" name="Area_ID" class="area_id">
+            <input type="hidden" name="Member_ID" value="{{Session::get('Member_ID')}}">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <input type="hidden" name="_method" id="_method" value="POST">
             <div class="modal-footer">

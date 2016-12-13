@@ -7,15 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Member\Member;
 use App\Models\Person\Person;
 use App\Models\Person\PersonContact;
+use App\Models\Country\Country;
+use App\Models\Blob\BlobType;
+use App\Models\Contact\ContactType;
+use App\Models\Member\MemberRole;
 use Session;
 class KelolaAdminController extends Controller
 {
     public function index()
     {
-        $ShowMember = Member::all()->where('MemberRole_ID', 2);
-        
-
-        return view('admin.kelolaAdmin', compact('ShowMember'));
+        $ShowMember = Member::all()->where('MemberRole_ID', '>',1);
+        $country = Country::all();
+        $blob = BlobType::all();
+        $contact = ContactType::all();
+        $memberrole = MemberRole::all();
+        return view('admin.kelolaAdmin', compact('ShowMember','country','blob','contact','memberrole'));
         
     }
 
@@ -106,7 +112,11 @@ class KelolaAdminController extends Controller
 
     public function editmodal_data($id){
         $admineditmodal = Member::find($id);
-        return view('modals/Admin_EditModal')->with('admineditmodal', $admineditmodal);
+        $country = Country::all();
+        $blob = BlobType::all();
+        $contact = ContactType::all();
+        $memberrole = MemberRole::all();
+        return view('modals/Admin_EditModal',compact('country','blob','contact','memberrole'))->with('admineditmodal', $admineditmodal);
     }
 
     public function hapusmodal_data($id){

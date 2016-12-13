@@ -37,14 +37,14 @@
       @foreach ($SensorShow as $sensorshow)
         <tr>
           <td></td>
-          <td>{{$sensorshow->FieldName}}</td>
+          <td><strong>{{$sensorshow->FieldName}}</strong></td>
           <td>{{$sensorshow->SensorTypeData->SensorTypeName}}</td>
           <td>{{$sensorshow->ValueCount}}</td>
-          <td>{{$sensorshow->MemberData->PersonData->PersonName}}
+          <td>{{$sensorshow->MemberData->PersonData->PersonName}} ({{$sensorshow->MemberData->MemberRoleData->NameRole}})
           </td>
           <!-- sementara, belongstomany belum berhasil -->
           <td>{{$sensorshow->DeviceSensorData->DeviceData->DeviceModel}}</td>
-          <td style="width:10%">
+          <td style="width:11%">
             <button class="btn btn-info" onclick="getData_Edit({{$sensorshow->Sensor_ID}})"><span class="fa fa-edit"></span></button>
             <button class="btn btn-danger" onclick="getData_Delete({{$sensorshow->Sensor_ID}})"><span class="fa fa-trash"></span></button>
           </td>
@@ -90,8 +90,21 @@
           <div class="box-body">
 
             <div class="form-group">
+              <label for="Device">Device Type</label>
+              <select class="form-control" name="Device_ID">
+              @foreach ($device as $do)
+                <option value="{{$do->Device_ID}}">{{$do->DeviceModel}} ({{$do->Description}})</option>
+              @endforeach
+              </select>
+            </div>
+
+            <div class="form-group">
               <label for="Sensor">Sensor Type</label>
-              <input type="text" name="SensorType_ID" class="form-control"  placeholder="SensorType_ID" required>
+              <select class="form-control" name="SensorType_ID">
+                @foreach ($sensortype as $so)
+                <option value="{{$so->SensorType_ID}}">{{$so->SensorTypeName}}</option>
+                @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -104,19 +117,27 @@
               <input type="text" name="Description" class="form-control"  placeholder="Description" required>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="Sensor">Member_ID</label>
               <input type="text" name="Member_ID" class="form-control"  placeholder="Member_ID" required>
+            </div> -->
+
+            <div class="form-group">
+              <label for="Station">Marker Type</label>
+              <select class="form-control" name="MarkerType_ID">
+              @foreach($markertype as $mto)
+                <option value="{{$mto->MarkerType_ID}}">{{$mto->MarkerTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="Sensor">MarkerType_ID (option)</label>
-              <input type="text" name="MarkerType_ID" class="form-control"  placeholder="MarkerType_ID" required>
-            </div>
-
-            <div class="form-group">
-              <label for="Sensor">DocumentType_ID (option)</label>
-              <input type="text" name="DocumentType_ID" class="form-control"  placeholder="DocumentType_ID" required>
+              <label for="Station">Document Type</label>
+              <select class="form-control" name="DocumentType_ID">
+              @foreach($documenttype as $dto)
+                <option value="{{$dto->DocumentType_ID}}">{{$dto->DocumentTypeName}}</option>
+              @endforeach
+              </select>
             </div>
 
             <div class="form-group">
@@ -129,11 +150,7 @@
               <input type="text" name="SensorDocument" class="form-control"  placeholder="SensorDocument" required>
             </div>
 
-            <div class="form-group">
-              <label for="Sensor">Device_ID</label>
-              <input type="text" name="Device_ID" class="form-control"  placeholder="Device_ID" required>
-            </div>
-
+            <input type="hidden" name="Member_ID" value="{{Session::get('Member_ID')}}">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 
             <div class="modal-footer">

@@ -20,6 +20,9 @@ public function StationTypeData(){
 public function MemberData(){
 	return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
 }
+public function DeviceInStationData(){
+	return $this->belongsTo('App\Models\Device\DeviceInStation', 'Station_ID');
+}
 
 ///////////////////////////////////////
 //sementara, harusnya pake blongstomany

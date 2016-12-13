@@ -6,14 +6,27 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Station\Station;
 use App\Models\Station\StationArea;
-Use Session;
+use App\Models\Area\Area;
+use App\Models\Station\StationType;
+use App\Models\Country\Country;
+use App\Models\Member\Member;
+use App\Models\Types\MarkerType;
+use App\Models\Types\DocumentType;
+use App\Models\Device\DeviceList;
+use Session;
 
 class KelolaStationController extends Controller
 {
     public function index()
     {
         $ShowStation = Station::all();
-      return view("admin.kelolaStation", compact('ShowStation'));
+        $area = Area::all();
+        $stationtype = StationType::all();
+        $country = Country::all();
+        $member = Member::where('MemberRole_ID', 2)->get();
+        $markertype = MarkerType::all();
+        $documenttype = DocumentType::all();
+      return view("admin.kelolaStation", compact('ShowStation','area','stationtype','country','member','markertype','documenttype'));
     }
 
     public function tambah(Request $request)
@@ -53,6 +66,15 @@ class KelolaStationController extends Controller
     public function ubah(Request $request, $id)
     {
         $stationnew = Station::find($id);
+
+        //untuk ganti yang di devicelist
+        $dl = DeviceList::where('Member_ID', $stationnew->Member_ID)->get();
+        foreach($dl as $dls){
+            $dls->Member_ID = $request->Member_ID;
+        }
+        $dls->save();
+        ////////////////////////////////
+
         $stationnew->StationType_ID = $request->StationType_ID;
         $stationnew->Location = $request->Location;
         $stationnew->StationName = $request->StationName;
@@ -87,8 +109,14 @@ class KelolaStationController extends Controller
     {
         $station = Station::find($id);
         $sa = $station->StationAreaData;
-        //soon
-        // $deviceinstation = $station->DeviceInStationData;
+
+        $deviceinstation = $station->DeviceInStationData;
+        foreach ($deviceinstation as $dis) {
+            $dis->delete();
+            $DeviceListData = DeviceList::find($dis->DeviceList_ID);
+            $DeviceListData->delete();
+        }
+    
         $sa->delete();
         $station->delete();
 
@@ -98,7 +126,13 @@ class KelolaStationController extends Controller
 
     public function editmodal_data($id){
         $stationedit = Station::find($id);
-        return view('modals/Station_EditModal')->with('stationedit',$stationedit);
+        $area = Area::all();
+        $stationtype = StationType::all();
+        $country = Country::all();
+        $member = Member::where('MemberRole_ID', 2)->get();
+        $markertype = MarkerType::all();
+        $documenttype = DocumentType::all();
+        return view('modals/Station_EditModal',compact('area','stationtype','country','member','markertype','documenttype'))->with('stationedit',$stationedit);
     }
 
     public function hapusmodal_data($id){
