@@ -1,6 +1,5 @@
 @extends('admin.index')
 @section('script-dashboard')
-<<<<<<< HEAD
 <link rel="stylesheet" href="../ammap/ammap.css" type="text/css">
 
 <link rel="stylesheet" href="../bootstrap/adminlte/plugins/datepicker/datepicker3.css">
@@ -25,12 +24,10 @@
 <script>
 $.widget.bridge('uibutton', $.ui.button);
 </script>
-@stop
-=======
+<!-- stop yang ini gua apus..  -->
   <script src="../bootstrap/adminlte/js/pages/dashboard.js"></script>
     <script src="../ammap/ammap.js" type="text/javascript"></script>
     <script src="../ammap/maps/js/indonesiaLow.js" type="text/javascript"></script>
->>>>>>> origin/master
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
