@@ -27,8 +27,15 @@ class HomeController extends Controller
     'percipitation', 'humidity'));
   }
 
-  public function stationStatus($nameStation)
+  // public function stationStatus($nameStation)
+  // {
+  //   return view('user.stationStatus', compact('nameStation'));
+  // }
+
+  public function stationStatus(Request $req)
   {
-    return view('user.stationStatus', compact('nameStation'));
+    $req = Request::all();
+    return $req;
+    // return view('user.stationStatus', compact('nameStation'));
   }
 }

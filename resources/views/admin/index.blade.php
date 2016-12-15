@@ -23,6 +23,10 @@
     <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
     @section('script-dashboard')
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     @show
   </head>
 

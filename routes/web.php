@@ -25,7 +25,8 @@
 Route::group(['namespace' => 'userController'], function()
 {
   Route::get('/', 'HomeController@index');
-  Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
+  Route::get('/stationStatus', 'HomeController@stationStatus');
+  // Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
   Route::get('/berita', 'BeritaController@index');
   Route::get('/berita/{Headline}', 'BeritaController@berita');
   Route::get('/about', 'AboutController@index');
