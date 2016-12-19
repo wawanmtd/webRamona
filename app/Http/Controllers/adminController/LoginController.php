@@ -30,6 +30,7 @@ class LoginController extends Controller
       Session::put('Member_ID', $SelectMember->Member_ID);
       Session::put('PersonName', $SelectMember->PersonData->PersonName);
       Session::put('Role', $SelectMember->MemberRoleData->NameRole);
+      Session::put('AccessLevel', $SelectMember->MemberRoleData->AccessLevel);
       if($SelectStation){Session::put('Station', $SelectStation->StationName);}
 
       return redirect()->action('adminController\AdminController@index',compact('selectMember'));

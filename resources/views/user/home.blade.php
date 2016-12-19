@@ -45,7 +45,7 @@
     controlUI.addEventListener('click', function(){
       map.setZoom(13);
       map.setCenter({lat: -6.3537604, lng: 106.6631774});
-    })
+    });
   }
 
   function initMap() {
@@ -69,44 +69,66 @@
 
     });
 
-    var stationMarker =
-    [
-    {
-      "lat" : -6.323651,
-      "lng": 106.706313,
-      "title" : "Batan"
-    },
-    {
-      "lat" : -6.349738,
-      "lng" : 106.664119,
-      "title" : "Puspiptek"
-    }
-    ];
 
-    $.each(stationMarker, function (key, data)
-    {
-      var latLng = new google.maps.LatLng(data.lat, data.lng);
+    // var stationMarker =
+    // [
+    // {
+    //   "lat" : -6.323651,
+    //   "lng": 106.706313,
+    //   "title" : "Batan"
+    // },
+    // {
+    //   "lat" : -6.349738,
+    //   "lng" : 106.664119,
+    //   "title" : "Puspiptek"
+    // }
+    // ];
 
-      var marker = new google.maps.Marker({
-        position: latLng,
-        title : data.title,
-        map : map
+
+    // $.each(stationMarker, function (key, data)
+    // {
+    //   var latLng = new google.maps.LatLng(data.lat, data.lng);
+
+    //   var marker = new google.maps.Marker({
+    //     position: latLng,
+    //     title : data.title,
+    //     map : map
+    //   });
+
+    //////////////////////////////
+     <?php foreach ($members as $member): ?>
+       var latLng = new google.maps.LatLng({{$member->StationData->StationLat}},{{$member->StationData->StationLng}});
+
+       var marker = new google.maps.Marker({
+         position: latLng,
+         title: "{{$member->StationData->StationName}}",
+         map : map
       });
-
+    
+    ///////////////////////////////
       if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
         marker.setIcon(radiationYellow);
       }
       else if ({{$gammaDoseRates}} > 2000) {
         marker.setIcon(radiationRed);
       }
+    marker.addListener('click', function(){
+      map.setZoom(16);
+      //infowindow.setContent('<div>'+'{{$member->StationData->StationName}}'+'</div>')
+      infowindow.open(map, this);
 
+<<<<<<< HEAD
       marker.addListener('click', function(){
         map.setZoom(16);
         infowindow.setContent($('#currentCondition-contents').html());
         infowindow.open(map, this);
       });
+=======
+      
+>>>>>>> origin/master
     });
-
+  // });
+  <?php endforeach ?>
   }
 </script>
 

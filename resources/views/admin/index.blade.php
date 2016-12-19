@@ -23,7 +23,6 @@
     <script src="../bootstrap/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../bootstrap/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
     @section('script-dashboard')
-
     @show
   </head>
 
@@ -226,7 +225,7 @@
               <li class="{{Request::is('dashboard') ? 'active' : ''}}">
                 <a href="{{action("adminController\AdminController@index")}}">
                   <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                  @if (Session::get('Member_ID') == 1)
+                  @if (Session::get('AccessLevel') == 1)
               <li class="{{Request::is('kelolaAdmin') ? 'active' : ''}}">
                 <a href="{{action("adminController\KelolaAdminController@index")}}">
                   <i class="fa fa-users"></i> <span>Kelola Admin</span></a></li>

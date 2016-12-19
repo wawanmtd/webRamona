@@ -1,5 +1,5 @@
 <!--jika bukan accesslevel 1 -->
-@if (Session::get('Member_ID') !=1)
+@if (Session::get('AccessLevel') !=1)
   <script type="text/javascript">
       window.location.href = "dashboard";
   </script>
@@ -198,7 +198,10 @@ end Ubah Admin -->
   </div>
 <!-- end modal Hapus Admin -->
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
   <script>
   function getData_Edit(id){
     $.ajax({
@@ -227,5 +230,36 @@ end Ubah Admin -->
   }
 
   </script>
+<<<<<<< HEAD
+<script>
+function getData_Edit(id){
+  $.ajax({
+    url:'kelolaAdmin/editmodal/'+id,
+    dataType:'html',
+    cache:false
+  }).done(function(modalcontent){
+    $('#hapusAdminModal').modal('show');
+    $('#hapusAdminModal').html(modalcontent);
+  }).fail(function(jqXHR, textStatus){
+    alert('Request Failed : '+textStatus);
+  });
+}
 
+function getData_Delete(id){
+  $.ajax({
+    url: 'kelolaAdmin/hapusmodal/'+id,
+    dataType: 'html',
+    cache:false
+  }).done(function(modalContent){
+    $('#hapusAdminModal').modal('show');
+    $('#hapusAdminModal').html(modalContent);
+  }).fail(function(jqXHR, textStatus){
+    alert('Request Failed : '+textStatus);
+  });
+}
+
+</script>
+=======
+
+>>>>>>> origin/master
 @stop
