@@ -63,9 +63,20 @@
     var radiationYellow = "../resources/assets/img/svgPath/radiationYellow.svg";
     var radiationGreen = "../resources/assets/img/svgPath/radiationGreen.svg";
 
+<<<<<<< HEAD
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: ($('#currentCondition-contents').html()),
+    //   maxWidth: 500
+=======
     var infowindow = new google.maps.InfoWindow({
       maxWidth: 500
+<<<<<<< HEAD
     });
+=======
+>>>>>>> origin/master
+
+    // });
+>>>>>>> origin/master
 
 
     // var stationMarker =
@@ -110,17 +121,51 @@
       else if ({{$gammaDoseRates}} > 2000) {
         marker.setIcon(radiationRed);
       }
+<<<<<<< HEAD
     // marker.addListener('click', function(){
     //   map.setZoom(16);
     //   //infowindow.setContent('<div>'+'{{$member->StationData->StationName}}'+'</div>')
     //   infowindow.open(map, this);
 
+=======
+
+      var infowindow = new google.maps.InfoWindow({
+      maxWidth: 500});
+
+    marker.addListener('click', function(){
+      map.setZoom(16);
+ 
+      //ajax untuk tampil last value
+      $.ajax({
+        url: 'stationlastvalue/{{$member->Member_ID}}',
+        dataType: 'html',
+        cache:false
+      }).done(function(htmldata){
+        // $('#currentCondition-contents').html(htmldata);
+        infowindow.setContent(htmldata);
+      }).fail(function(jqXHR,textStatus){
+        alert('Request Failed : '+ textStatus);
+      });
+
+<<<<<<< HEAD
+      infowindow.open(map, this);
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
       marker.addListener('click', function(){
         map.setZoom(16);
         infowindow.setContent($('#currentCondition-contents').html());
         infowindow.open(map, this);
       });
+<<<<<<< HEAD
     // });
+=======
+=======
+      
+>>>>>>> origin/master
+>>>>>>> origin/master
+    });
+>>>>>>> origin/master
   // });
   <?php endforeach ?>
   }
@@ -128,6 +173,11 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
 
+<<<<<<< HEAD
+<!-- <script type="text/html" id="currentCondition-contents">
+   changed.asd
+</script>-->
+=======
 <script type="text/html" id="currentCondition-contents">
 
   <div class="row">
@@ -312,6 +362,7 @@
 </script>
 
 
+>>>>>>> origin/master
 </html>
 
 @stop

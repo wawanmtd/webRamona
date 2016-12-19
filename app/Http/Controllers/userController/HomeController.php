@@ -48,33 +48,15 @@ class HomeController extends Controller
     'percipitation', 'humidity','members'));
   }
 
-  public function stationStatus($nameStation)
-  {
-    // view($('#gammaDoseRow'.hidden(false)));
-    return view('user.stationStatus', compact('nameStation'));
-  }
-  public function test()
-  {
-    return view ('user.home2');
-  }
-  public function test2(Request $request)
-  {
-    $data['a'] = $request->a;
-    return view('user.test2')->with($data);
-    //return redirect()->action('userController\HomeController@test');
-  }
-  // public function stationStatus(Request $request)
+  // public function stationStatus($nameStation)
   // {
-  //   // $station = $request->$nameStation;
-  //   // return redirect()->action('userController\HomeController@stationStatusIndex');
-  //   // return $station;
-  //   // print_r($request::all());
-  //   echo "asdf";
+  //   return view('user.stationStatus', compact('nameStation'));
   // }
 
-  public function stationStatusIndex()
+  public function stationStatus(Request $req)
   {
-    # code...
-    return view('user.stationStatus');
+    $req = Request::all();
+    return $req;
+    // return view('user.stationStatus', compact('nameStation'));
   }
 }

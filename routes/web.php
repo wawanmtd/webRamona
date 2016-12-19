@@ -21,7 +21,7 @@
 // //ini hardcode tanpa controller
 // Route::get('/profil', function(){
 //   return view('profil');
-// });
+// });asd
 Route::group(['namespace' => 'userController'], function()
 {
   Route::get('/', 'HomeController@index');
@@ -31,8 +31,13 @@ Route::group(['namespace' => 'userController'], function()
   Route::get('/berita', 'BeritaController@index');
   Route::get('/berita/{Headline}', 'BeritaController@berita');
   Route::get('/about', 'AboutController@index');
+<<<<<<< HEAD
+
+  Route::get('stationlastvalue/{id}','StationLastValueController@index' );
+=======
   Route::get('/test', 'HomeController@test');
   Route::get('/test2', 'HomeController@test2');
+>>>>>>> origin/master
 });
 
 Route::group(['namespace' => 'adminController'], function()
@@ -111,6 +116,7 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/restoreData', 'BackupRestoreController@restoreData');
 
   Route::get('/logout', 'LoginController@logout');
+  
 });
 
 	Route::get('/tambah','TambahData@Tambah');
