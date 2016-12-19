@@ -66,8 +66,11 @@
     // var infowindow = new google.maps.InfoWindow({
     //   content: ($('#currentCondition-contents').html()),
     //   maxWidth: 500
+    var infowindow = new google.maps.InfoWindow({
+      // content: ($('#currentCondition-contents').html()),
+      maxWidth: 500
 
-    // });
+     });
 
 
     // var stationMarker =
@@ -130,8 +133,8 @@
       }).fail(function(jqXHR,textStatus){
         alert('Request Failed : '+ textStatus);
       });
-
       infowindow.open(map, this);
+      
     });
   // });
   <?php endforeach ?>
@@ -141,8 +144,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
 
 <!-- <script type="text/html" id="currentCondition-contents">
-   changed.
+   changed.asd
 </script>-->
+
 </html>
 
 @stop
