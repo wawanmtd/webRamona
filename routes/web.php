@@ -30,6 +30,8 @@ Route::group(['namespace' => 'userController'], function()
   Route::get('/berita', 'BeritaController@index');
   Route::get('/berita/{Headline}', 'BeritaController@berita');
   Route::get('/about', 'AboutController@index');
+
+  Route::get('stationlastvalue/{id}','StationLastValueController@index' );
 });
 
 Route::group(['namespace' => 'adminController'], function()
@@ -108,6 +110,7 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/restoreData', 'BackupRestoreController@restoreData');
 
   Route::get('/logout', 'LoginController@logout');
+  
 });
 
 	Route::get('/tambah','TambahData@Tambah');

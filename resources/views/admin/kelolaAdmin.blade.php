@@ -198,10 +198,6 @@ end Ubah Admin -->
   </div>
 <!-- end modal Hapus Admin -->
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
   <script>
   function getData_Edit(id){
     $.ajax({
@@ -259,7 +255,4 @@ function getData_Delete(id){
 }
 
 </script>
-=======
-
->>>>>>> origin/master
 @stop
