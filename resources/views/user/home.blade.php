@@ -64,9 +64,7 @@
     var radiationGreen = "../resources/assets/img/svgPath/radiationGreen.svg";
 
     var infowindow = new google.maps.InfoWindow({
-      // content: ($('#currentCondition-contents').html()),
       maxWidth: 500
-
     });
 
 
@@ -104,7 +102,7 @@
          title: "{{$member->StationData->StationName}}",
          map : map
       });
-    
+
     ///////////////////////////////
       if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
         marker.setIcon(radiationYellow);
@@ -112,21 +110,17 @@
       else if ({{$gammaDoseRates}} > 2000) {
         marker.setIcon(radiationRed);
       }
-    marker.addListener('click', function(){
-      map.setZoom(16);
-      //infowindow.setContent('<div>'+'{{$member->StationData->StationName}}'+'</div>')
-      infowindow.open(map, this);
+    // marker.addListener('click', function(){
+    //   map.setZoom(16);
+    //   //infowindow.setContent('<div>'+'{{$member->StationData->StationName}}'+'</div>')
+    //   infowindow.open(map, this);
 
-<<<<<<< HEAD
       marker.addListener('click', function(){
         map.setZoom(16);
         infowindow.setContent($('#currentCondition-contents').html());
         infowindow.open(map, this);
       });
-=======
-      
->>>>>>> origin/master
-    });
+    // });
   // });
   <?php endforeach ?>
   }
