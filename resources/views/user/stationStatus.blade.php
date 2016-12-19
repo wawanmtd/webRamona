@@ -55,7 +55,7 @@
       </div>
 
       <div class="box-body">
-        <div class="row">
+        <div class="row" id="gammaDoseRow" >
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -81,7 +81,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="termoDegRow" >
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">

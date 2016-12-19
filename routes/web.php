@@ -25,11 +25,14 @@
 Route::group(['namespace' => 'userController'], function()
 {
   Route::get('/', 'HomeController@index');
-  Route::get('/stationStatus', 'HomeController@stationStatus');
-  // Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
+  // Route::get('/station', 'HomeController@stationStatus');
+  Route::get('/stationStatus/index', 'HomeController@stationStatusIndex');
+  Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
   Route::get('/berita', 'BeritaController@index');
   Route::get('/berita/{Headline}', 'BeritaController@berita');
   Route::get('/about', 'AboutController@index');
+  Route::get('/test', 'HomeController@test');
+  Route::get('/test2', 'HomeController@test2');
 });
 
 Route::group(['namespace' => 'adminController'], function()
