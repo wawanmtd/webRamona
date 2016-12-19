@@ -141,7 +141,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
 
 <!-- <script type="text/html" id="currentCondition-contents">
-   changed.
+   changed.asd
 </script>-->
 </html>
 

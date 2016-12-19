@@ -21,7 +21,7 @@
 // //ini hardcode tanpa controller
 // Route::get('/profil', function(){
 //   return view('profil');
-// });
+// });asd
 Route::group(['namespace' => 'userController'], function()
 {
   Route::get('/', 'HomeController@index');
