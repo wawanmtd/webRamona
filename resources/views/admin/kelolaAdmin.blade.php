@@ -1,5 +1,5 @@
 <!--jika bukan accesslevel 1 -->
-@if (Session::get('Member_ID') !=1)
+@if (Session::get('AccessLevel') !=1)
   <script type="text/javascript">
       window.location.href = "dashboard";
   </script>

@@ -17,6 +17,9 @@ class Member extends Model
     public function StationData(){
         return $this->hasOne('App\Models\Station\Station', 'Member_ID');
     }
+    public function SensorValueData(){
+        return $this->hasMany('App\Models\Sensor\SensorValue','Member_ID');
+    }
 
     //belongs
     public function PersonData(){
