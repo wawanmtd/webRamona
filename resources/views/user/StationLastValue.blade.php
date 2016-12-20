@@ -11,6 +11,8 @@
   <div class="row" style="margin-bottom: 10px">
     <div class="items-collection">
 
+      
+      @if ($termoDeg) 
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -20,7 +22,9 @@
                   <img src="../resources/assets/img/svgPath/termo.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4 class="text-center">{{$termoDeg}}</h4>
+                  <h4 class="text-center">
+                  {{$termoDeg->SValue}}
+                  </h4>
               </div>
               <div class="col-md-2 col-md-offset-1">
                   <h5>&deg;C</h5>
@@ -29,7 +33,9 @@
           </label>
         </div>
       </div>
-
+      @endif
+      
+      @if($windDir)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -46,7 +52,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <strong>{{$windSpeed}}</strong>
+                    <strong>{{$windSpeed->SValue}}</strong>
                   </div>
                   <div class="col-md-2">
                     <strong>km/h<strong>
@@ -57,7 +63,9 @@
           </label>
         </div>
       </div>
+      @endif
 
+      @if($solarRad)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -67,7 +75,7 @@
                   <img src="../resources/assets/img/svgPath/solarRadiation.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>{{$solarRad}}</h4>
+                  <h4>{{$solarRad->SValue}}</h4>
               </div>
               <div class="col-md-2">
                   <h5>Wm&sup2;</h5>
@@ -76,6 +84,7 @@
           </label>
         </div>
       </div>
+      @endif
 
       <div class="items col-xs-6 col-md-6 col-md-offset-3" style="margin-top:10px; margin-bottom: 10px">
         <div data-toggle="buttons" class="btn-group">
@@ -96,6 +105,7 @@
         </div>
       </div>
 
+      @if($barometer)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -107,7 +117,7 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-6 col-md-offset-1">
-                    {{$barometer}}
+                    {{$barometer->SValue}}
                   </div>
                 </div>
                 <div class="row">
@@ -120,7 +130,9 @@
           </label>
         </div>
       </div>
+      @endif
 
+      @if($percipitation)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -130,7 +142,7 @@
                   <img src="../resources/assets/img/svgPath/percipitation.svg" alt="" />
               </div>
               <div class="col-md-2 ">
-                  <h4>{{$percipitation}}</h4>
+                  <h4>{{$percipitation->SValue}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-1">
                   <h5>mm</h5>
@@ -139,7 +151,9 @@
           </label>
         </div>
       </div>
+      @endif
 
+      @if($humidity)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
@@ -149,7 +163,7 @@
                   <img src="../resources/assets/img/svgPath/humidity.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>{{$humidity}}</h4>
+                  <h4>{{$humidity->SValue}}</h4>
               </div>
               <div class="col-md-2 col-md-offset-2">
                   <h5>%</h5>
@@ -158,6 +172,7 @@
           </label>
         </div>
       </div>
+      @endif
 
     </div>
     <!-- items-collection -->
