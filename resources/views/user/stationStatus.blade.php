@@ -29,10 +29,12 @@
 @extends('user.index')
 
 @section ('title')
-  {{$nameStation}} Status
+  {$nameStation} Status
 @stop
 
 @section ('konten')
+
+
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
@@ -40,7 +42,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="box-title">
-							<h4>{{$nameStation}} - {{date("M, d")}}</h4>
+							<h4>$sensors - {{date("M, d")}}</h4>
 						</div>
 					</div>
 					<div class="col-md-3" style="float:right">
@@ -55,7 +57,7 @@
       </div>
 
       <div class="box-body">
-        <div class="row" id="gammaDoseRow" >
+        <div class="row" id="gammaDoseRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -66,7 +68,6 @@
 	                  </div>
 	                  <div class="col-md-2">
 											<h4>1000</h4>
-											<!-- <h4 jput="gammadoserates"></h4> -->
 	                  </div>
 	                  <div class="col-md-1 col-md-offset-2">
 	                    <h5><small>&micro;Sv/h</small></h5>
@@ -81,7 +82,7 @@
           </div>
         </div>
 
-        <div class="row" id="termoDegRow" >
+        <div class="row" id="termoDegRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -106,7 +107,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="solarRadRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -131,7 +132,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="barometerRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -156,7 +157,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="windRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -181,7 +182,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="percipitationRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -206,7 +207,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="humidityRow" style="display:none">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -238,8 +239,42 @@
 </div>
 
 <script>
-var chartData = generateChartData();
 
+	$(document).ready(function(){
+					// document.getElementById('percipitationRow').style.display = "";
+					// document.getElementById('percipitationRow').innerHTML = $j;
+
+				if ((strval){{$sensors[1]}} == "gammaDoseRates")
+				{
+					document.getElementById('gammaDoseRow').style.display = "";
+				}
+
+				if ("{{$sensors[0]}}" == "solarRad")
+					document.getElementById('solarRadRow').style.display = "";
+		// 	}
+		// }
+		// 	document.getElementById('termoDegRow').style.display = "";
+
+		// if ($.inArray("wind", "{{$sensors[0]}}"))
+		// {
+		// 	document.getElementById('windRow').style.display = "";
+		//
+		// }
+		//
+		// if ($.inArray("barometer", "{{$sensors[0]}}"))
+		// {
+		// 	document.getElementById('barometerRow').style.display = "";
+		//
+		// }
+		//
+		// if ($.inArray("humidity", "{{$sensors[0]}}"))
+		// {
+		// 	document.getElementById('humidityRow').style.display = "";
+		//
+		// }
+	})
+
+var chartData = generateChartData();
 var chart = AmCharts.makeChart("gammaDoseChart", {
     "type": "serial",
     "theme": "light",

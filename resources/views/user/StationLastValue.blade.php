@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <form action="" method="post">
+  <form action="stationStatus/{{$StationData->StationName}}" method="GET">
   <div class="row" style="margin-bottom: 10px">
     <div class="items-collection">
 
@@ -16,7 +16,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="termoDeg">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="termoDeg">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/termo.svg" alt="" />
@@ -39,7 +39,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="wind">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="wind">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/windNNE.svg" alt="" />
@@ -69,7 +69,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="solarRad">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="solarRad">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/solarRadiation.svg" alt="" />
@@ -89,7 +89,7 @@
       <div class="items col-xs-6 col-md-6 col-md-offset-3" style="margin-top:10px; margin-bottom: 10px">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="gammaDoseRates">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="gammaDoseRates">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/radiationYellow.svg" alt="" />
@@ -109,7 +109,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="barometer">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="barometer">
             <div class="row">
               <div class="col-md-6">
                   <img src="../resources/assets/img/svgPath/baroClearChange.svg" alt="" />
@@ -136,7 +136,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="percipitation">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="percipitation">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/percipitation.svg" alt="" />
@@ -157,7 +157,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="var_id[]" autocomplete="off" value="humidity">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="humidity">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/humidity.svg" alt="" />
@@ -186,17 +186,7 @@
     <div class="col-md-3 col-md-offset-3" style="float:right">
       <!-- <h6><a href="stationStatus/{$nameStation}"  target="_blank">view details &raquo; </a></h6> -->
 
-      <button type="sumbit" name="submit"  />
+      <button type="sumbit">view details</button>
     </div>
   </div>
 </form>
-<?php
-if(isset($_POST['submit'])){//to run PHP script on submit
-if(!empty($_POST['var_id'])){
-// Loop to store and display values of individual checked checkbox.
-foreach($_POST['var_id'] as $selected){
-echo $selected."</br>";
-}
-}
-}
-?>

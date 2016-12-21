@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Station\Station;
 use App\Models\Member\Member;
+
+use App\Models\Sensor\SensorValue;
+
 use Session;
 
 class HomeController extends Controller
@@ -27,9 +30,12 @@ class HomeController extends Controller
     // foreach ($members as $member) {
     //   $stations = Station::where('Member_ID',$member->Member_ID)->get();
     // }
-    
+
 
     $members = Member::has('SensorValueData')->get();
+
+    // $StationData = Station::where('Member_ID',$id)->first();
+    // $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
 
     $nameStation = "Perumahan Puspiptek";
     $termoDeg = 100;
@@ -53,10 +59,11 @@ class HomeController extends Controller
   //   return view('user.stationStatus', compact('nameStation'));
   // }
 
-  public function stationStatus(Request $req)
+  public function stationStatus(Request $request)
   {
-    $req = Request::all();
-    return $req;
-    // return view('user.stationStatus', compact('nameStation'));
+    $sensors = $request->sensor;
+    // dd($request);
+    // return view('user.stationStatus')->with('sensors', $sensors)->with('j', $j);
+    return view('user.stationStatus')->with('sensors', $sensors);
   }
 }

@@ -63,42 +63,11 @@
     var radiationYellow = "../resources/assets/img/svgPath/radiationYellow.svg";
     var radiationGreen = "../resources/assets/img/svgPath/radiationGreen.svg";
 
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: ($('#currentCondition-contents').html()),
-    //   maxWidth: 500
+
     var infowindow = new google.maps.InfoWindow({
       maxWidth: 500
     });
 
-    // });
-
-
-    // var stationMarker =
-    // [
-    // {
-    //   "lat" : -6.323651,
-    //   "lng": 106.706313,
-    //   "title" : "Batan"
-    // },
-    // {
-    //   "lat" : -6.349738,
-    //   "lng" : 106.664119,
-    //   "title" : "Puspiptek"
-    // }
-    // ];
-
-
-    // $.each(stationMarker, function (key, data)
-    // {
-    //   var latLng = new google.maps.LatLng(data.lat, data.lng);
-
-    //   var marker = new google.maps.Marker({
-    //     position: latLng,
-    //     title : data.title,
-    //     map : map
-    //   });
-
-    //////////////////////////////
      <?php foreach ($members as $member): ?>
        var latLng = new google.maps.LatLng({{$member->StationData->StationLat}},{{$member->StationData->StationLng}});
 
@@ -108,49 +77,38 @@
          map : map
       });
 
-    ///////////////////////////////
       if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
         marker.setIcon(radiationYellow);
       }
       else if ({{$gammaDoseRates}} > 2000) {
         marker.setIcon(radiationRed);
       }
-    // marker.addListener('click', function(){
-    //   map.setZoom(16);
-    //   //infowindow.setContent('<div>'+'{{$member->StationData->StationName}}'+'</div>')
-    //   infowindow.open(map, this);
-
-
-      var infowindow = new google.maps.InfoWindow({
-      maxWidth: 500});
+      else if ({{$gammaDoseRates}} < 1000) {
+        marker.setIcon(radiationGreen);
+      }
 
     marker.addListener('click', function(){
       map.setZoom(16);
- 
+
       //ajax untuk tampil last value
       $.ajax({
         url: 'stationlastvalue/{{$member->Member_ID}}',
         dataType: 'html',
         cache:false
       }).done(function(htmldata){
-        // $('#currentCondition-contents').html(htmldata);
         infowindow.setContent(htmldata);
       }).fail(function(jqXHR,textStatus){
         alert('Request Failed : '+ textStatus);
       });
-        infowindow.open(map, this);
+
+      infowindow.open(map, this);
+
     });
-  // });
   <?php endforeach ?>
-  }
+}
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
 
-<!-- <script type="text/html" id="currentCondition-contents">
-   changed.asd
-</script>-->
-
-</html>
 
 @stop
