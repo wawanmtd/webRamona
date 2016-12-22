@@ -35,7 +35,7 @@ class HomeController extends Controller
     $members = Member::has('SensorValueData')->get();
 
     // $StationData = Station::where('Member_ID',$id)->first();
-    // $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
+    // $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$members->id)->orderBy('SensorValue_ID', 'desc')->first();
 
     $nameStation = "Perumahan Puspiptek";
     $termoDeg = 100;
@@ -54,16 +54,20 @@ class HomeController extends Controller
     'percipitation', 'humidity','members'));
   }
 
-  // public function stationStatus($nameStation)
-  // {
-  //   return view('user.stationStatus', compact('nameStation'));
-  // }
 
-  public function stationStatus(Request $request)
+  public function stationStatus(Request $request, $nameStation)
   {
     $sensors = $request->sensor;
-    // dd($request);
-    // return view('user.stationStatus')->with('sensors', $sensors)->with('j', $j);
-    return view('user.stationStatus')->with('sensors', $sensors);
+
+    $gammaDoseRates = in_array("gammaDoseRates", $sensors);
+    $termoDeg = in_array("termoDeg", $sensors);
+    $wind = in_array("wind", $sensors);
+    $solarRad = in_array("solarRad", $sensors);
+    $barometer = in_array("barometer", $sensors);
+    $percipitation = in_array("percipitation", $sensors);
+    $humidity = in_array("humidity", $sensors);
+
+    return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer', 
+    'percipitation', 'humidity'));
   }
 }

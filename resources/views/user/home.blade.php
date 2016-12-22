@@ -16,11 +16,20 @@
       #map {
         height: 100%;
       }
+      #legend{
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+        width: 200px;
+      }
     </style>
   </head>
 
   <body>
     <div id="map" style="width: 1150px; background-color:#EEEEEE; height: 600px; align:center "></div>
+    <div id="legend"><h4>Gamma Dose Rates</h4></div>
   </body>
 
   <script>
@@ -50,19 +59,29 @@
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 9,
       center: {lat: -6.3537604, lng: 106.6631774}
     });
+    
 
-    var buttonCenterDiv = document.createElement('div');
-    var centerControl = new CenterControl(buttonCenterDiv, map);
-
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(buttonCenterDiv);
-
-    var radiationRed = "../resources/assets/img/svgPath/radiationRed.svg";
-    var radiationYellow = "../resources/assets/img/svgPath/radiationYellow.svg";
-    var radiationGreen = "../resources/assets/img/svgPath/radiationGreen.svg";
-
+    var svgPath = "../resources/assets/img/svgPath/";
+    var icons = {
+      radiationRed:{
+        name: 'High Radiation',
+        range: '>2000',
+        icon: svgPath + 'radiationRed.svg'
+      }, 
+      radiationYellow:{
+        name: 'Moderate Radiation',
+        range: '1000 - 2000',
+        icon: svgPath + "radiationYellow.svg"
+      },
+      radiationGreen:{
+        name: 'Low Radiation',
+        range: '<1000',
+        icon: svgPath + "radiationGreen.svg"
+      } 
+    };
 
     var infowindow = new google.maps.InfoWindow({
       maxWidth: 500
@@ -78,15 +97,15 @@
       });
 
       if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
-        marker.setIcon(radiationYellow);
+        marker.setIcon(icons.radiationYellow.icon);
       }
       else if ({{$gammaDoseRates}} > 2000) {
-        marker.setIcon(radiationRed);
+        marker.setIcon(icons.radiationRed.icon);
       }
       else if ({{$gammaDoseRates}} < 1000) {
-        marker.setIcon(radiationGreen);
+        marker.setIcon(icons.radiationGreen.icon);
       }
-
+    
     marker.addListener('click', function(){
       map.setZoom(16);
 
@@ -105,6 +124,18 @@
 
     });
   <?php endforeach ?>
+
+  var legend = document.getElementById('legend');
+  for (var key in icons){
+    var type = icons[key];
+    var name = type.name;
+    var icon = type.icon;
+    var range = type.range;
+    var div = document.createElement('div');
+    div.innerHTML = '<img src="' + icon + '" width="60px" /> <strong>'+ range +' &micro;Sv/h</strong>';
+    legend.appendChild(div);
+  }
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('legend'));
 }
 </script>
 
