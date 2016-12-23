@@ -15,7 +15,6 @@ class StationLastValueController extends Controller
 
 	//$nameStation = "Perumahan Puspiptek";
     $StationData = Station::where('Member_ID',$id)->first();
-
     // $gammaDoseRates = 1500;
     $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
     //$termoDeg = 100;
@@ -48,8 +47,8 @@ class StationLastValueController extends Controller
     date_default_timezone_set("Asia/Jakarta");
 
     return view('user.StationLastValue', compact('nameStation', 'termoDeg', 'windDir', 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
-    'percipitation', 'humidity', 'StationData'));
-
-
+    'percipitation', 'humidity', 'StationData','asd','asdasdasdasd'));
     }
+
+    
 }

@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <form action="stationStatus/{{$StationData->StationName}}" method="GET">
+  <form action="stationStatus/{{$StationData->Station_ID}}" method="post">
   <div class="row" style="margin-bottom: 10px">
     <div class="items-collection">
 
@@ -16,7 +16,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="termoDeg">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="6">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/termo.svg" alt="" />
@@ -39,7 +39,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="wind">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="2">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/windNNE.svg" alt="" />
@@ -69,7 +69,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="solarRad">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="4">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/solarRadiation.svg" alt="" />
@@ -89,7 +89,7 @@
       <div class="items col-xs-6 col-md-6 col-md-offset-3" style="margin-top:10px; margin-bottom: 10px">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="gammaDoseRates">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="1">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/radiationYellow.svg" alt="" />
@@ -109,7 +109,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="barometer">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="5">
             <div class="row">
               <div class="col-md-6">
                   <img src="../resources/assets/img/svgPath/baroClearChange.svg" alt="" />
@@ -136,7 +136,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="percipitation">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="7">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/percipitation.svg" alt="" />
@@ -157,7 +157,7 @@
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="humidity">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="8">
             <div class="row">
               <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/humidity.svg" alt="" />
@@ -189,4 +189,8 @@
       <button type="sumbit">view details</button>
     </div>
   </div>
+  <input type="hidden" name="_token" value="{{csrf_token()}}">
+  <input type="hidden" name="_method" value="POST">
+  <input type="hidden" name="sensorr[]" id="sensor_array">
 </form>
+

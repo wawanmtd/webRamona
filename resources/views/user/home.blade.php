@@ -50,7 +50,7 @@
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 10,
       center: {lat: -6.3537604, lng: 106.6631774}
     });
 
@@ -69,6 +69,7 @@
     });
 
      <?php foreach ($members as $member): ?>
+
        var latLng = new google.maps.LatLng({{$member->StationData->StationLat}},{{$member->StationData->StationLng}});
 
        var marker = new google.maps.Marker({
@@ -76,6 +77,27 @@
          title: "{{$member->StationData->StationName}}",
          map : map
       });
+
+      // $.ajax({
+      //   url: 'gamma/{{$member->Member_ID}}',
+      //   dataType: 'json',
+      //   cache: false
+      // }).done(function(data){
+      //   alert(data.SValue);
+      // if (data.SValue < 1000) {
+      //   marker.setIcon(radiationGreen);
+      // }
+      // else if (data.SValue > 2000) {
+      //   marker.setIcon(radiationRed);
+      // }
+      // else{
+      //   marker.setIcon(radiationYellow);
+      // }
+      // }).fail(function(jqXHR,textStatus){
+      //   alert('Request Failed : '+ textStatus);
+      // });
+
+
 
       if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
         marker.setIcon(radiationYellow);
@@ -88,7 +110,7 @@
       }
 
     marker.addListener('click', function(){
-      map.setZoom(16);
+      map.setZoom(13);
 
       //ajax untuk tampil last value
       $.ajax({

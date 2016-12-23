@@ -25,13 +25,14 @@
 Route::group(['namespace' => 'userController'], function()
 {
   Route::get('/', 'HomeController@index');
-  // Route::get('/stationStatus/index', 'HomeController@stationStatusIndex');
-  Route::get('/stationStatus/{nameStation}', 'HomeController@stationStatus');
   Route::get('/berita', 'BeritaController@index');
   Route::get('/berita/{Headline}', 'BeritaController@berita');
   Route::get('/about', 'AboutController@index');
 
-  Route::get('stationlastvalue/{id}','StationLastValueController@index' );
+  // Route::get('/stationStatus/index', 'HomeController@stationStatusIndex');
+  Route::get('/stationlastvalue/{id}','StationLastValueController@index' );
+  Route::post('/stationStatus/{id}', 'HomeController@stationStatus');
+  Route::get('/gamma/{id}', 'HomeController@gamma');
   Route::get('/test', 'HomeController@test');
   Route::get('/test2', 'HomeController@test2');
 });
@@ -99,7 +100,7 @@ Route::group(['namespace' => 'adminController'], function()
   Route::get('/kelolaDeviceList/hapus/{id}','KelolaDeviceListController@hapus');
 
   Route::get('/kelolaBerita', 'KelolaBeritaController@index');
-  Route::get('/kelolaBerita/tambahBerita', 'KelolaBeritaController@tambah');
+  Route::post('/kelolaBerita/tambahBerita', 'KelolaBeritaController@tambah');
   Route::get('/kelolaBerita/ubahBerita', 'KelolaBeritaController@ubah');
   Route::get('/kelolaBerita/hapusBerita', 'KelolaBeritaController@hapus');
   Route::get('/kelolaBerita/approveBerita', 'KelolaBeritaController@approve');

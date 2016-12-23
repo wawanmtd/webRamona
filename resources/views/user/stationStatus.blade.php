@@ -42,7 +42,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="box-title">
-							<h4>$sensors - {{date("M, d")}}</h4>
+							<h4>sensors - {{date("M, d")}}</h4>
 						</div>
 					</div>
 					<div class="col-md-3" style="float:right">
@@ -56,8 +56,9 @@
 				</div>
       </div>
 
+      @if($gammaDoseRates)
       <div class="box-body">
-        <div class="row" id="gammaDoseRow" style="display:none">
+        <div class="row" id="gammaDoseRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -81,8 +82,10 @@
             <div id="gammaDoseChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="termoDegRow" style="display:none">
+        @if($termoDeg)
+        <div class="row" id="termoDegRow" >
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -106,8 +109,10 @@
             <div id="termoChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="solarRadRow" style="display:none">
+        @if($solarRad)
+        <div class="row" id="solarRadRow" >
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -131,8 +136,10 @@
             <div id="solarRadiationChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="barometerRow" style="display:none">
+        @if($barometer)
+        <div class="row" id="barometerRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -156,8 +163,10 @@
             <div id="barometerChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="windRow" style="display:none">
+        @if($windDir)
+        <div class="row" id="windRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -181,8 +190,10 @@
             <div id="windChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="percipitationRow" style="display:none">
+        @if($percipitation)
+        <div class="row" id="percipitationRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -206,8 +217,10 @@
             <div id="percipitationChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
-        <div class="row" id="humidityRow" style="display:none">
+        @if($humidity)
+        <div class="row" id="humidityRow" >
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -231,6 +244,7 @@
             <div id="humidityChart" class="chartdiv"></div>
           </div>
         </div>
+        @endif
 
 
       </div>
@@ -239,40 +253,6 @@
 </div>
 
 <script>
-
-	$(document).ready(function(){
-					// document.getElementById('percipitationRow').style.display = "";
-					// document.getElementById('percipitationRow').innerHTML = $j;
-
-				if ((strval){{$sensors[1]}} == "gammaDoseRates")
-				{
-					document.getElementById('gammaDoseRow').style.display = "";
-				}
-
-				if ("{{$sensors[0]}}" == "solarRad")
-					document.getElementById('solarRadRow').style.display = "";
-		// 	}
-		// }
-		// 	document.getElementById('termoDegRow').style.display = "";
-
-		// if ($.inArray("wind", "{{$sensors[0]}}"))
-		// {
-		// 	document.getElementById('windRow').style.display = "";
-		//
-		// }
-		//
-		// if ($.inArray("barometer", "{{$sensors[0]}}"))
-		// {
-		// 	document.getElementById('barometerRow').style.display = "";
-		//
-		// }
-		//
-		// if ($.inArray("humidity", "{{$sensors[0]}}"))
-		// {
-		// 	document.getElementById('humidityRow').style.display = "";
-		//
-		// }
-	})
 
 var chartData = generateChartData();
 var chart = AmCharts.makeChart("gammaDoseChart", {

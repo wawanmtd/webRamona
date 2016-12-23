@@ -10,9 +10,17 @@ use App\Models\Member\Member;
 class TambahData extends Controller
 {
     public function Tambah(){
+    $members = Member::has('SensorValueData')->get();
 
-    	$member = Member::has('SensorValueData')->get();
-    	return view('user.TambahData',compact('member'));
+    foreach ($members as $member) {
+      $arr=[];
+      $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
+      $arr.push($gammaDoseRates);
+  	}
+      return $arr;
+
+  //   	$gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',3)->orderBy('SensorValue_ID', 'desc')->take(10)->get();
+		// return $gammaDoseRates;
 
     	// $sv = SensorValue::create(['Sensor_ID' => 1, 'QuantityValue_ID' => 1, 'Member_ID'=>1 , 'SValue'=>11.11, 'Timestamp'=>'2016-01-01 00:00:10']);
     	// $sv = SensorValue::create(['Sensor_ID' => 1, 'QuantityValue_ID' => 1, 'Member_ID'=>1 , 'SValue'=>11.11, 'Timestamp'=>'2015-01-01 00:00:10']);

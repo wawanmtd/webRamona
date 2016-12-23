@@ -95,13 +95,40 @@ class KelolaAdminController extends Controller
     public function hapus($id)
     {
 
-        $member = Member::find($id);          
-        $personcontact = $member->PersonData->PersonContactData;
-        $person = $member->PersonData;
+        // $member = Member::find($id);          
+        // $personcontact = $member->PersonData->PersonContactData;
+        // $person = $member->PersonData;
         
-        $member->delete();
-        $personcontact->delete();
-        $person->delete();
+        // $member->delete();
+        // $personcontact->delete();
+        // $person->delete();
+
+        //biar ga ke hapus membernya
+
+        $personnew = Person::find($id);
+        $personnew->PersonName = "null";
+        $personnew->Nickname = "null";
+        $personnew->Address = "null";
+        $personnew->City = "null";
+        $personnew->Country_ID = $request->Country_ID;
+        $personnew->BlobType_ID = $request->BlobType_ID;
+        $personnew->save();
+
+        $pc = PersonContact::where('Person_ID', $id)->first();
+        // return $pc->Person_ID;
+        // $pc = PersonContact::find($pc->Person_ID);
+        $pc->ContactType_ID = $request->ContactType_ID;
+        $pc->ContactValue = "null";
+        $pc->save();
+
+        $membernew = Member::where('Person_ID', $id)->first();
+        $membernew = Member::find($membernew->Member_ID);
+        $membernew->Username = "null";
+        $membernew->AccessCode = "null";
+        $membernew->MemberRole_ID = $request->MemberRole_ID;
+        $membernew->Remark = $request->Remark;
+        $membernew->IsActive = 0;
+        $membernew->save();
 
         Session::flash('Success', 'Your data successfully Deleted');
         return redirect()->action('adminController\KelolaAdminController@index');
