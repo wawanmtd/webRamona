@@ -42,21 +42,35 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="box-title">
+<<<<<<< HEAD
 							<h4>sensors - {{date("M, d")}}</h4>
+=======
+							<h4>{{$nameStation}} - {{date("M, d")}}</h4>
+>>>>>>> origin/master
 						</div>
 					</div>
 					<div class="col-md-3" style="float:right">
-						<div class="btn-group" role="group">
-							<button onclick="#" type="button" name="todayStatus_btn" class="btn btn-default">Today</button>
-							<button onclick="#" type="button" name="weeklyStatus_btn" class="btn btn-default">Weekly</button>
-							<button onclick="#" type="button" name="monthlyStatus_btn" class="btn btn-default">Monthly</button>
+						<div class="dropdown">
+							<button id="dropTime_btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Time Range
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#">Today</a></li>
+								<li><a href="#">Weekly</a></li>
+								<li><a href="#">Mothly</a></li>
+							</ul>
 						</div>
 
 					</div>
 				</div>
       </div>
 
+<<<<<<< HEAD
       @if($gammaDoseRates)
+=======
+			@if ($gammaDoseRates)
+>>>>>>> origin/master
       <div class="box-body">
         <div class="row" id="gammaDoseRow">
 					<a href="#">
@@ -82,10 +96,17 @@
             <div id="gammaDoseChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($termoDeg)
         <div class="row" id="termoDegRow" >
+=======
+				@endif
+
+				@if($termoDeg)
+        <div class="row" id="termoDegRow">
+>>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -109,13 +130,20 @@
             <div id="termoChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($solarRad)
         <div class="row" id="solarRadRow" >
+=======
+				@endif
+
+				@if($solarRad)
+        <div class="row" id="solarRadRow">
+>>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
-	            <div class="panel panel-default">
+	            	<div class="panel panel-default">
 	              <div class="panel-body">
 	                <div class="row">
 	                  <div class="col-md-4">
@@ -136,9 +164,15 @@
             <div id="solarRadiationChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($barometer)
+=======
+				@endif
+
+				@if($barometer)
+>>>>>>> origin/master
         <div class="row" id="barometerRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -163,9 +197,15 @@
             <div id="barometerChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($windDir)
+=======
+				@endif
+
+				@if($wind)
+>>>>>>> origin/master
         <div class="row" id="windRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -190,9 +230,15 @@
             <div id="windChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($percipitation)
+=======
+				@endif
+
+				@if($percipitation)
+>>>>>>> origin/master
         <div class="row" id="percipitationRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -217,10 +263,17 @@
             <div id="percipitationChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
         @if($humidity)
         <div class="row" id="humidityRow" >
+=======
+				@endif
+
+				@if($humidity)
+        <div class="row" id="humidityRow">
+>>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -244,8 +297,12 @@
             <div id="humidityChart" class="chartdiv"></div>
           </div>
         </div>
+<<<<<<< HEAD
         @endif
 
+=======
+				@endif
+>>>>>>> origin/master
 
       </div>
     </div>

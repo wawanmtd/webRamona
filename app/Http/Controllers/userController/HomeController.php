@@ -33,12 +33,18 @@ class HomeController extends Controller
 
     $members = Member::has('SensorValueData')->get();
 
+<<<<<<< HEAD
     foreach ($members as $member) {
       $arr=[];
       $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
       $arr.push($gammaDoseRates);
     }
     
+=======
+    // $StationData = Station::where('Member_ID',$id)->first();
+    // $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$members->id)->orderBy('SensorValue_ID', 'desc')->first();
+
+>>>>>>> origin/master
     $nameStation = "Perumahan Puspiptek";
     $termoDeg = 100;
     $windDir = "NNE";
@@ -56,11 +62,8 @@ class HomeController extends Controller
     'percipitation', 'humidity','members'));
   }
 
-  // public function stationStatus($nameStation)
-  // {
-  //   return view('user.stationStatus', compact('nameStation'));
-  // }
 
+<<<<<<< HEAD
   public function gamma($id){
     $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
     return response()->json($gammaDoseRates);
@@ -111,6 +114,22 @@ class HomeController extends Controller
     return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
     'percipitation', 'humidity','members'));
   
+=======
+  public function stationStatus(Request $request, $nameStation)
+  {
+    $sensors = $request->sensor;
+
+    $gammaDoseRates = in_array("gammaDoseRates", $sensors);
+    $termoDeg = in_array("termoDeg", $sensors);
+    $wind = in_array("wind", $sensors);
+    $solarRad = in_array("solarRad", $sensors);
+    $barometer = in_array("barometer", $sensors);
+    $percipitation = in_array("percipitation", $sensors);
+    $humidity = in_array("humidity", $sensors);
+
+    return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer', 
+    'percipitation', 'humidity'));
+>>>>>>> origin/master
   }
     
 }
