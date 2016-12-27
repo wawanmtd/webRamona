@@ -62,73 +62,72 @@ class HomeController extends Controller
 
   public function gamma($id){
     $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
-    return response()->json($gammaDoseRates);
+    // dd($gammaDoseRates);
+    // return response()->json($gammaDoseRates);
+    return $gammaDoseRates;
   }
 
   public function stationStatus($id, Request $request)
-  { 
-
+  {
+    $gammaDoseRates="";
     $termoDeg="";
     $solarRad="";
     $windDir="";
     $barometer="";
     $percipitation="";
     $humidity="";
-    
-    if(!$request->sensor){
-      $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-    }
-    else{
     $array = $request->sensor;
-      foreach ($array as $arr) {
-        switch ($arr) {
-          case 1:
-            $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 2:
-            $windDir = SensorValue::where('QuantityValue_ID', 2)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            $windSpeed = SensorValue::where('QuantityValue_ID', 3)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 4:
-            $solarRad = SensorValue::where('QuantityValue_ID', 4)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 5:
-            $barometer = SensorValue::where('QuantityValue_ID', 5)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 6:
-            $termoDeg = SensorValue::where('QuantityValue_ID', 6)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 7:
-            $percipitation = SensorValue::where('QuantityValue_ID', 7)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-          case 8:
-            $humidity = SensorValue::where('QuantityValue_ID', 8)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
-            break;
-          default:
-            $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
-            break;
-        }
+    foreach ($array as $arr) {
+      switch ($arr) {
+        case 1:
+          $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 2:
+          $windDir = SensorValue::where('QuantityValue_ID', 2)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          $windSpeed = SensorValue::where('QuantityValue_ID', 3)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 4:
+          $solarRad = SensorValue::where('QuantityValue_ID', 4)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 5:
+          $barometer = SensorValue::where('QuantityValue_ID', 5)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 6:
+          $termoDeg = SensorValue::where('QuantityValue_ID', 6)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 7:
+          $percipitation = SensorValue::where('QuantityValue_ID', 7)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
+        case 8:
+          $humidity = SensorValue::where('QuantityValue_ID', 8)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
+          break;
+        default:
+          $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
+          break;
       }
     }    
-    $stations = Station::where('Member_ID',$id)->first();
+    $StationData = Station::where('Member_ID',$id)->first();
+
     //$sensors = $request->sensor;
-    return view('user.stationStatus',compact('stations','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'barometer',
-    'percipitation', 'humidity','members','gammaDoseRates'));
+    return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
+    'percipitation', 'humidity','members'));
+  
+// =======
+//   public function stationStatus(Request $request, $nameStation)
+//   {
+//     $sensors = $request->sensor;
+
+//     $gammaDoseRates = in_array("gammaDoseRates", $sensors);
+//     $termoDeg = in_array("termoDeg", $sensors);
+//     $wind = in_array("wind", $sensors);
+//     $solarRad = in_array("solarRad", $sensors);
+//     $barometer = in_array("barometer", $sensors);
+//     $percipitation = in_array("percipitation", $sensors);
+//     $humidity = in_array("humidity", $sensors);
+
+//     return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer', 
+//     'percipitation', 'humidity'));
+// >>>>>>> origin/master
   }
-  // public function stationStatus(Request $request, $nameStation)
-  // {
-  //   $sensors = $request->sensor;
-
-  //   $gammaDoseRates = in_array("gammaDoseRates", $sensors);
-  //   $termoDeg = in_array("termoDeg", $sensors);
-  //   $wind = in_array("wind", $sensors);
-  //   $solarRad = in_array("solarRad", $sensors);
-  //   $barometer = in_array("barometer", $sensors);
-  //   $percipitation = in_array("percipitation", $sensors);
-  //   $humidity = in_array("humidity", $sensors);
-
-  //   return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer', 
-  //   'percipitation', 'humidity'));
-  // }
     
 }
