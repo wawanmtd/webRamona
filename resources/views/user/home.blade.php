@@ -104,13 +104,13 @@
       // }).done(function(data){
       //   alert(data.SValue);
       // if (data.SValue < 1000) {
-      //   marker.setIcon(radiationGreen);
+      //   marker.setIcon(icons.radiationGreen.icon);
       // }
       // else if (data.SValue > 2000) {
-      //   marker.setIcon(radiationRed);
+      //   marker.setIcon(icons.radiationRed.icon);
       // }
       // else{
-      //   marker.setIcon(radiationYellow);
+      //   marker.setIcon(icons.radiationYellow.icon);
       // }
       // }).fail(function(jqXHR,textStatus){
       //   alert('Request Failed : '+ textStatus);

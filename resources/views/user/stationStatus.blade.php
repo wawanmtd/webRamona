@@ -43,13 +43,28 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="box-title">
+<<<<<<< HEAD
 							<h4>sensors - {{date("M, d")}}</h4>
 							<h4>{{$stations->StationName}} - {{date("M, d")}}</h4>
+=======
+							<h4>{$StationData->StationName} - {{date("M, d")}}</h4>
+>>>>>>> origin/master
 						</div>
 					</div>
-					<div class="col-md-3" style="float:right">
-						<div class="dropdown">
-							<button id="dropTime_btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="col-md-3 col-md-offset-5" style="align:right" >
+						<div class="btn-group">
+							<button id="dropdownData_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+								Show Data	
+								<span class="caret"></span>			
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#table">Table</a></li>
+								<li><a href="#chart">Chart</a></li>
+							</ul>
+						</div>
+						<div class="btn-group">
+							<button id="dropTime_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Time Range
 								<span class="caret"></span>
 							</button>
@@ -59,10 +74,9 @@
 								<li><a href="#">Mothly</a></li>
 							</ul>
 						</div>
-
 					</div>
-				</div>
-      </div>
+      	</div>
+			</div>
 
       @if($gammaDoseRates)
       <div class="box-body">
@@ -94,7 +108,10 @@
 
         @if($termoDeg)
         <div class="row" id="termoDegRow" >
+<<<<<<< HEAD
         <div class="row" id="termoDegRow">
+=======
+>>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -120,8 +137,12 @@
         </div>
         @endif
 
+<<<<<<< HEAD
         @if($solarRad)
         <div class="row" id="solarRadRow" >
+=======
+				@if($solarRad)
+>>>>>>> origin/master
         <div class="row" id="solarRadRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -148,7 +169,11 @@
         </div>
         @endif
 
+<<<<<<< HEAD
         @if($barometer)
+=======
+				@if($barometer)
+>>>>>>> origin/master
         <div class="row" id="barometerRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -202,7 +227,11 @@
         </div>
         @endif
 
+<<<<<<< HEAD
         @if($percipitation)
+=======
+				@if($percipitation)
+>>>>>>> origin/master
         <div class="row" id="percipitationRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -229,10 +258,13 @@
         </div>
         @endif
 
+<<<<<<< HEAD
         @if($humidity)
         <div class="row" id="humidityRow" >
 				@endif
 
+=======
+>>>>>>> origin/master
 				@if($humidity)
         <div class="row" id="humidityRow">
 					<a href="#">
@@ -261,7 +293,8 @@
         @endif
 
       </div>
-    </div>
+    
+		</div>
   </div>
 </div>
 
