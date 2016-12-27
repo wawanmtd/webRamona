@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <form action="stationStatus/{{$StationData->Station_ID}}" method="post">
+  <form action="stationStatus/{{$StationData->Member_ID}}" method="post">
   <div class="row" style="margin-bottom: 10px">
     <div class="items-collection">
 

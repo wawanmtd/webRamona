@@ -1,3 +1,4 @@
+
 @section('stylesheet')
 <link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../bootstrap/main.css">
@@ -29,7 +30,7 @@
 @extends('user.index')
 
 @section ('title')
-  {$nameStation} Status
+  {{$stations->StationName}} Status
 @stop
 
 @section ('konten')
@@ -42,11 +43,8 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="box-title">
-<<<<<<< HEAD
 							<h4>sensors - {{date("M, d")}}</h4>
-=======
-							<h4>{{$nameStation}} - {{date("M, d")}}</h4>
->>>>>>> origin/master
+							<h4>{{$stations->StationName}} - {{date("M, d")}}</h4>
 						</div>
 					</div>
 					<div class="col-md-3" style="float:right">
@@ -66,11 +64,7 @@
 				</div>
       </div>
 
-<<<<<<< HEAD
       @if($gammaDoseRates)
-=======
-			@if ($gammaDoseRates)
->>>>>>> origin/master
       <div class="box-body">
         <div class="row" id="gammaDoseRow">
 					<a href="#">
@@ -96,17 +90,11 @@
             <div id="gammaDoseChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($termoDeg)
         <div class="row" id="termoDegRow" >
-=======
-				@endif
-
-				@if($termoDeg)
         <div class="row" id="termoDegRow">
->>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -130,17 +118,11 @@
             <div id="termoChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($solarRad)
         <div class="row" id="solarRadRow" >
-=======
-				@endif
-
-				@if($solarRad)
         <div class="row" id="solarRadRow">
->>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            	<div class="panel panel-default">
@@ -164,15 +146,9 @@
             <div id="solarRadiationChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($barometer)
-=======
-				@endif
-
-				@if($barometer)
->>>>>>> origin/master
         <div class="row" id="barometerRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -197,15 +173,9 @@
             <div id="barometerChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($windDir)
-=======
-				@endif
-
-				@if($wind)
->>>>>>> origin/master
         <div class="row" id="windRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -230,15 +200,9 @@
             <div id="windChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($percipitation)
-=======
-				@endif
-
-				@if($percipitation)
->>>>>>> origin/master
         <div class="row" id="percipitationRow">
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
@@ -263,17 +227,14 @@
             <div id="percipitationChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
 
         @if($humidity)
         <div class="row" id="humidityRow" >
-=======
 				@endif
 
 				@if($humidity)
         <div class="row" id="humidityRow">
->>>>>>> origin/master
 					<a href="#">
 	          <div class="col-md-2 col-xs-6">
 	            <div class="panel panel-default">
@@ -297,12 +258,7 @@
             <div id="humidityChart" class="chartdiv"></div>
           </div>
         </div>
-<<<<<<< HEAD
         @endif
-
-=======
-				@endif
->>>>>>> origin/master
 
       </div>
     </div>
@@ -324,7 +280,8 @@ var chart = AmCharts.makeChart("gammaDoseChart", {
     "graphs": [{
         "id": "g1",
         "fillAlphas": 0.4,
-        "valueField": "visits",
+        // "valueField": "visits",
+        "valueField": "SValue",
          "balloonText": "<div style='margin:5px; font-size:19px;'>&micro;Sv/h:<b>[[value]]</b></div>"
     }],
     "chartScrollbar": {
@@ -344,14 +301,15 @@ var chart = AmCharts.makeChart("gammaDoseChart", {
         "categoryBalloonDateFormat": "JJ:NN, DD MMMM",
         "cursorPosition": "mouse"
     },
-    "categoryField": "date",
+    // "categoryField": "date",
+    "categoryField": "Timestamp",
     "categoryAxis": {
         "minPeriod": "mm",
         "parseDates": true
     },
     "export": {
         "enabled": true,
-         "dateFormat": "YYYY-MM-DD HH:NN:SS"
+         "dateFormat": "YYYY-MM-DD HH:NN:SSZ"
     }
 });
 
@@ -365,34 +323,48 @@ function zoomChart() {
     chart.zoomToIndexes(chartData.length - 250, chartData.length - 100);
 }
 
-// generate some random data, quite different range
 function generateChartData() {
     var chartData = [];
-    // current date
-    var firstDate = new Date();
-    // now set 500 minutes back
-    firstDate.setMinutes(firstDate.getDate() - 1000);
-
-    // and generate 500 data items
-    for (var i = 0; i < 500; i++) {
-        var newDate = new Date(firstDate);
-        // each time we add one minute
-        newDate.setMinutes(newDate.getMinutes() + i);
-        // some random number
-        var visits = Math.round(Math.random() * 40 + 10 + i + Math.random() * i / 5);
-        // add data item to the array
-        chartData.push({
-            date: newDate,
-            visits: visits
+    <?php foreach ($gammaDoseRates as $gamma): ?>
+    	chartData.push({
+            Timestamp: "{{$gamma->Timestamp}}",
+            SValue: "{{$gamma->SValue}}"
         });
-    }
+    <?php endforeach ?>
     return chartData;
 }
-$(document).ready(function()
-{
-	var data = chartData;
-	jPut.gammadoserates.data = data;
 
-});
+// generate some random data, quite different range
+// function generateChartData() {
+//     var chartData = [];
+//     // current date
+//     var firstDate = new Date();
+//     // now set 500 minutes back
+//     firstDate.setMinutes(firstDate.getDate() - 1000);
+
+//     // and generate 500 data items
+//     for (var i = 0; i < 500; i++) {
+//         var newDate = new Date(firstDate);
+//         // each time we add one minute
+//         newDate.setMinutes(newDate.getMinutes() + i);
+//         // some random number
+//         var visits = Math.round(Math.random() * 40 + 10 + i + Math.random() * i / 5);
+//         // add data item to the array
+        
+//         chartData.push({
+//             date: newDate,
+//             visits: visits
+//         });
+//     }
+//     return chartData;
+// }
+
+// $(document).ready(function()
+// {
+// 	var data = chartData;
+// 	// var data = $gammaDoseRates;
+// 	jPut.gammadoserates.data = data;
+
+// });
 </script>
 @stop

@@ -59,11 +59,7 @@
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-<<<<<<< HEAD
-      zoom: 10,
-=======
       zoom: 9,
->>>>>>> origin/master
       center: {lat: -6.3537604, lng: 106.6631774}
     });
     

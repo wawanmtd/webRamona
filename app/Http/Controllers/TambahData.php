@@ -11,13 +11,13 @@ class TambahData extends Controller
 {
     public function Tambah(){
     $members = Member::has('SensorValueData')->get();
-
     foreach ($members as $member) {
       $arr=[];
       $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
-      $arr.push($gammaDoseRates);
+      $
+      array_push($arr, $gammaDoseRates);
   	}
-      return $arr;
+      return $array;
 
   //   	$gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',3)->orderBy('SensorValue_ID', 'desc')->take(10)->get();
 		// return $gammaDoseRates;
