@@ -14,49 +14,15 @@ class HomeController extends Controller
 {
   public function index()
   {
-    // $IfStationContainData = Station::all();
-    // $IfStationContainData->MemberData->SensorValueData();
-    // $IfStationContainData->where('SValue','<>','');
-    // $Station = Station::all();
-
-    // $stations = Station::whereHas('MemberData', function ($members) {
-    // $members->has('SensorValueData')->get();
-    // // $members = Member::where('Member_ID',6)->get();
-    // })->get();
-
-
-    // $members = Member::has('SensorValueData')->get();
-    // foreach ($members as $member) {
-    //   $stations = Station::where('Member_ID',$member->Member_ID)->get();
-    // }
-
-
     $members = Member::has('SensorValueData')->get();
-
-    // foreach ($members as $member) {
-    //   $arr=[];
-    //   $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
-    //   $arr.push($gammaDoseRates);
-    // }
     
-    // $StationData = Station::where('Member_ID',$id)->first();
-    // $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$members->id)->orderBy('SensorValue_ID', 'desc')->first();
-
-    $nameStation = "Perumahan Puspiptek";
-    $termoDeg = 100;
-    $windDir = "NNE";
-    $windSpeed = 25;
-    $solarRad = 94;
-    $gammaDoseRates = 1500;
-    $barometer = 1000;
-    $percipitation = 0;
-    $humidity = 100;
-
+    foreach ($members as $member) {
+      $gammaDoseRates[$member->Member_ID] = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
+    }
 
     date_default_timezone_set("Asia/Jakarta");
 
-    return view('user.home', compact('nameStation', 'termoDeg', 'windDir', 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
-    'percipitation', 'humidity','members'));
+    return view ('user.home', compact('gammaDoseRates', 'members'));
   }
 
 
@@ -106,11 +72,12 @@ class HomeController extends Controller
           break;
       }
     }    
-    $StationData = Station::where('Member_ID',$id)->first();
+    // $StationData = Station::where('Member_ID',$id)->first();
+    $stations = Station::where('Member_ID',$id)->first();
 
     //$sensors = $request->sensor;
     return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
-    'percipitation', 'humidity','members'));
+    'percipitation', 'humidity','members', 'stations'));
   
 // =======
 //   public function stationStatus(Request $request, $nameStation)

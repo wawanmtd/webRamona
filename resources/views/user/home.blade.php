@@ -85,80 +85,59 @@
 
     var infowindow = new google.maps.InfoWindow({
       maxWidth: 500
-    });
+    })
 
-     <?php foreach ($members as $member): ?>
-
+    <?php foreach ($members as $member): ?>
+     
        var latLng = new google.maps.LatLng({{$member->StationData->StationLat}},{{$member->StationData->StationLng}});
-
+                 
        var marker = new google.maps.Marker({
          position: latLng,
          title: "{{$member->StationData->StationName}}",
          map : map
       });
-
-      // $.ajax({
-      //   url: 'gamma/{{$member->Member_ID}}',
-      //   dataType: 'json',
-      //   cache: false
-      // }).done(function(data){
-      //   alert(data.SValue);
-      // if (data.SValue < 1000) {
-      //   marker.setIcon(icons.radiationGreen.icon);
-      // }
-      // else if (data.SValue > 2000) {
-      //   marker.setIcon(icons.radiationRed.icon);
-      // }
-      // else{
-      //   marker.setIcon(icons.radiationYellow.icon);
-      // }
-      // }).fail(function(jqXHR,textStatus){
-      //   alert('Request Failed : '+ textStatus);
-      // });
-
-
-
-      if ({{$gammaDoseRates}} > 1000 && {{$gammaDoseRates}} < 2000 ){
+      
+      if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 1000 && {{$gammaDoseRates[$member->Member_ID]->SValue}} < 2000 ){
         marker.setIcon(icons.radiationYellow.icon);
       }
-      else if ({{$gammaDoseRates}} > 2000) {
+      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 2000) {
         marker.setIcon(icons.radiationRed.icon);
       }
-      else if ({{$gammaDoseRates}} < 1000) {
+      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} < 1000) {
         marker.setIcon(icons.radiationGreen.icon);
       }
     
-    marker.addListener('click', function(){
-      map.setZoom(13);
-
+      marker.addListener('click', function(){
+       map.setZoom(13);
+      
       //ajax untuk tampil last value
-      $.ajax({
-        url: 'stationlastvalue/{{$member->Member_ID}}',
-        dataType: 'html',
-        cache:false
-      }).done(function(htmldata){
-        infowindow.setContent(htmldata);
-      }).fail(function(jqXHR,textStatus){
-        alert('Request Failed : '+ textStatus);
-      });
+       $.ajax({
+          url: 'stationlastvalue/{{$member->Member_ID}}',
+          dataType: 'html',
+          cache:false
+        }).done(function(htmldata){
+          infowindow.setContent(htmldata);
+        }).fail(function(jqXHR,textStatus){
+          alert('Request Failed : '+ textStatus);
+        });
 
-      infowindow.open(map, this);
-
-    });
-  <?php endforeach ?>
-
-  var legend = document.getElementById('legend');
-  for (var key in icons){
-    var type = icons[key];
-    var name = type.name;
-    var icon = type.icon;
-    var range = type.range;
-    var div = document.createElement('div');
-    div.innerHTML = '<img src="' + icon + '" width="60px" /> <strong>'+ range +' &micro;Sv/h</strong>';
-    legend.appendChild(div);
+        infowindow.open(map, this);
+      })
+    
+    <?php endforeach ?>
+    
+    var legend = document.getElementById('legend');
+    for (var key in icons){
+      var type = icons[key];
+      var name = type.name;
+      var icon = type.icon;
+      var range = type.range;
+      var div = document.createElement('div');
+      div.innerHTML = '<img src="' + icon + '" width="60px" /> <strong>'+ range +' &micro;Sv/h</strong>';
+      legend.appendChild(div);
+    }
+    map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('legend'));
   }
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('legend'));
-}
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeUKqLI5lfnjE4AgXMf3kv6Ye8CU7l-pU&callback=initMap" async defer></script>
