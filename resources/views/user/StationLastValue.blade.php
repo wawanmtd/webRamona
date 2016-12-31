@@ -11,30 +11,47 @@
   <div class="row" style="margin-bottom: 10px">
     <div class="items-collection">
 
-      
-      @if ($termoDeg) 
+      <div class="items col-xs-6 col-md-6 col-md-offset-3" style="margin-top:10px; margin-bottom: 10px">
+        <div data-toggle="buttons" class="btn-group">
+          <label class="btn btn-default">
+            <input type="checkbox" name="sensor[]" autocomplete="off" value="1">
+            <div class="row">
+              <div class="col-md-4">
+                @if($gammaDoseRates->SValue <= 1000)
+                  <img src="../resources/assets/img/svgPath/radiationGreen.svg" alt="" />
+                @elseif ($gammaDoseRates->SValue > 1000 && $gammaDoseRates->SValue <= 2000 )
+                  <img src="../resources/assets/img/svgPath/radiationYellow.svg" alt="" />
+                @elseif ($gammaDoseRates->SValue > 2000)
+                  <img src="../resources/assets/img/svgPath/radiationRed.svg" alt="" />
+                @endif
+              </div>
+              <div class="col-md-3">
+                  <h3>{{$gammaDoseRates->SValue}} <small>&micro;Sv/h</small></h3>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+
+      @if ($termoDeg)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
             <input type="checkbox" name="sensor[]" autocomplete="off" value="6">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                   <img src="../resources/assets/img/svgPath/termo.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4 class="text-center">
-                  {{$termoDeg->SValue}}
-                  </h4>
-              </div>
-              <div class="col-md-2 col-md-offset-1">
-                  <h5>&deg;C</h5>
+                  <h4 class="text-center">{{$termoDeg->SValue}} <small>&deg;C</small> </h4>
               </div>
             </div>
           </label>
         </div>
       </div>
       @endif
-      
+
       @if($windDir)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
@@ -42,7 +59,7 @@
             <input type="checkbox" name="sensor[]" autocomplete="off" value="2">
             <div class="row">
               <div class="col-md-4">
-                  <img src="../resources/assets/img/svgPath/windNNE.svg" alt="" />
+                  <img src="../resources/assets/img/svgPath/wind{{$windDir}}.svg" alt="" />
               </div>
               <div class="col-md-6">
                 <div class="row">
@@ -52,10 +69,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-2">
-                    <strong>{{$windSpeed->SValue}}</strong>
-                  </div>
-                  <div class="col-md-2">
-                    <strong>km/h<strong>
+                    <strong>{{$windSpeed->SValue}} km/h</strong>
                   </div>
                 </div>
               </div>
@@ -71,14 +85,11 @@
           <label class="btn btn-default">
             <input type="checkbox" name="sensor[]" autocomplete="off" value="4">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                   <img src="../resources/assets/img/svgPath/solarRadiation.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>{{$solarRad->SValue}}</h4>
-              </div>
-              <div class="col-md-2">
-                  <h5>Wm&sup2;</h5>
+                  <h4>{{$solarRad->SValue}} <small>Wm&sup2;</small></h4>
               </div>
             </div>
           </label>
@@ -86,43 +97,19 @@
       </div>
       @endif
 
-      <div class="items col-xs-6 col-md-6 col-md-offset-3" style="margin-top:10px; margin-bottom: 10px">
-        <div data-toggle="buttons" class="btn-group">
-          <label class="btn btn-default">
-            <input type="checkbox" name="sensor[]" autocomplete="off" value="1">
-            <div class="row">
-              <div class="col-md-4">
-                  <img src="../resources/assets/img/svgPath/radiationYellow.svg" alt="" />
-              </div>
-              <div class="col-md-3">
-                  <h3>{{$gammaDoseRates->SValue}}</h3>
-              </div>
-              <div class="col-md-2 col-md-offset-1">
-                  <h5>&micro;Sv/h</h5>
-              </div>
-            </div>
-          </label>
-        </div>
-      </div>
-
       @if($barometer)
       <div class="items col-xs-6 col-md-4">
         <div data-toggle="buttons" class="btn-group">
           <label class="btn btn-default">
             <input type="checkbox" name="sensor[]" autocomplete="off" value="5">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <img src="../resources/assets/img/svgPath/baroClearChange.svg" alt="" />
               </div>
               <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-6 col-md-offset-1">
-                    {{$barometer->SValue}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-2">
-                    mmHg
+                  <div class="col-md-6">
+                   <strong>{{$barometer->SValue}} </strong></br>mmHg
                   </div>
                 </div>
               </div>
@@ -142,10 +129,7 @@
                   <img src="../resources/assets/img/svgPath/percipitation.svg" alt="" />
               </div>
               <div class="col-md-2 ">
-                  <h4>{{$percipitation->SValue}}</h4>
-              </div>
-              <div class="col-md-2 col-md-offset-1">
-                  <h5>mm</h5>
+                  <h4>{{$percipitation->SValue}} <small>mm</small></h4>
               </div>
             </div>
           </label>
@@ -159,14 +143,11 @@
           <label class="btn btn-default">
             <input type="checkbox" name="sensor[]" autocomplete="off" value="8">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-3">
                   <img src="../resources/assets/img/svgPath/humidity.svg" alt="" />
               </div>
               <div class="col-md-2">
-                  <h4>{{$humidity->SValue}}</h4>
-              </div>
-              <div class="col-md-2 col-md-offset-2">
-                  <h5>%</h5>
+                  <h4>{{$humidity->SValue}} <small>%</small> </h4>
               </div>
             </div>
           </label>
@@ -179,18 +160,15 @@
   </div>
   <!-- row -->
   <div class="row">
-    <!-- <a href="stationStatus/{$map->dataProvider->images->id}" style="float:right" target="_blank">view details &raquo; </a> -->
     <div class="col-md-5">
-      <h6><span class="glyphicon glyphicon-refresh"></span> Last Update: {{date("h:i a")}}</h6>
+      <!-- <h6><span class="glyphicon glyphicon-refresh"></span> Last Update: {{date("h:i a")}}</h6> -->
+      <h6><span class="glyphicon glyphicon-refresh"></span> Last Update: {{$gammaDoseRates->Timestamp}}</h6>
     </div>
     <div class="col-md-3 col-md-offset-3" style="float:right">
-      <!-- <h6><a href="stationStatus/{$nameStation}"  target="_blank">view details &raquo; </a></h6> -->
-
-      <button type="sumbit">view details</button>
+      <button class="btn btn-info btn-xs" type="sumbit">view details &raquo;</button>
     </div>
   </div>
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <input type="hidden" name="_method" value="POST">
   <input type="hidden" name="sensorr[]" id="sensor_array">
 </form>
-

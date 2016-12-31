@@ -15,7 +15,7 @@ class HomeController extends Controller
   public function index()
   {
     $members = Member::has('SensorValueData')->get();
-    
+
     foreach ($members as $member) {
       $gammaDoseRates[$member->Member_ID] = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$member->Member_ID)->orderBy('SensorValue_ID', 'desc')->first();
     }
@@ -43,42 +43,47 @@ class HomeController extends Controller
     $percipitation="";
     $humidity="";
     $array = $request->sensor;
-    foreach ($array as $arr) {
-      switch ($arr) {
-        case 1:
+    // dd($array);
+    if ($array != null){
+      foreach ($array as $arr) {
+        switch ($arr) {
+          case 1:
           $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 2:
+          case 2:
           $windDir = SensorValue::where('QuantityValue_ID', 2)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           $windSpeed = SensorValue::where('QuantityValue_ID', 3)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 4:
+          case 4:
           $solarRad = SensorValue::where('QuantityValue_ID', 4)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 5:
+          case 5:
           $barometer = SensorValue::where('QuantityValue_ID', 5)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 6:
+          case 6:
           $termoDeg = SensorValue::where('QuantityValue_ID', 6)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 7:
+          case 7:
           $percipitation = SensorValue::where('QuantityValue_ID', 7)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
-        case 8:
+          case 8:
           $humidity = SensorValue::where('QuantityValue_ID', 8)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->first();
           break;
-        default:
+          default:
           $gammaDoseRates = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderBy('SensorValue_ID', 'desc')->get();
           break;
+        }
       }
-    }    
-    // $StationData = Station::where('Member_ID',$id)->first();
-    $stations = Station::where('Member_ID',$id)->first();
+      // $StationData = Station::where('Member_ID',$id)->first();
+      $stations = Station::where('Member_ID',$id)->first();
 
-    //$sensors = $request->sensor;
-    return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
-    'percipitation', 'humidity','members', 'stations'));
-  
+      //$sensors = $request->sensor;
+      return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
+      'percipitation', 'humidity','members', 'stations'));
+    }
+    else{
+      echo "Error";
+    }
 // =======
 //   public function stationStatus(Request $request, $nameStation)
 //   {
@@ -92,9 +97,9 @@ class HomeController extends Controller
 //     $percipitation = in_array("percipitation", $sensors);
 //     $humidity = in_array("humidity", $sensors);
 
-//     return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer', 
+//     return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer',
 //     'percipitation', 'humidity'));
 // >>>>>>> origin/master
   }
-    
+
 }

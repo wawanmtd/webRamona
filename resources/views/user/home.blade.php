@@ -62,7 +62,7 @@
       zoom: 9,
       center: {lat: -6.3537604, lng: 106.6631774}
     });
-    
+
 
     var svgPath = "../resources/assets/img/svgPath/";
     var icons = {
@@ -70,7 +70,7 @@
         name: 'High Radiation',
         range: '>2000',
         icon: svgPath + 'radiationRed.svg'
-      }, 
+      },
       radiationYellow:{
         name: 'Moderate Radiation',
         range: '1000 - 2000',
@@ -80,7 +80,7 @@
         name: 'Low Radiation',
         range: '<1000',
         icon: svgPath + "radiationGreen.svg"
-      } 
+      }
     };
 
     var infowindow = new google.maps.InfoWindow({
@@ -88,28 +88,28 @@
     })
 
     <?php foreach ($members as $member): ?>
-     
+
        var latLng = new google.maps.LatLng({{$member->StationData->StationLat}},{{$member->StationData->StationLng}});
-                 
+
        var marker = new google.maps.Marker({
          position: latLng,
          title: "{{$member->StationData->StationName}}",
          map : map
       });
-      
-      if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 1000 && {{$gammaDoseRates[$member->Member_ID]->SValue}} < 2000 ){
+
+      if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 1000 && {{$gammaDoseRates[$member->Member_ID]->SValue}} <= 2000 ){
         marker.setIcon(icons.radiationYellow.icon);
       }
       else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 2000) {
         marker.setIcon(icons.radiationRed.icon);
       }
-      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} < 1000) {
+      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} <= 1000) {
         marker.setIcon(icons.radiationGreen.icon);
       }
-    
+
       marker.addListener('click', function(){
        map.setZoom(13);
-      
+
       //ajax untuk tampil last value
        $.ajax({
           url: 'stationlastvalue/{{$member->Member_ID}}',
@@ -123,9 +123,9 @@
 
         infowindow.open(map, this);
       })
-    
+
     <?php endforeach ?>
-    
+
     var legend = document.getElementById('legend');
     for (var key in icons){
       var type = icons[key];
