@@ -48,7 +48,5 @@ class StationLastValueController extends Controller
 
     return view('user.StationLastValue', compact('nameStation', 'termoDeg', 'windDir', 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
     'percipitation', 'humidity', 'StationData','asd','asdasdasdasd'));
-    }
-
-    
+    }    
 }

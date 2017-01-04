@@ -13,6 +13,7 @@ use App\Models\Member\Member;
 use App\Models\Types\MarkerType;
 use App\Models\Types\DocumentType;
 use App\Models\Device\DeviceList;
+use App\Models\Sensor\SensorValue;
 use Session;
 
 class KelolaStationController extends Controller
@@ -138,5 +139,11 @@ class KelolaStationController extends Controller
     public function hapusmodal_data($id){
         $stationhapus = Station::find($id);
         return view('modals/Station_HapusModal')->with('stationhapus',$stationhapus);
+    }
+
+    public function maxvalue(){   
+        $gammaDoseRatesMax = SensorValue::where('QuantityValue_ID', 1)->orderby('SValue','desc')->first();
+        
+        return view('admin/maxvalue',compact('gammaDoseRatesMax'));
     }
 }

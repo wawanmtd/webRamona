@@ -10,4 +10,9 @@ class SensorValue extends Model
     public $timestamps = false;
 
     protected $fillable=['Sensor_ID', 'QuantityValue_ID', 'Member_ID' , 'SValue', 'Timestamp'];
+
+    public function MemberData(){
+		return $this->belongsTo('App\Models\Member\Member', 'Member_ID');
+	}
+
 }
