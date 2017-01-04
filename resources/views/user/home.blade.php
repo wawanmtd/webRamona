@@ -122,6 +122,7 @@
         });
 
         infowindow.open(map, this);
+        map.setCenter({lat: {{$member->StationData->StationLat}} , lng: {{$member->StationData->StationLng}}});
       })
 
     <?php endforeach ?>
