@@ -71,7 +71,7 @@ Route::group(['namespace' => 'adminController'], function()
   Route::put('/kelolaStation/ubah/{id}','KelolaStationController@ubah');
   Route::get('/kelolaStation/hapusmodal/{id}','KelolaStationController@hapusmodal_data');
   Route::get('/kelolaStation/hapus/{id}','KelolaStationController@hapus');
-  Route::get('/getmaxvalue','KelolaStationController@maxvalue');
+  Route::get('/getmaxvalue/{role}/{id}','KelolaStationController@maxvalue');
 
   Route::get('/kelolaSensor', 'KelolaSensorController@index');
   Route::post('/kelolaSensor/tambahSensor', 'KelolaSensorController@tambah');

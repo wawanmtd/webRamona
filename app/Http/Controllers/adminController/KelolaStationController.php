@@ -141,9 +141,26 @@ class KelolaStationController extends Controller
         return view('modals/Station_HapusModal')->with('stationhapus',$stationhapus);
     }
 
-    public function maxvalue(){   
-        $gammaDoseRatesMax = SensorValue::where('QuantityValue_ID', 1)->orderby('SValue','desc')->first();
-        
-        return view('admin/maxvalue',compact('gammaDoseRatesMax'));
+    public function maxvalue($role, $id){   
+        if($role == 1){
+            $gammaDoseRatesMax = SensorValue::where('QuantityValue_ID', 1)->orderby('SValue','desc')->first();
+            $termoDegMax = SensorValue::where('QuantityValue_ID', 6)->orderBy('SValue', 'desc')->first();
+            $windSpeedMax = SensorValue::where('QuantityValue_ID', 3)->orderBy('SValue', 'desc')->first();
+            $solarRadMax = SensorValue::where('QuantityValue_ID', 4)->orderBy('SValue', 'desc')->first();
+            $barometerMax = SensorValue::where('QuantityValue_ID', 5)->orderBy('SValue', 'desc')->first();
+            $percipitationMax = SensorValue::where('QuantityValue_ID', 7)->orderBy('SValue', 'desc')->first();
+            $humidityMax = SensorValue::where('QuantityValue_ID', 8)->orderBy('SValue', 'desc')->first();
+        }
+        else if ($role == 2) {
+            $gammaDoseRatesMax = SensorValue::where('QuantityValue_ID', 1)->where('Member_ID',$id)->orderby('SValue','desc')->first();
+            $termoDegMax = SensorValue::where('QuantityValue_ID', 6)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+            $windSpeedMax = SensorValue::where('QuantityValue_ID', 3)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+            $solarRadMax = SensorValue::where('QuantityValue_ID', 4)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+            $barometerMax = SensorValue::where('QuantityValue_ID', 5)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+            $percipitationMax = SensorValue::where('QuantityValue_ID', 7)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+            $humidityMax = SensorValue::where('QuantityValue_ID', 8)->where('Member_ID',$id)->orderBy('SValue', 'desc')->first();
+        }
+
+        return view('admin/maxvalue',compact('gammaDoseRatesMax','termoDegMax','windSpeedMax','solarRadMax','barometerMax','percipitationMax','humidityMax'));
     }
 }

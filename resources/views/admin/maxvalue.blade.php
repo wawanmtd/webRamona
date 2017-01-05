@@ -1,27 +1,32 @@
+
+        <?php date_default_timezone_get("Asia/Jakarta"); ?>
+
 <div class="row">
+  @if($gammaDoseRatesMax)
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
         <h3>{{$gammaDoseRatesMax->SValue}} <sup style="font-size: 20px">&micro;Sv/h</sup></h3>
-        <?php date_default_timezone_get("Asia/Jakarta"); ?>
         <p>{{$gammaDoseRatesMax->MemberData->StationData->StationName}}</p>
         <p>{{$gammaDoseRatesMax->Timestamp}}</p>
       </div>
       <div class="icon">
-        <!-- <i class="ion ion-alert-circled"></i> -->
+        <i class="ion ion-alert-circled"></i>
       </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
   <!-- ./col -->
+  @if($termoDegMax)
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
-        <h3>40 <sup style="font-size: 20px">&deg;C</sup></h3>
-
-        <p>Muncul - {{date("M, d")}}</p>
+        <h3>{{$termoDegMax->SValue}} <sup style="font-size: 20px">&deg;C</sup></h3>
+        <p>{{$termoDegMax->MemberData->StationData->StationName}}</p>
+        <p>{{$termoDegMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-thermometer"></i>
@@ -29,13 +34,16 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
   <!-- ./col -->
+  @if($windSpeedMax)
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>24 <sup style="font-size: 20px">km/h</sup> NNE</h3>
-        <p>Pamulang Barat - {{date("M, d")}}</p>
+        <h3>{{$windSpeedMax->SValue}} <sup style="font-size: 20px">km/h</sup> NNE</h3>
+        <p>{{$windSpeedMax->MemberData->StationData->StationName}}</p>
+        <p>{{$windSpeedMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-compass"></i>
@@ -43,14 +51,17 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
   <!-- ./col -->
+  @if($solarRadMax)
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3>94 <sup style="font-size: 20px">Wm&sup2;</sup></h3>
+        <h3>{{$solarRadMax->SValue}} <sup style="font-size: 20px">Wm&sup2;</sup></h3>
 
-        <p>Batan Serpong - {{date("M, d")}}</p>
+        <p>{{$solarRadMax->MemberData->StationData->StationName}}</p>
+        <p>{{$solarRadMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-android-sunny"></i>
@@ -58,14 +69,18 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
   <!-- ./col -->
+
 </div>
 <div class="row">
+  @if($barometerMax)
   <div class="col-lg-3 col-xs-6">
     <div class="small-box bg-blue">
       <div class="inner">
-        <h3>1000 <sup style="font-size: 20px">mmHg</sup></h3>
-        <p>Pamulang Barat - {{date("M, d")}}</p>
+        <h3>{{$barometerMax->SValue}} <sup style="font-size: 20px">mm</sup></h3>
+        <p>{{$barometerMax->MemberData->StationData->StationName}}</p>
+        <p>{{$barometerMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-ios-partlysunny-outline"></i>
@@ -73,12 +88,15 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
 
+  @if($percipitationMax)
   <div class="col-lg-3 col-xs-6">
     <div class="small-box bg-orange">
       <div class="inner">
-        <h3>0 <sup style="font-size: 20px">mm</sup></h3>
-        <p>Batan Serpong - {{date("M, d")}}</p>
+        <h3>{{$percipitationMax->SValue}} <sup style="font-size: 20px">mmHg</sup></h3>
+        <p>{{$percipitationMax->MemberData->StationData->StationName}}</p>
+        <p>{{$percipitationMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-ios-rainy-outline"></i>
@@ -86,12 +104,15 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
 
+  @if($humidityMax)
   <div class="col-lg-3 col-xs-6">
     <div class="small-box bg-purple">
       <div class="inner">
-        <h3>100 <sup style="font-size: 20px">%</sup></h3>
-        <p>Ciputat Cipayung - {{date("M, d")}}</p>
+        <h3>{{$humidityMax->SValue}} <sup style="font-size: 20px">%</sup></h3>
+        <p>{{$humidityMax->MemberData->StationData->StationName}}</p>
+        <p>{{$humidityMax->Timestamp}}</p>
       </div>
       <div class="icon">
         <i class="ion ion-waterdrop"></i>
@@ -99,4 +120,5 @@
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
+  @endif
 </div>

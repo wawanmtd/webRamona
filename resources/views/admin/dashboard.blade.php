@@ -50,10 +50,10 @@ $.widget.bridge('uibutton', $.ui.button);
 <div id="maxvalue">
   <!-- somecontent -->
 </div>
-@if(Session::get('AccessLevel') == 1)
+
   <script>
     $.ajax({
-      url : 'getmaxvalue',
+      url : "getmaxvalue/{{Session::get('AccessLevel')}}/{{Session::get('Member_ID')}}",
       dataType : 'html',
       cache : false
     }).done(function(htmlcontent){
@@ -62,7 +62,7 @@ $.widget.bridge('uibutton', $.ui.button);
       alert('Request Failed : ' + textStatus);
     });
   </script>
-@endif
+
 <div class="row">
   <section class="col-lg-7 connectedSortable">
     <!-- Map box -->
