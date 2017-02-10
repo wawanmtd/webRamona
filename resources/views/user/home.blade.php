@@ -97,13 +97,14 @@
          map : map
       });
 
-      if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 1000 && {{$gammaDoseRates[$member->Member_ID]->SValue}} <= 2000 ){
+     $gammaLastValue = {{$gammaDoseRates[$member->Member_ID]->SValue}};
+     if ($gammaLastValue > 1000 && $gammaLastValue < 2000 ){
         marker.setIcon(icons.radiationYellow.icon);
       }
-      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} > 2000) {
+      else if ($gammaLastValue >= 2000) {
         marker.setIcon(icons.radiationRed.icon);
       }
-      else if ({{$gammaDoseRates[$member->Member_ID]->SValue}} <= 1000) {
+      else  {
         marker.setIcon(icons.radiationGreen.icon);
       }
 
@@ -120,7 +121,6 @@
         }).fail(function(jqXHR,textStatus){
           alert('Request Failed : '+ textStatus);
         });
-
         infowindow.open(map, this);
         map.setCenter({lat: {{$member->StationData->StationLat}} , lng: {{$member->StationData->StationLng}}});
       })

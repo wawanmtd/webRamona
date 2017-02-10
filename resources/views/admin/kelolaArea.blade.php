@@ -16,7 +16,7 @@
       </div>
 
       <div class="box-body">
-        <table id="tableAdmin" class="table table-bordered table-striped">
+        <table id="tableArea" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>Area Name</th>

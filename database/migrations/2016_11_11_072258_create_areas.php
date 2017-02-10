@@ -19,6 +19,7 @@ class CreateAreas extends Migration
             $table->string('Description');
             $table->string('Remark');
             $table->integer('Country_ID');
+            $table->foreign('Country_ID')->references('Country_ID')->on('countries');
             $table->integer('Member_ID');
             $table->string('Poly');
         });

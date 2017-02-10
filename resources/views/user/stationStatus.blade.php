@@ -174,6 +174,8 @@
             <div id="gammaDoseChart" class="chartdiv"></div>
           </div>
         </div>
+        @else 
+        <script > alert('data gaada');</script>
         @endif
 
         @if($termoDeg)
