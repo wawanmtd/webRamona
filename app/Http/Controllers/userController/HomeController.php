@@ -95,22 +95,7 @@ class HomeController extends Controller
       //$sensors = $request->sensor;
       return view('user.stationStatus',compact('StationData','windDir', 'termoDeg' , 'windSpeed', 'solarRad', 'gammaDoseRates', 'barometer',
       'percipitation', 'humidity','members', 'stations'), compact('gammaDoseRatesLast','windDirLast','windSpeedLast','termoDegLast','solarRadLast','barometerLast','percipitationLast','humidityLast'));
-// =======
-//   public function stationStatus(Request $request, $nameStation)
-//   {
-//     $sensors = $request->sensor;
 
-//     $gammaDoseRates = in_array("gammaDoseRates", $sensors);
-//     $termoDeg = in_array("termoDeg", $sensors);
-//     $wind = in_array("wind", $sensors);
-//     $solarRad = in_array("solarRad", $sensors);
-//     $barometer = in_array("barometer", $sensors);
-//     $percipitation = in_array("percipitation", $sensors);
-//     $humidity = in_array("humidity", $sensors);
-
-//     return view('user.stationStatus', compact('nameStation', 'gammaDoseRates', 'termoDeg', 'wind', 'solarRad', 'barometer',
-//     'percipitation', 'humidity'));
-// >>>>>>> origin/master
   }
 
 }

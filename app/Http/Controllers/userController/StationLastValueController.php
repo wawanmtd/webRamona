@@ -14,7 +14,7 @@ class StationLastValueController extends Controller
     public function index($id){
 
 	//$nameStation = "Perumahan Puspiptek";
-        $StationData = Station::StationWhereMemberId($id)->first();
+    $StationData = Station::StationWhereMemberId($id)->first();
     //$StationData = Station::where('Member_ID',$id)->first();
     // $gammaDoseRates = 1500;
     $gammaDoseRates = SensorValue::GammaValue($id)->orderById()->first();

@@ -19,9 +19,10 @@ class SensorValue extends Model
 		return $query->orderBy('SensorValue_ID', 'desc');
 	}
 	public function scopeWhereYear($query){
-		return $query->whereDate('Timestamp', '>', '2017-01-01 00:00:00');
-		return $query->where('Timestamp', '>=', date('Y-m-d').' 00:00:00');
-		return $query->whereYear('Timestamp', '>=', '2016');
+		return $query->whereDate('Timestamp', '>=', '2016-01-01 00:00:00');
+		return $query->whereDate('Timestamp', '>=', date('Y').'-01-01 00:00:00');
+		//return $query->where('Timestamp', '>=', date('Y-m-d').' 00:00:00');
+		//return $query->whereYear('Timestamp', '>=', '2016');
 	}
 	public function scopeGammaValue($query, $id){
 		return $query->where('QuantityValue_ID', 1)->where('Member_ID',$id);
