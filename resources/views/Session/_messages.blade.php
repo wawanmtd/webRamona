@@ -14,3 +14,10 @@
 		</ul>
 	</div>
 @endif
+
+@if (Session::has('errorMessage'))
+	<div class="alert alert-danger" role="alert">
+		<strong>{{Session::get('errorMessage')}}</strong> 
+		{{Session::forget('errorMessage')}}
+	</div>
+@endif

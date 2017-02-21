@@ -17,11 +17,15 @@ class LoginController extends Controller
                  ->where('AccessCode', $request->AccessCode)
                  ->first();
       if($SelectMember){
-      $newactivity = new ActivityLog;
-      $newactivity->ActivityType_ID = 1;
-      $newactivity->Member_ID = $SelectMember->Member_ID;
-      $newactivity->ActivityInfo = "Login";
-      $newactivity->save();           
+        $newactivity = new ActivityLog;
+        $newactivity->ActivityType_ID = 1;
+        $newactivity->Member_ID = $SelectMember->Member_ID;
+        $newactivity->ActivityInfo = "Login";
+        $newactivity->save();           
+      }
+      else{
+        Session::put('errorMessage', 'Login Failed. Etiher wrong username or password.');
+        return redirect()->action('userController\HomeController@index');
       }
       
       $SelectStation = Station::where('Member_ID', $SelectMember->Member_ID)->first();
@@ -34,8 +38,6 @@ class LoginController extends Controller
       if($SelectStation){Session::put('Station', $SelectStation->StationName);}
 
       return redirect()->action('adminController\AdminController@index',compact('selectMember'));
-
-      return redirect()->action('adminController\AdminController@index');
     }
 
     public function logout()

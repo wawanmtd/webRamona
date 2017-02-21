@@ -34,13 +34,11 @@
         <a href="{{action("adminController\AdminController@index")}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
-          {{ HTML::image('resources/assets/img/MONLINK.png') }}
-            <!-- <img src="../resources/assets/img/MONLINK.png" alt="" width="60%"/> -->
+            <img src="../resources/assets/img/MONLINK.png" alt="" width="60%"/>
           </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg">
-          {{ HTML::image('resources/assets/img/MONLINK.png') }}
-            <!-- <img src="../resources/assets/img/MONLINK.png" alt="" width="20%" style="float:left; margin-right:-30px; margin-top:3px"/> -->
+            <img src="../resources/assets/img/MONLINK.png" alt="" width="20%" style="float:left; margin-right:-30px; margin-top:3px"/>
             <b>RAMONA</b>
           </span>
         </a>

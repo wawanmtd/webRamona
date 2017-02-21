@@ -1,3 +1,5 @@
+@include('Session._messages')
+
 <!DOCTYPE html>
 <html>
   <head>
